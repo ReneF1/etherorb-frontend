@@ -1,9 +1,13 @@
 /**
  * Created by renefuchtenkordt on 13.07.17.
  */
-import loadPriceHistory from './ethActions';
+import loadEthUsd from './ethActions';
+import { placeBet, postBet, loadPoolSize } from './betActions';
 
-export default {
-  loadPriceHistory,
+export {
+    loadEthUsd,
+    placeBet,
+    loadPoolSize,
+    postBet
 };
 

@@ -32,7 +32,6 @@ const data = {
 };
 
 
-
 const EthChart = () =>
     (<div>
       <Line data={data} />
