@@ -2,32 +2,24 @@
  * Created by renefuchtenkordt on 04.07.17.
  */
 import React, {Component} from 'react';
-import moment from 'moment';
+import {blue500,orange500} from 'material-ui/styles/colors';
+import {Col, Row} from 'react-flexbox-grid';
+import {CountdownClock} from '../'
 
 class countdown extends Component {
-
-    constructor() {
-        super();
-        let now = moment();
-        let roundUp = now.minute() || now.second() || now.millisecond() ? now.add(1, 'hour').startOf('hour') : now.startOf('hour');
-
-        setInterval(() => {
-            let duration = moment.duration(moment(roundUp).format('x') - moment().format('x'), 'milliseconds');
-            this.setState({countdown: duration.hours() + ":" + duration.minutes() + ":" + duration.seconds()})
-        }, 1000);
-
-
-        this.state = {
-            countdown,
-            roundUp
-        };
-    }
 
     render() {
         return (
             <div>
-                <p>{this.state.roundUp.format('HH:mm')}</p>
-                <p>{this.state.countdown}</p>
+                <Row>
+                    <Col xs={6} md={6}>
+                        <CountdownClock seconds={this.props.countdownAsSeconds} color={blue500}
+                                        description={"Current round"}/>
+                    </Col>
+                    <Col xs={6} md={6}>
+                        <CountdownClock seconds={this.props.countdownAsSeconds - 600} color={orange500} description={"Time to place bets"}/>
+                    </Col>
+                </Row>
             </div>
         );
     }

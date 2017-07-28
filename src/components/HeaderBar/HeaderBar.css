@@ -4,3 +4,7 @@
 .flex {
     flex: 1;
 }
+.orbLogoImg {
+    height: 40px;
+    margin-top: 5px;
+}

@@ -19,7 +19,6 @@ class BetInputForm extends React.Component {
         return (
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Field name="ethBet" component={BetInput} validate={[required, email]}/>
-                <button type="submit">Place Bet</button>
             </form>
         )
     }

@@ -6,6 +6,8 @@ import Countdown from './Countdown/Countdown';
 import EthChart from './EthChart/EthChart';
 import Footer from './Footer/Footer';
 import BetInput from './BetInputForm';
+import CountdownClock from './CountdownClock/CountdownClock';
+import PredictionHead from './PredictionHead/PredictionHead';
 
 export {
     HeaderBar,
@@ -13,4 +15,6 @@ export {
     EthChart,
     Footer,
     BetInput,
+    CountdownClock,
+    PredictionHead,
 };

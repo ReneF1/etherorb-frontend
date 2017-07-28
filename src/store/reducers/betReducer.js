@@ -22,6 +22,7 @@ export default function reducer(state = {
                 ...state,
                 loading: false,
                 poolSize: action.payload.data.Poolsize,
+                prediction: action.payload.data.Prediction,
             };
         }
         case 'GET_POOLSIZE_ERROR': {
