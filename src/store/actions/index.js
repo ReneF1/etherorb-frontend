@@ -8,6 +8,6 @@ export {
     loadEthUsd,
     placeBet,
     loadPoolSize,
-    postBet
+    postBet,
 };
 

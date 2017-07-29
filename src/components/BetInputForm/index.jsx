@@ -3,32 +3,36 @@
  */
 
 import React from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 import BetInputForm from './BetInputForm';
-import {postBet} from "../../store/actions/betActions";
+import { postBet } from '../../store/actions/betActions';
 
 class BetInput extends React.Component {
 
-    constructor() {
-        super()
-        this.onSubmit = this.onSubmit.bind(this)
-    }
+  constructor() {
+    super();
+    this.onSubmit = this.onSubmit.bind(this);
+  }
 
-    onSubmit(data) {
-        this.props.postBet()
-        console.log('my console.log', data);
-    }
+  onSubmit() {
+    this.props.postBet();
+  }
 
-    render() {
-        return (<div>
-            <BetInputForm onSubmit={this.onSubmit}/>
-        </div>)
-    }
+    // TODO: Fix the damn form
+  render() {
+    return (<div>
+      <BetInputForm onSubmit={this.onSubmit} />
+    </div>);
+  }
 }
 
-const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => bindActionCreators({
-    postBet
+  postBet,
 }, dispatch);
-export default connect(mapStateToProps, mapDispatchToProps)(BetInput);
+
+BetInput.propTypes = {
+  postBet: PropTypes.func.isRequired,
+};
+export default connect(mapDispatchToProps)(BetInput);

@@ -3,13 +3,13 @@
  */
 
 export default function loadEthUsd() {
-    return {
-        types: ['GET_ETH_USD_REQUEST','GET_ETH_USD_SUCCESS','GET_ETH_USD_ERROR'],
-        payload: {
-            client: 'kraken',
-            request: {
-                url: 'Ticker?pair=ETHUSD'
-            }
-        }
-    };
+  return {
+    types: ['GET_ETH_USD_REQUEST', 'GET_ETH_USD_SUCCESS', 'GET_ETH_USD_ERROR'],
+    payload: {
+      client: 'kraken',
+      request: {
+        url: 'Ticker?pair=ETHUSD',
+      },
+    },
+  };
 }
