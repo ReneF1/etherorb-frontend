@@ -3,7 +3,7 @@
  */
 import HeaderBar from './HeaderBar/HeaderBar';
 import Countdown from './Countdown/Countdown';
-import EthChart from './EthChart/EthChart';
+import EthChart from './EthChart/';
 import Footer from './Footer/Footer';
 import BetInput from './BetInputForm';
 import CountdownClock from './CountdownClock/CountdownClock';
