@@ -6,28 +6,45 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Col, Grid, Row} from 'react-flexbox-grid';
-import moment from 'moment';
+import Moment from 'moment';
+import { extendMoment } from 'moment-range';
 import Paper from 'material-ui/Paper';
 import DocumentTitle from 'react-document-title';
 import {white} from 'material-ui/styles/colors';
 import './Landingpage.css';
 import {BetInput, Countdown, Footer, HeaderBar, PredictionHead} from '../../components';
-import loadEthUsd from '../../store/actions/ethActions';
+import {loadEthUsd, loadEthUsdHistory} from '../../store/actions/ethActions';
 import {loadPoolSize} from '../../store/actions/betActions';
-import EthChart from "../../components/EthChart/index";
+import { LineChart, Line } from 'recharts';
 
 class Landingpage extends Component {
 
     componentWillMount() {
+        const moment = extendMoment(Moment);
         this.props.loadEthUsd();
         this.props.loadPoolSize();
-        const now = moment();
-        const roundUp = now.minute() || now.second() || now.millisecond() ? now.add(1, 'hour').startOf('hour') : now.startOf('hour');
+        const roundUp = moment().minute() || moment().second() || moment().millisecond() ? moment().add(1, 'hour').startOf('hour') : moment().startOf('hour');
+        const roundDown = moment().minute() || moment().second() || moment().millisecond() ? moment().subtract(0, 'hour').startOf('hour') : moment().startOf('hour');
         const duration = moment.duration(moment(roundUp).format('x') - moment().format('x'), 'milliseconds');
+
+        const start = new Date(roundDown);
+        const end   = new Date(roundUp);
+        const range = moment.range(start, end);
+
+        const minutes = Array.from(range.by('minute'));
+        const hourArray = minutes.map(m => m.format('x'))
+        const usdArray = []
+
+        for (let value of hourArray) {
+            let timestamp = value
+            this.props.loadEthUsdHistory(value).then(function(res){usdArray.push({date: timestamp, close: res.payload.data.ETH.USD})});
+        }
+
         this.setState({
             roundUp: moment(roundUp).format('HH:mm'),
             countdown: `${duration.hours()}:${duration.minutes()}:${duration.seconds()}`,
             countdownAsSeconds: moment.duration(duration).asSeconds(),
+            usdArray: usdArray,
         });
     }
 
@@ -63,8 +80,10 @@ class Landingpage extends Component {
                                     </Paper>
                                 </Col>
                                 <Col xs={12} md={12}>
-                                    <Paper zDepth={0} style={paperAccent}>
-                                        12
+                                    <Paper zDepth={1} style={paperAccent}>
+                                        <LineChart width={400} height={400} data={this.state.usdArray}>
+                                            <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+                                        </LineChart>
                                     </Paper>
                                 </Col>
                             </Row>
@@ -93,6 +112,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     loadEthUsd,
+    loadEthUsdHistory,
     loadPoolSize,
 }, dispatch);
 

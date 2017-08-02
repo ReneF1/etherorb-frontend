@@ -4,7 +4,6 @@
 import React from 'react';
 import AreaChart from './chart';
 import {getData} from "./utils"
-import {TypeChooser} from "react-stockcharts/lib/helper";
 
 
 class EthChart extends React.Component {
@@ -19,10 +18,9 @@ class EthChart extends React.Component {
             return <div>Loading...</div>
         }
         return (
-            <TypeChooser>
-                {type => <AreaChart type={type} data={this.state.data}/>}
-            </TypeChooser>
+            <AreaChart type={'svg'} data={this.state.data}/>
         )
     }
 }
+
 export default EthChart
