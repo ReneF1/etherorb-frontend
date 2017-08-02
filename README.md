@@ -1,9 +1,9 @@
 ## Deployment
 
-brew install heroku
-heroku login
-heroku git:remote -a https://git.heroku.com/etherorb.git
-git push heroku master
+- brew install heroku
+- heroku login
+- heroku git:remote -a https://git.heroku.com/etherorb.git
+- git push heroku master
 
 ## Create-React-App Readme
 
