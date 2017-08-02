@@ -1,3 +1,12 @@
+## Deployment
+
+brew install heroku
+heroku login
+heroku git:remote -a https://git.heroku.com/etherorb.git
+git push heroku master
+
+## Create-React-App Readme
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
