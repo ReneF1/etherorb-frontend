@@ -1,12 +1,11 @@
 /**
  * Created by renefuchtenkordt on 13.07.17.
  */
-import {loadEthUsd, loadEthUsdHistory} from './ethActions';
+import {callCryptoExchange} from './cryptoExchange';
 import { placeBet, postBet, loadPoolSize } from './betActions';
 
 export {
-    loadEthUsd,
-    loadEthUsdHistory,
+    callCryptoExchange,
     placeBet,
     loadPoolSize,
     postBet,

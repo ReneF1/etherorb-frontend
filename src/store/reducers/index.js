@@ -3,12 +3,12 @@
  */
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import ethReducer from './ethReducer';
+import cryptoExchange from './cryptoExchange';
 import betReducer from './betReducer';
 
 
 export default combineReducers({
-  ethReducer,
+  cryptoExchange,
   betReducer,
   form: formReducer,
 });
