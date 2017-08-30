@@ -1,93 +1,115 @@
 /**
  * Created by renefuchtenkordt on 07.07.17.
  */
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Col, Grid, Row } from 'react-flexbox-grid';
-import moment from 'moment';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {Col, Grid, Row} from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
 import DocumentTitle from 'react-document-title';
-import { white } from 'material-ui/styles/colors';
+import {white} from 'material-ui/styles/colors';
 import './Landingpage.css';
-import { BetInput, Countdown, Footer, HeaderBar, PredictionHead } from '../../components';
-import loadEthUsd from '../../store/actions/ethActions';
-import { loadPoolSize } from '../../store/actions/betActions';
+import {BetInput, Countdown, EthChart, Footer, HeaderBar, PredictionHead} from '../../components';
+import {
+    buildCountdownDuration,
+    buildTimeArray,
+    getCryptoValue,
+    getNow,
+    getLastHour,
+    getNextHour,
+    loadPoolSize,
+    placeBet,
+    postBet,
+} from '../../store/actions';
 
 class Landingpage extends Component {
 
-  componentWillMount() {
-    this.props.loadEthUsd();
-    this.props.loadPoolSize();
-    const now = moment();
-    const roundUp = now.minute() || now.second() || now.millisecond() ? now.add(1, 'hour').startOf('hour') : now.startOf('hour');
-    const duration = moment.duration(moment(roundUp).format('x') - moment().format('x'), 'milliseconds');
-    this.setState({
-      roundUp: moment(roundUp).format('HH:mm'),
-      countdown: `${duration.hours()}:${duration.minutes()}:${duration.seconds()}`,
-      countdownAsSeconds: moment.duration(duration).asSeconds(),
-    });
-  }
+    componentWillMount() {
+        this.props.getNow();
+        this.props.getLastHour();
+        this.props.getNextHour();
+        this.props.buildCountdownDuration()
+        this.props.buildTimeArray()
+        this.props.getCryptoValue('ETHUSDHOUR', 'ETH', 'USD', 'Kraken', [1503144000000, 1503144000000]);
+        this.props.loadPoolSize();
+    }
 
-  render() {
-    const paperAccent = {
-      margin: '10px',
-      padding: '10px',
-      color: white,
-    };
-    return (
-      <DocumentTitle title={`${'EtherOrb $'}${this.props.prediction} @ ${this.state.roundUp}`}>
-        <div>
-          <HeaderBar title="EtherOrb" ethUsd={this.props.ethUsd} />
-          <Paper zDepth={0}>
-            <Grid fluid>
-              <Row>
-                <Col xs={12} md={12}>
-                  <PredictionHead
-                    nextRound={this.state.roundUp}
-                    prediction={this.props.prediction}
-                  />
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={12} md={12}>
-                  <Paper zDepth={0}>
-                    <Countdown countdownAsSeconds={this.state.countdownAsSeconds} />
-                  </Paper>
-                </Col>
-                <Col xs={12} md={12}>
-                  <Paper zDepth={0} style={paperAccent}>
-                    <BetInput />
-                  </Paper>
-                </Col>
-              </Row>
-            </Grid>
-          </Paper>
-          <Footer />
-        </div>
-      </DocumentTitle>
-    );
-  }
+    render() {
+        const paperAccent = {
+            margin: '10px',
+            padding: '10px',
+            color: white,
+        };
+        return (
+            <DocumentTitle title={`${'EtherOrb $'}${this.props.prediction} @ ${this.props.nextHour}`}>
+                <div>
+                    <HeaderBar title="EtherOrb" ethUsd={this.props.cryptoExchange.response}/>
+                    <Paper zDepth={0}>
+                        <Grid fluid>
+                            <Row>
+                                <Col xs={12} md={12}>
+                                    <PredictionHead
+                                        nextRound={this.props.nextHour}
+                                        prediction={this.props.prediction}
+                                    />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={12} md={12}>
+                                    <Paper zDepth={0}>
+                                        <Countdown countdownAsSeconds={600}/>
+                                    </Paper>
+                                </Col>
+                                <Col xs={12} md={12}>
+                                    <Paper zDepth={0} style={paperAccent}>
+                                        <BetInput/>
+                                    </Paper>
+                                </Col>
+                                <Col xs={12} md={12}>
+                                    <Paper zDepth={1} style={paperAccent}>
+                                        <EthChart/>
+                                    </Paper>
+                                </Col>
+                            </Row>
+                        </Grid>
+                    </Paper>
+                    <Footer/>
+                </div>
+            </DocumentTitle>
+        );
+    }
 }
 
 Landingpage.propTypes = {
-  prediction: PropTypes.number,
-  ethUsd: PropTypes.string.isRequired,
-  loadEthUsd: PropTypes.func.isRequired,
-  loadPoolSize: PropTypes.func.isRequired,
+    getLastHour: PropTypes.func,
+    getNextHour: PropTypes.func,
+    callCryptoExchange: PropTypes.func,
+    prediction: PropTypes.number,
+    loadPoolSize: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
-  ethUsd: state.ethReducer.ethUsd,
-  loading: state.ethReducer.loading,
-  poolSize: state.betReducer.poolSize,
-  prediction: state.betReducer.prediction,
+    now: state.momentTime.now,
+    lastHour: state.momentTime.lastHour,
+    nextHour: state.momentTime.nextHour,
+    countdownTimer: state.momentTime.countdownTimer,
+    timeArray: state.momentTime.timeArray,
+    cryptoExchange: state.cryptoExchange.response,
+    poolSize: state.betReducer.poolSize,
+    prediction: state.betReducer.prediction,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  loadEthUsd,
-  loadPoolSize,
+    getNow,
+    getLastHour,
+    getNextHour,
+    buildCountdownDuration,
+    buildTimeArray,
+    getCryptoValue,
+    placeBet,
+    loadPoolSize,
+    postBet,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landingpage);

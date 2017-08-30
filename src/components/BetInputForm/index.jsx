@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import BetInputForm from './BetInputForm';
-import { postBet } from '../../store/actions/betActions';
+import { postBet } from '../../store/actions/contract';
 
 class BetInput extends React.Component {
 
