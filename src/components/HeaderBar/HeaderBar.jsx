@@ -2,23 +2,24 @@
  * Created by renefuchtenkordt on 07.07.17.
  */
 import React from 'react';
-import PropTypes from 'prop-types';
-import AppBar from 'material-ui/AppBar';
-import { blue500 } from 'material-ui/styles/colors';
-import ethLogo from '../../eth_logo2.png';
+import RaisedButton from 'material-ui/RaisedButton';
+import muiThemeable from 'material-ui/styles/muiThemeable';
 import './HeaderBar.css';
 
 const HeaderBar = props => (
-  <AppBar
-    iconElementLeft={<img src={ethLogo} className="orbLogoImg" alt="" />}
-    iconElementRight={<p style={{ color: blue500 }}>Prediction: {props.ethUsd} @ 20:00 </p>}
-    title={props.title}
-    zDepth={1}
-  />
+    <div className='headerBar'>
+        <div className='headerBar__wrapper'>
+            <div className='headerBar__leftElement'><img src={props.logo} className='headerBar__logo'
+                                                         alt={props.titlePrimary + props.titleSecondary + ' logo'}/><span
+                className='headerBar__logoTextPrimary'
+                style={{color: props.muiTheme.palette.accent1Color}}>{props.titlePrimary}</span><span
+                className='headerBar__logoTextSecondary'
+                style={{color: props.muiTheme.palette.accent1Color}}>{props.titleSecondary}</span></div>
+            <div className='headerBar__rightElement'>
+                <RaisedButton label={props.buttonLabel} secondary={true} style={props.customButton.style} buttonStyle={props.customButton.buttonStyle}
+                              overlayStyle={props.customButton.overlayStyle} className='headerBar_raisedButton'/>
+            </div>
+        </div>
+    </div>
 );
-
-HeaderBar.propTypes = {
-  ethUsd: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-};
-export default HeaderBar;
+export default muiThemeable()(HeaderBar);

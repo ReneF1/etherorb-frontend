@@ -5,7 +5,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import {ConnectedRouter} from 'react-router-redux';
 import {MuiThemeProvider} from 'material-ui/styles';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import {blue500, grey50, white} from 'material-ui/styles/colors';
+import {cyan500, cyan700, grey100, grey400, grey500, pinkA200,} from 'material-ui/styles/colors';
 import App from './App';
 import store, {history} from './store/index';
 import './index.css';
@@ -17,23 +17,14 @@ injectTapEventPlugin();
 
 const orbTheme = getMuiTheme({
     palette: {
-        color: grey50,
-        backgroundColor: blue500,
-    },
-    appBar: {
-        height: 50,
-        backgroundColor: white,
-        textColor: blue500,
-        color: white
-    },
-    paper: {
-        backgroundColor: white,
-    },
+        primary1Color: '#4527a0',
+        accent1Color: '#ff3823',
+    }
 });
 
 ReactDOM.render(
     <Provider store={store}>
-        <MuiThemeProvider muiTheme={getMuiTheme(orbTheme)}>
+        <MuiThemeProvider muiTheme={orbTheme}>
             <ConnectedRouter history={history}>
                 <App/>
             </ConnectedRouter>
