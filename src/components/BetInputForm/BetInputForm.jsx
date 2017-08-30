@@ -26,7 +26,7 @@ BetInputForm = reduxForm({
 
 BetInputForm = connect(
     state => ({
-      initialValues: { ethBet: (Math.round((state.ethReducer.ethUsd * 10)) / 10).toFixed(2) },
+      initialValues: { ethBet: (Math.round((state.cryptoExchange.ethUsd * 10)) / 10).toFixed(2) },
     }),
 )(BetInputForm);
 

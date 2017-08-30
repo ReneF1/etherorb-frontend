@@ -1,24 +1,23 @@
 /**
  * Created by renefuchtenkordt on 08.07.17.
  */
+import axios from 'axios'
 
-function callCryptoExchange(id,cryptoSymbol,currencySymbol,market,timestamp) {
+function getCryptoValue(id, cryptoSymbol, currencySymbol, market, timeArray) {
+    let cryptoArray = []
+    for (let value of timeArray) {
+        console.log(value)
+        axios.get('pricehistorical?fsym=' + cryptoSymbol + '&tsyms=' + currencySymbol + '&markets=' + market + '&ts=' + value).then(function (response) {
+            console.log(response)
+            cryptoArray.push({date: value, close: response.payload.response})
+        });
+    }
     return {
-        types: ['GET_CRYPTO_EXCHANGE_REQUEST', 'GET_CRYPTO_EXCHANGE_SUCCESS', 'GET_CRYPTO_EXCHANGE_ERROR'],
-        payload: {
-            client: 'cryptoCompareApi',
-            id,
-            cryptoSymbol,
-            currencySymbol,
-            market,
-            timestamp,
-            request: {
-                url: 'pricehistorical?fsym=' + cryptoSymbol + '&tsyms=' + currencySymbol + '&markets=' + market + '&ts=' + timestamp,
-            },
-        },
-    };
+        type: 'BUILD_CRYPTO_ARRAY_SUCCESS',
+        payload: {[id]: cryptoArray}
+    }
 }
 
 export {
-    callCryptoExchange,
+    getCryptoValue,
 }

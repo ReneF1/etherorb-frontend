@@ -6,50 +6,33 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Col, Grid, Row} from 'react-flexbox-grid';
-import Moment from 'moment';
-import {extendMoment} from 'moment-range';
 import Paper from 'material-ui/Paper';
 import DocumentTitle from 'react-document-title';
 import {white} from 'material-ui/styles/colors';
 import './Landingpage.css';
 import {BetInput, Countdown, EthChart, Footer, HeaderBar, PredictionHead} from '../../components';
-import {callCryptoExchange, loadPoolSize} from '../../store/actions';
+import {
+    buildCountdownDuration,
+    buildTimeArray,
+    getCryptoValue,
+    getNow,
+    getLastHour,
+    getNextHour,
+    loadPoolSize,
+    placeBet,
+    postBet,
+} from '../../store/actions';
 
 class Landingpage extends Component {
 
     componentWillMount() {
-        const moment = extendMoment(Moment);
-        this.props.callCryptoExchange(1,'ETH','USD','Kraken',moment());
-
+        this.props.getNow();
+        this.props.getLastHour();
+        this.props.getNextHour();
+        this.props.buildCountdownDuration()
+        this.props.buildTimeArray()
+        this.props.getCryptoValue('ETHUSDHOUR', 'ETH', 'USD', 'Kraken', [1503144000000, 1503144000000]);
         this.props.loadPoolSize();
-        const roundUp = moment().minute() || moment().second() || moment().millisecond() ? moment().add(1, 'hour').startOf('hour') : moment().startOf('hour');
-        const roundDown = moment().minute() || moment().second() || moment().millisecond() ? moment().subtract(0, 'hour').startOf('hour') : moment().startOf('hour');
-        const duration = moment.duration(moment(roundUp).format('x') - moment().format('x'), 'milliseconds');
-
-        const start = new Date(roundDown);
-        const end = new Date(roundUp);
-        const range = moment.range(start, end);
-
-        const minutes = Array.from(range.by('minute'));
-        const hourArray = minutes.map(m => m.format('x'))
-        const usdArray = []
-
-        for (let value of hourArray) {
-            let timestamp = value
-            this.props.callCryptoExchange(2,'ETH','USD','Kraken',value).then(function (res) {
-                usdArray.push({date: timestamp, close: res.payload.response})
-            });
-        }
-        this.setState({
-            roundUp: moment(roundUp).format('HH:mm'),
-            countdown: `${duration.hours()}:${duration.minutes()}:${duration.seconds()}`,
-            countdownAsSeconds: moment.duration(duration).asSeconds(),
-            usdArray: usdArray,
-        });
-    }
-
-    componentWillReceiveProps(){
-        console.log(this.props)
     }
 
     render() {
@@ -59,7 +42,7 @@ class Landingpage extends Component {
             color: white,
         };
         return (
-            <DocumentTitle title={`${'EtherOrb $'}${this.props.prediction} @ ${this.state.roundUp}`}>
+            <DocumentTitle title={`${'EtherOrb $'}${this.props.prediction} @ ${this.props.nextHour}`}>
                 <div>
                     <HeaderBar title="EtherOrb" ethUsd={this.props.cryptoExchange.response}/>
                     <Paper zDepth={0}>
@@ -67,7 +50,7 @@ class Landingpage extends Component {
                             <Row>
                                 <Col xs={12} md={12}>
                                     <PredictionHead
-                                        nextRound={this.state.roundUp}
+                                        nextRound={this.props.nextHour}
                                         prediction={this.props.prediction}
                                     />
                                 </Col>
@@ -75,7 +58,7 @@ class Landingpage extends Component {
                             <Row>
                                 <Col xs={12} md={12}>
                                     <Paper zDepth={0}>
-                                        <Countdown countdownAsSeconds={this.state.countdownAsSeconds}/>
+                                        <Countdown countdownAsSeconds={600}/>
                                     </Paper>
                                 </Col>
                                 <Col xs={12} md={12}>
@@ -85,7 +68,7 @@ class Landingpage extends Component {
                                 </Col>
                                 <Col xs={12} md={12}>
                                     <Paper zDepth={1} style={paperAccent}>
-                                        <EthChart data={this.state.usdArray}/>
+                                        <EthChart/>
                                     </Paper>
                                 </Col>
                             </Row>
@@ -99,22 +82,34 @@ class Landingpage extends Component {
 }
 
 Landingpage.propTypes = {
+    getLastHour: PropTypes.func,
+    getNextHour: PropTypes.func,
     callCryptoExchange: PropTypes.func,
     prediction: PropTypes.number,
-    cryptoExchange: PropTypes.string.isRequired,
-    loadPoolSize: PropTypes.func.isRequired,
+    loadPoolSize: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
-    cryptoExchange: state.cryptoExchange,
-    loading: state.cryptoExchange.loading,
+    now: state.momentTime.now,
+    lastHour: state.momentTime.lastHour,
+    nextHour: state.momentTime.nextHour,
+    countdownTimer: state.momentTime.countdownTimer,
+    timeArray: state.momentTime.timeArray,
+    cryptoExchange: state.cryptoExchange.response,
     poolSize: state.betReducer.poolSize,
     prediction: state.betReducer.prediction,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    callCryptoExchange,
+    getNow,
+    getLastHour,
+    getNextHour,
+    buildCountdownDuration,
+    buildTimeArray,
+    getCryptoValue,
+    placeBet,
     loadPoolSize,
+    postBet,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landingpage);

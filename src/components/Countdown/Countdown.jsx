@@ -20,7 +20,7 @@ const Countdown = props =>
           </Col>
           <Col xs={6} md={6}>
             <CountdownClock
-              seconds={props.countdownAsSeconds - 600}
+              seconds={1200 - 600}
               color={orange500}
               description={'Time to place bets'}
             />
