@@ -8,6 +8,7 @@ import {bindActionCreators} from 'redux';
 import {Col, Grid, Row} from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
 import DocumentTitle from 'react-document-title';
+import ethLogo from '../../logo.svg';
 import {white} from 'material-ui/styles/colors';
 import './Landingpage.css';
 import {BetInput, Countdown, EthChart, Footer, HeaderBar, PredictionHead} from '../../components';
@@ -15,9 +16,9 @@ import {
     buildCountdownDuration,
     buildTimeArray,
     getCryptoValue,
-    getNow,
     getLastHour,
     getNextHour,
+    getNow,
     loadPoolSize,
     placeBet,
     postBet,
@@ -41,10 +42,16 @@ class Landingpage extends Component {
             padding: '10px',
             color: white,
         };
+        const customButton = {
+            buttonStyle: {borderRadius: '100px', height: '40px', lineHeight: '35px'},
+            overlayStyle: {borderRadius: '100px'},
+            style: {borderRadius: '100px', minWidth: '200px'}
+        }
         return (
             <DocumentTitle title={`${'EtherOrb $'}${this.props.prediction} @ ${this.props.nextHour}`}>
                 <div>
-                    <HeaderBar title="EtherOrb" ethUsd={this.props.cryptoExchange.response}/>
+                    <HeaderBar logo={ethLogo} titlePrimary="EtherOrb" titleSecondary=".com"
+                               customButton={customButton} buttonLabel="Buy Ticket"/>
                     <Paper zDepth={0}>
                         <Grid fluid>
                             <Row>

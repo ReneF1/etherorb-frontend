@@ -1,10 +1,42 @@
-.root {
+.headerBar {
+    padding: 20px 40px;
+}
+
+.headerBar, .headerBar__wrapper, .headerBar__leftElement, .headerBar__rightElement {
+    height: 60px;
+}
+
+.headerBar__wrapper, .headerBar__leftElement {
+    float: left;
+}
+
+.headerBar__wrapper {
     width: 100%;
 }
-.flex {
-    flex: 1;
+
+.headerBar__rightElement {
+    float: right;
 }
-.orbLogoImg {
-    height: 40px;
-    margin-top: 5px;
+
+.headerBar__logo {
+    width: 60px;
+}
+
+.headerBar_raisedButton, .headerBar__logoTextPrimary, .headerBar__logoTextSecondary {
+    position: relative;
+}
+
+.headerBar_raisedButton {
+    top: 10px;
+}
+
+.headerBar__logoTextPrimary, .headerBar__logoTextSecondary {
+    font-size: 26px;
+    bottom: 20px;
+    left: 10px;
+    text-transform: uppercase;
+}
+
+.headerBar__logoTextSecondary {
+    font-size: 12px;
 }

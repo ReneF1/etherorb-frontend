@@ -1,6 +1,5 @@
 import React from 'react';
 import { Col, Grid, Row } from 'react-flexbox-grid';
-import ethTicket from '../../eth_ticket.png';
 import './betInput.css';
 
 const BetInput = ({ value, onChange }) =>
@@ -9,7 +8,6 @@ const BetInput = ({ value, onChange }) =>
         <Row>
           <Col xs={12} md={12}>
             <div className="ticketWrapper">
-              <img src={ethTicket} className="orbTicketImg" alt="" />
               <div className="betInputWrapper">
                 <input className="betInput" defaultValue={`${'$ '}${value} @ 20:00`} />
                 <button
