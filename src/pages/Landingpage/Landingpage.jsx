@@ -9,7 +9,7 @@ import DocumentTitle from 'react-document-title';
 import ethLogo from '../../logo.svg';
 import background from '../../bg.svg';
 import './Landingpage.css';
-import {Footer, HeaderBar, TopComponent} from '../../components';
+import {Footer, HeaderBar, TopComponent, BottomComponent} from '../../components';
 import {
     buildCountdownDuration,
     buildTimeArray,
@@ -53,6 +53,7 @@ class Landingpage extends Component {
                                customButton={customButton} buttonLabel="Buy Your Ticket"/>
                     <TopComponent headline={["The first Ethereum", <br />, "Prediciton Lottery"]} customButton={customButtonLarge} background={background} CountdownClockDescription={['Win Now', '$ 100.000']}
                                   buttonLabel="Buy Your Ticket"/>
+                    <BottomComponent headline={"Current Round"}/>
                     <Footer/>
                 </div>
             </DocumentTitle>
