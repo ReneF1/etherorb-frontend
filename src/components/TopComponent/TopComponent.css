@@ -1,3 +1,7 @@
+.topComponent__container {
+    padding: 60px 0;
+}
+
 .topComponent {
     background-size: cover;
 }
@@ -9,4 +13,12 @@
 .topComponent__headline {
     color: white;
     text-transform: uppercase;
+}
+
+.topComponent__buttonWrapper {
+    height: 76px;
+    padding: 0 0 30px 0;
+}
+.topComponent__paddingWrapper {
+    padding: 0 0 30px 0;
 }

@@ -51,7 +51,7 @@ class Landingpage extends Component {
                 <div>
                     <HeaderBar logo={ethLogo} titlePrimary="EtherOrb" titleSecondary=".com"
                                customButton={customButton} buttonLabel="Buy Ticket"/>
-                    <TopComponent headline={"The first Ethereum Prediciton Lottery"} customButton={customButtonLarge} background={background} CountdownClockDescription={'test'}
+                    <TopComponent headline={["The first Ethereum", <br />, "Prediciton Lottery"]} customButton={customButtonLarge} background={background} CountdownClockDescription={['Win Now', '$ 100.000']}
                                   buttonLabel="Buy Your Ticket"/>
                     <Footer/>
                 </div>

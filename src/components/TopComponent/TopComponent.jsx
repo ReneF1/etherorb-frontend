@@ -14,22 +14,24 @@ const TopComponent = props =>
         }}>
             <div className="topComponent__container">
                 <Grid fluid>
-                    <Row>
+                    <Row className="topComponent__row topComponent__paddingWrapper">
                         <Col xs={12} md={12}>
                             <h1 className="topComponent__headline">{props.headline}</h1>
                         </Col>
                     </Row>
-                    <Row>
+                    <Row className='topComponent__row topComponent__paddingWrapper'>
                         <CountdownClock seconds={1000} color={'#ffffff'} description={props.CountdownClockDescription}/>
                     </Row>
                     <Row>
                         <Col xs={12} md={12}>
-                            <RaisedButton label={props.buttonLabel} style={props.customButton.style}
-                                          buttonStyle={props.customButton.buttonStyle}
-                                          overlayStyle={props.customButton.overlayStyle}
-                                          labelStyle={props.customButton.labelStyle}
-                                          labelColor={props.muiTheme.palette.accent1Color}
-                                          className='headerBar_raisedButton'/>
+                            <div className='topComponent__buttonWrapper topComponent__paddingWrapper'>
+                                <RaisedButton label={props.buttonLabel} style={props.customButton.style}
+                                              buttonStyle={props.customButton.buttonStyle}
+                                              overlayStyle={props.customButton.overlayStyle}
+                                              labelStyle={props.customButton.labelStyle}
+                                              labelColor={props.muiTheme.palette.accent1Color}
+                                              className='headerBar_raisedButton'/>
+                            </div>
                         </Col>
                     </Row>
                     <Row around="xs">

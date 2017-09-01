@@ -2,7 +2,9 @@
     width: 150px;
     height: 150px;
     margin: auto;
+    text-align: initial;
 }
-.countdownSubhead{
+
+.countdownSubhead {
     text-align: center;
 }
