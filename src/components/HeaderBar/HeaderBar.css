@@ -1,5 +1,5 @@
 .headerBar {
-    padding: 20px 40px;
+    padding: 10px 40px;
 }
 
 .headerBar, .headerBar__wrapper, .headerBar__leftElement, .headerBar__rightElement {
@@ -31,10 +31,11 @@
 }
 
 .headerBar__logoTextPrimary, .headerBar__logoTextSecondary {
-    font-size: 26px;
+    font-size: 30px;
     bottom: 20px;
     left: 10px;
     text-transform: uppercase;
+    font-weight: 300;
 }
 
 .headerBar__logoTextSecondary {
