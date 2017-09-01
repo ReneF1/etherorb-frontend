@@ -49,8 +49,8 @@ class Landingpage extends Component {
         return (
             <DocumentTitle title={`${'EtherOrb $'}${this.props.prediction} @ ${this.props.nextHour}`}>
                 <div>
-                    <HeaderBar logo={ethLogo} titlePrimary="EtherOrb" titleSecondary=".com"
-                               customButton={customButton} buttonLabel="Buy Ticket"/>
+                    <HeaderBar logo={ethLogo} title={["EtherOrb", ".com"]}
+                               customButton={customButton} buttonLabel="Buy Your Ticket"/>
                     <TopComponent headline={["The first Ethereum", <br />, "Prediciton Lottery"]} customButton={customButtonLarge} background={background} CountdownClockDescription={['Win Now', '$ 100.000']}
                                   buttonLabel="Buy Your Ticket"/>
                     <Footer/>

@@ -10,7 +10,8 @@ const TopComponent = props =>
     (
         <div className='topComponent' style={{
             backgroundColor: props.muiTheme.palette.primary1Color,
-            backgroundImage: 'url(' + props.background + ')'
+            backgroundImage: 'url(' + props.background + ')',
+            backgroundPositionY: '200px'
         }}>
             <div className="topComponent__container">
                 <Grid fluid>
@@ -20,7 +21,7 @@ const TopComponent = props =>
                         </Col>
                     </Row>
                     <Row className='topComponent__row topComponent__paddingWrapper'>
-                        <CountdownClock seconds={1000} color={'#ffffff'} description={props.CountdownClockDescription}/>
+                        <CountdownClock seconds={1000} color={props.muiTheme.palette.accent1Color} description={props.CountdownClockDescription}/>
                     </Row>
                     <Row>
                         <Col xs={12} md={12}>
@@ -35,13 +36,13 @@ const TopComponent = props =>
                         </Col>
                     </Row>
                     <Row around="xs">
-                        <Col xs={2} md={2}>
+                        <Col xs={4} md={4}>
                             <BulletPoint text={'Buy your Ticket'} icon={'add_shopping_cart'}/>
                         </Col>
-                        <Col xs={2} md={2}>
+                        <Col xs={4} md={4}>
                             <BulletPoint text={'Correctly predict the ETH/USD value'} icon={'av_timer'}/>
                         </Col>
-                        <Col xs={2} md={2}>
+                        <Col xs={4} md={4}>
                             <BulletPoint text={'Win the Pot'} icon={'attach_money'}/>
                         </Col>
                     </Row>

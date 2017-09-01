@@ -9,10 +9,11 @@ const CountdownClock = props =>
                 seconds={props.seconds}
                 color={props.color}
                 alpha={0.9}
-                size={150}
-                weight={5}
+                size={200}
+                weight={15}
             />
-            <p className="countdownSubhead">{props.description}</p>
+            <p className="countdownSubhead--top">{props.description[0]}</p>
+            <p className="countdownSubhead--bottom">{props.description[1]}</p>
         </div>
     );
 export default CountdownClock;
