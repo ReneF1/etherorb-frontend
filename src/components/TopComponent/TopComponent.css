@@ -1,0 +1,12 @@
+.topComponent {
+    background-size: cover;
+}
+
+.topComponent__container {
+    text-align: center;
+}
+
+.topComponent__headline {
+    color: white;
+    text-transform: uppercase;
+}

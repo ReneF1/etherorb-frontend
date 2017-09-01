@@ -5,13 +5,11 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Col, Grid, Row} from 'react-flexbox-grid';
-import Paper from 'material-ui/Paper';
 import DocumentTitle from 'react-document-title';
 import ethLogo from '../../logo.svg';
-import {white} from 'material-ui/styles/colors';
+import background from '../../bg.svg';
 import './Landingpage.css';
-import {BetInput, Countdown, EthChart, Footer, HeaderBar, PredictionHead} from '../../components';
+import {Footer, HeaderBar, TopComponent} from '../../components';
 import {
     buildCountdownDuration,
     buildTimeArray,
@@ -37,50 +35,24 @@ class Landingpage extends Component {
     }
 
     render() {
-        const paperAccent = {
-            margin: '10px',
-            padding: '10px',
-            color: white,
-        };
         const customButton = {
             buttonStyle: {borderRadius: '100px', height: '40px', lineHeight: '35px'},
             overlayStyle: {borderRadius: '100px'},
             style: {borderRadius: '100px', minWidth: '200px'}
+        }
+        const customButtonLarge = {
+            buttonStyle: {borderRadius: '100px', height: '56px', lineHeight: '35px'},
+            overlayStyle: {borderRadius: '100px'},
+            style: {borderRadius: '100px', minWidth: '260px'},
+            labelStyle: {fontSize: '20px', textTransform: 'Uppercase', fontWeight: 'bold'}
         }
         return (
             <DocumentTitle title={`${'EtherOrb $'}${this.props.prediction} @ ${this.props.nextHour}`}>
                 <div>
                     <HeaderBar logo={ethLogo} titlePrimary="EtherOrb" titleSecondary=".com"
                                customButton={customButton} buttonLabel="Buy Ticket"/>
-                    <Paper zDepth={0}>
-                        <Grid fluid>
-                            <Row>
-                                <Col xs={12} md={12}>
-                                    <PredictionHead
-                                        nextRound={this.props.nextHour}
-                                        prediction={this.props.prediction}
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xs={12} md={12}>
-                                    <Paper zDepth={0}>
-                                        <Countdown countdownAsSeconds={600}/>
-                                    </Paper>
-                                </Col>
-                                <Col xs={12} md={12}>
-                                    <Paper zDepth={0} style={paperAccent}>
-                                        <BetInput/>
-                                    </Paper>
-                                </Col>
-                                <Col xs={12} md={12}>
-                                    <Paper zDepth={1} style={paperAccent}>
-                                        <EthChart/>
-                                    </Paper>
-                                </Col>
-                            </Row>
-                        </Grid>
-                    </Paper>
+                    <TopComponent headline={"The first Ethereum Prediciton Lottery"} customButton={customButtonLarge} background={background} CountdownClockDescription={'test'}
+                                  buttonLabel="Buy Your Ticket"/>
                     <Footer/>
                 </div>
             </DocumentTitle>
