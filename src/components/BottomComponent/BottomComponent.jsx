@@ -19,7 +19,11 @@ const BottomComponent = props =>
                     <Row>
                         <Col xs={12} md={12}>
                             <div className='bottomComponent__buttonWrapper bottomComponent__paddingWrapper'>
-                                <InfoTag/>
+                                <InfoTag icon={'av_timer'} text={'Predicion: '} value={'$ 220'}/>
+                                <InfoTag icon={'shopping_cart'} text={'Tickets sold: '} value={'230'}/>
+                                <InfoTag icon={'timelapse'} text={'Next payout: '} value={'42:34'}/>
+                                <InfoTag icon={'monetization_on'} text={'Pot size: '} value={'$ 100.000'}/>
+                                <InfoTag icon={'timer_off'} text={'Deadline: '} value={'32:34'}/>
                             </div>
                         </Col>
                     </Row>
