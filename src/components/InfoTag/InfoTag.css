@@ -1,0 +1,23 @@
+.infoTag__shape{
+    width: 260px;
+    height: 56px;
+    border-radius: 60px;
+    background-color: #e6e6e6;
+    display: block;
+    margin: 15px;
+    float: left;
+}
+.infoTag_wrapper{
+    padding: 20px 10px;
+}
+.infoTag__iconLeft{
+    float: left;
+}
+.infoTag__iconRight{
+    float: right;
+}
+.infoTag__text{
+    font-size: 20px;
+    position: relative;
+    top: 17px;
+}
