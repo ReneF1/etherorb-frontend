@@ -46,6 +46,36 @@ class Landingpage extends Component {
             style: {borderRadius: '100px', minWidth: '260px'},
             labelStyle: {fontSize: '20px', textTransform: 'Uppercase', fontWeight: 'bold'}
         }
+        const historyListData = [
+            {
+                name: 'John Smith',
+                status: 'Employed',
+            },
+            {
+                name: 'Randal White',
+                status: 'Unemployed',
+            },
+            {
+                name: 'Stephanie Sanders',
+                status: 'Employed',
+            },
+            {
+                name: 'Steve Brown',
+                status: 'Employed',
+            },
+            {
+                name: 'Joyce Whitten',
+                status: 'Employed',
+            },
+            {
+                name: 'Samuel Roberts',
+                status: 'Employed',
+            },
+            {
+                name: 'Adam Moore',
+                status: 'Employed',
+            },
+        ]
         return (
             <DocumentTitle title={`${'EtherOrb $'}${this.props.prediction} @ ${this.props.nextHour}`}>
                 <div>
@@ -53,7 +83,7 @@ class Landingpage extends Component {
                                customButton={customButton} buttonLabel="Buy Your Ticket"/>
                     <TopComponent headline={["The first Ethereum", <br />, "Prediciton Lottery"]} customButton={customButtonLarge} background={background} CountdownClockDescription={['Win Now', '$ 100.000']}
                                   buttonLabel="Buy Your Ticket"/>
-                    <BottomComponent headline={"Current Round"}/>
+                    <BottomComponent headline={"Current Round"} historyListHeader={"Recent predictions"} historyListData={historyListData}/>
                     <Footer/>
                 </div>
             </DocumentTitle>

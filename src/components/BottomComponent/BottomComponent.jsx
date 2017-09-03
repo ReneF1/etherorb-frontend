@@ -31,7 +31,7 @@ const BottomComponent = props =>
                     <Row>
                         <Col xs={12} md={12}>
                             <div className='bottomComponent__paddingWrapper'>
-                                <HistoryList/>
+                                <HistoryList historyListHeader={props.listHeader} historyListData={props.historyListData}/>
                             </div>
                         </Col>
                     </Row>
