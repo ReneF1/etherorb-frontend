@@ -10,6 +10,7 @@ import TopComponent from './TopComponent/TopComponent';
 import BulletPoint from './BulletPoint/BulletPoint';
 import InfoTag from './InfoTag/InfoTag';
 import BottomComponent from './BottomComponent/BottomComponent';
+import HistoryList from './HistoryList/HistoryList';
 
 export {
     HeaderBar,
@@ -18,5 +19,6 @@ export {
     TopComponent,
     BulletPoint,
     InfoTag,
-    BottomComponent
+    BottomComponent,
+    HistoryList
 };
