@@ -99,7 +99,7 @@ class Landingpage extends Component {
                                title={["EtherOrb", ".com"]}
                                customButton={customButton}
                                buttonLabel="Buy Your Ticket"/>
-                    <TopComponent headline={["The first Ethereum", <br />, "Prediciton Lottery"]}
+                    <TopComponent headline={["The first Ethereum", <br/>, "Prediciton Lottery"]}
                                   customButton={customButtonLarge}
                                   background={background}
                                   CountdownClockDescription={['Win Now', '$ 100.000']}
@@ -108,7 +108,10 @@ class Landingpage extends Component {
                                      historyListHeader={"Latest Predictions"}
                                      historyListData={historyListData}
                                      historyListConfig={historyListConfig}/>
-                    <Footer/>
+                    <Footer disclaimer={"EtherOrb.com owns itself.\n" +
+                    "It is an autonomous entity, executing as code on the Ethereum (ETH) P2P network.\n" +
+                    "It lives in the Ether; in the realm of ideas and magic.\n" +
+                    "Enjoy it."} title={"EtherOrb.com"}/>
                 </div>
             </DocumentTitle>
         );
