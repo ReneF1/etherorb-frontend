@@ -11,6 +11,7 @@ import BulletPoint from './BulletPoint/BulletPoint';
 import InfoTag from './InfoTag/InfoTag';
 import BottomComponent from './BottomComponent/BottomComponent';
 import HistoryList from './HistoryList/HistoryList';
+import BottomCTA from './BottomCTA/BottomCTA';
 
 export {
     HeaderBar,
@@ -20,5 +21,6 @@ export {
     BulletPoint,
     InfoTag,
     BottomComponent,
-    HistoryList
+    HistoryList,
+    BottomCTA
 };

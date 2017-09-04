@@ -1,0 +1,17 @@
+.bottomCTA__Divider{
+    width: 100px;
+    height: 5px;
+    margin: 10px auto;
+}
+.bottomCTA__Logo{
+    width: 180px;
+    margin: 10px;
+}
+.bottomCTA__Logo--left{
+    position: relative;
+    top: -10px;
+}
+
+.bottomCTA__ButtonWrapper > .headerBar_raisedButton {
+    margin: 5px;
+}
