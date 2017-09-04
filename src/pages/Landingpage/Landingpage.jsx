@@ -60,6 +60,15 @@ class Landingpage extends Component {
             multiSelectable: false,
             height: 'auto',
         };
+        const chartData = [
+            {Time: '13:00', ETHxUSD: 220},
+            {Time: '13:10', ETHxUSD: 225},
+            {Time: '13:20', ETHxUSD: 223},
+            {Time: '13:30', ETHxUSD: 231},
+            {Time: '13:40', ETHxUSD: 243, Prediction: 243},
+            {Time: '13:50'},
+            {Time: '14:00', Prediction: 250},
+        ];
         const historyListData = [
             {
                 address: '0x22b854DBF5c9A20f5C3374E814733060C942AeDf',
@@ -116,6 +125,7 @@ class Landingpage extends Component {
                     />
                     <BottomComponent
                         headline={"Current Round"}
+                        chartData={chartData}
                         historyListHeader={"Latest Predictions"}
                         historyListData={historyListData}
                         historyListConfig={historyListConfig}
