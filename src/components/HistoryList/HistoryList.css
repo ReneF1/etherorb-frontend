@@ -1,0 +1,8 @@
+.historyList__headerText{
+    text-align: center !important;
+    font-size: 20px !important;
+}
+.historyList__tableRowColumn--3{
+    font-weight: bold;
+    color: green;
+}

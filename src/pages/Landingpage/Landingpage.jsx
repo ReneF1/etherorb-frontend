@@ -9,7 +9,7 @@ import DocumentTitle from 'react-document-title';
 import ethLogo from '../../logo.svg';
 import background from '../../bg.svg';
 import './Landingpage.css';
-import {Footer, HeaderBar, TopComponent, BottomComponent} from '../../components';
+import {BottomComponent, Footer, HeaderBar, TopComponent} from '../../components';
 import {
     buildCountdownDuration,
     buildTimeArray,
@@ -46,44 +46,68 @@ class Landingpage extends Component {
             style: {borderRadius: '100px', minWidth: '260px'},
             labelStyle: {fontSize: '20px', textTransform: 'Uppercase', fontWeight: 'bold'}
         }
+        const historyListConfig = {
+            fixedHeader: true,
+            stripedRows: false,
+            showRowHover: false,
+            showCheckboxes: false,
+            selectable: false,
+            multiSelectable: false,
+            height: 'auto',
+        };
         const historyListData = [
             {
-                name: 'John Smith',
-                status: 'Employed',
+                address: '0x22b854DBF5c9A20f5C3374E814733060C942AeDf',
+                prediction: '$ 222.10',
+                timestamp: '1504524903805'
             },
             {
-                name: 'Randal White',
-                status: 'Unemployed',
+                address: '0xeB3a84E326DE0cF8976fDfB0231AD31Ed8f19f28',
+                prediction: '$ 227.50',
+                timestamp: '1504524908741'
             },
             {
-                name: 'Stephanie Sanders',
-                status: 'Employed',
+                address: '0x22b854DBF5c9A20f5C3374E814733060C942AeDf',
+                prediction: '$ 229.70',
+                timestamp: '1504524913061'
             },
             {
-                name: 'Steve Brown',
-                status: 'Employed',
+                address: '0xFa705A686fe2d02D11cFc35fB5fEE40594ABD1B1',
+                prediction: '$ 212.30',
+                timestamp: '1504524916965'
             },
             {
-                name: 'Joyce Whitten',
-                status: 'Employed',
+                address: '0x35A1eea8AE6f734EfE14fc3715Ab51785D8D1D84',
+                prediction: '$ 217.90',
+                timestamp: '1504524920701'
             },
             {
-                name: 'Samuel Roberts',
-                status: 'Employed',
+                address: '0x22b854DBF5c9A20f5C3374E814733060C942AeDf',
+                prediction: '$ 218.90',
+                timestamp: '1504524924943'
             },
             {
-                name: 'Adam Moore',
-                status: 'Employed',
+                address: '0xf67757E7C326b5c1Bb8C0012B2644661011580E7',
+                prediction: '$ 205.00',
+                timestamp: '1504524929105'
             },
         ]
         return (
             <DocumentTitle title={`${'EtherOrb $'}${this.props.prediction} @ ${this.props.nextHour}`}>
                 <div>
-                    <HeaderBar logo={ethLogo} title={["EtherOrb", ".com"]}
-                               customButton={customButton} buttonLabel="Buy Your Ticket"/>
-                    <TopComponent headline={["The first Ethereum", <br />, "Prediciton Lottery"]} customButton={customButtonLarge} background={background} CountdownClockDescription={['Win Now', '$ 100.000']}
+                    <HeaderBar logo={ethLogo}
+                               title={["EtherOrb", ".com"]}
+                               customButton={customButton}
+                               buttonLabel="Buy Your Ticket"/>
+                    <TopComponent headline={["The first Ethereum", <br />, "Prediciton Lottery"]}
+                                  customButton={customButtonLarge}
+                                  background={background}
+                                  CountdownClockDescription={['Win Now', '$ 100.000']}
                                   buttonLabel="Buy Your Ticket"/>
-                    <BottomComponent headline={"Current Round"} historyListHeader={"Recent predictions"} historyListData={historyListData}/>
+                    <BottomComponent headline={"Current Round"}
+                                     historyListHeader={"Latest Predictions"}
+                                     historyListData={historyListData}
+                                     historyListConfig={historyListConfig}/>
                     <Footer/>
                 </div>
             </DocumentTitle>

@@ -1,67 +1,49 @@
-import React, {Component} from 'react';
+import React from 'react';
+import './HistoryList.css';
+import moment from 'moment'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn,} from 'material-ui/Table';
+import muiThemeable from 'material-ui/styles/muiThemeable';
 
-const styles = {
-    propContainer: {
-        width: 200,
-        overflow: 'hidden',
-        margin: '20px auto 0',
-    },
-    propToggleHeader: {
-        margin: '20px auto 10px',
-    },
-};
-
-/**
- * A more complex example, allowing the table height to be set, and key boolean properties to be toggled.
- */
-export default class TableExampleComplex extends Component {
-    state = {
-        fixedHeader: true,
-        stripedRows: false,
-        showRowHover: false,
-        showCheckboxes: false,
-        height: 'auto',
-    };
-
-    render() {
-        return (
-            <div>
-                <Table
-                    height={this.state.height}
-                    fixedHeader={this.state.fixedHeader}
-                    selectable={this.state.selectable}
-                    multiSelectable={this.state.multiSelectable}
+const HistoryList = props =>
+    (
+        <div>
+            <Table
+                height={props.historyListConfig.height}
+                fixedHeader={props.historyListConfig.fixedHeader}
+                selectable={props.historyListConfig.selectable}
+                multiSelectable={props.historyListConfig.multiSelectable}
+            >
+                <TableHeader adjustForCheckbox={props.historyListConfig.showCheckboxes}
+                             displaySelectAll={props.historyListConfig.showCheckboxes}>
+                    <TableRow>
+                        <TableHeaderColumn colSpan="3" tooltip={props.historyListHeader}
+                                           style={{color: props.muiTheme.palette.accent1Color}}
+                                           className='historyList__headerText'
+                        >
+                            {props.historyListHeader}
+                        </TableHeaderColumn>
+                    </TableRow>
+                    <TableRow>
+                        <TableHeaderColumn tooltip="The Name">Address</TableHeaderColumn>
+                        <TableHeaderColumn tooltip="The Timestamp">Timestamp</TableHeaderColumn>
+                        <TableHeaderColumn tooltip="The Status">Prediction</TableHeaderColumn>
+                    </TableRow>
+                </TableHeader>
+                <TableBody
+                    displayRowCheckbox={props.historyListConfig.showCheckboxes}
+                    showRowHover={props.historyListConfig.showRowHover}
+                    stripedRows={props.historyListConfig.stripedRows}
                 >
-                    <TableHeader adjustForCheckbox={this.state.showCheckboxes}
-                                 displaySelectAll={this.state.showCheckboxes}>
+                    {props.historyListData.map((row, index) => (
                         <TableRow>
-                            <TableHeaderColumn colSpan="3" tooltip={this.props.historyListHeader}
-                                               style={{textAlign: 'center'}}>
-                                {this.props.historyListHeader}
-                            </TableHeaderColumn>
+                            <TableRowColumn style={{color: props.muiTheme.palette.primary1Color}}>{row.address}</TableRowColumn>
+                            <TableRowColumn>{moment(row.timestamp, 'x').fromNow()}</TableRowColumn>
+                            <TableRowColumn className='historyList__tableRowColumn--3'>{row.prediction}</TableRowColumn>
                         </TableRow>
-                        <TableRow>
-                            <TableHeaderColumn tooltip="The ID">ID</TableHeaderColumn>
-                            <TableHeaderColumn tooltip="The Name">Name</TableHeaderColumn>
-                            <TableHeaderColumn tooltip="The Status">Status</TableHeaderColumn>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody
-                        displayRowCheckbox={this.state.showCheckboxes}
-                        showRowHover={this.state.showRowHover}
-                        stripedRows={this.state.stripedRows}
-                    >
-                        {this.props.historyListData.map((row, index) => (
-                            <TableRow key={index}>
-                                <TableRowColumn>{index}</TableRowColumn>
-                                <TableRowColumn>{row.name}</TableRowColumn>
-                                <TableRowColumn>{row.status}</TableRowColumn>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </div>
-        );
-    }
-}
+                    ))}
+                </TableBody>
+            </Table>
+        </div>
+    )
+
+export default muiThemeable()(HistoryList);
