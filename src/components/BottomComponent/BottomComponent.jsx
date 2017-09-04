@@ -4,17 +4,18 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 import {Col, Grid, Row} from 'react-flexbox-grid';
 import InfoTag from '../InfoTag/InfoTag';
 import HistoryList from '../HistoryList/HistoryList';
+import BottomCTA from '../BottomCTA/BottomCTA';
 
 const BottomComponent = props =>
     (
         <div className='bottomComponent'>
             <div className="bottomComponent__container">
                 <Grid fluid>
-                    <Row className="bottomComponent__row bottomComponent__paddingWrapper">
+                    <Row className="bottomComponent__row">
                         <Col xs={12} md={12}>
-                            <h1 className="bottomComponent__headline" style={{
+                            <h2 className="bottomComponent__headline" style={{
                                 color: props.muiTheme.palette.accent1Color
-                            }}>{props.headline}</h1>
+                            }}>{props.headline}</h2>
                         </Col>
                     </Row>
                     <Row>
@@ -31,9 +32,23 @@ const BottomComponent = props =>
                     <Row>
                         <Col xs={12} md={12}>
                             <div className='bottomComponent__paddingWrapper'>
-                                <HistoryList historyListHeader={props.historyListHeader}
-                                             historyListData={props.historyListData}
-                                             historyListConfig={props.historyListConfig}/>
+                                <HistoryList
+                                    historyListHeader={props.historyListHeader}
+                                    historyListData={props.historyListData}
+                                    historyListConfig={props.historyListConfig}
+                                />
+                            </div>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={12} md={12}>
+                            <div className='bottomComponent__paddingWrapper'>
+                                <BottomCTA
+                                    headline={props.bottomCTAHeadline}
+                                    customButton={props.customButton}
+                                    customButtonSecondary={props.customButtonSecondary}
+                                    buttonLabel={props.buttonLabel}
+                                />
                             </div>
                         </Col>
                     </Row>

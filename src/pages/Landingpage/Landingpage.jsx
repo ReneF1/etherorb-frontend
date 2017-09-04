@@ -40,6 +40,11 @@ class Landingpage extends Component {
             overlayStyle: {borderRadius: '100px'},
             style: {borderRadius: '100px', minWidth: '200px'}
         }
+        const customButtonSecondary = {
+            buttonStyle: {borderRadius: '100px', height: '40px', border: '1px solid #ff3823', lineHeight: '35px'},
+            overlayStyle: {borderRadius: '100px'},
+            style: {borderRadius: '100px', minWidth: '200px'}
+        }
         const customButtonLarge = {
             buttonStyle: {borderRadius: '100px', height: '56px', lineHeight: '35px'},
             overlayStyle: {borderRadius: '100px'},
@@ -93,25 +98,40 @@ class Landingpage extends Component {
             },
         ]
         return (
-            <DocumentTitle title={`${'EtherOrb $'}${this.props.prediction} @ ${this.props.nextHour}`}>
+            <DocumentTitle
+                title={`${'EtherOrb $'}${this.props.prediction} @ ${this.props.nextHour}`}
+            >
                 <div>
-                    <HeaderBar logo={ethLogo}
-                               title={["EtherOrb", ".com"]}
-                               customButton={customButton}
-                               buttonLabel="Buy Your Ticket"/>
-                    <TopComponent headline={["The first Ethereum", <br/>, "Prediciton Lottery"]}
-                                  customButton={customButtonLarge}
-                                  background={background}
-                                  CountdownClockDescription={['Win Now', '$ 100.000']}
-                                  buttonLabel="Buy Your Ticket"/>
-                    <BottomComponent headline={"Current Round"}
-                                     historyListHeader={"Latest Predictions"}
-                                     historyListData={historyListData}
-                                     historyListConfig={historyListConfig}/>
-                    <Footer disclaimer={"EtherOrb.com owns itself.\n" +
-                    "It is an autonomous entity, executing as code on the Ethereum (ETH) P2P network.\n" +
-                    "It lives in the Ether; in the realm of ideas and magic.\n" +
-                    "Enjoy it."} title={"EtherOrb.com"}/>
+                    <HeaderBar
+                        logo={ethLogo}
+                        title={["EtherOrb", ".com"]}
+                        customButton={customButton}
+                        buttonLabel="Buy Your Ticket"
+                    />
+                    <TopComponent
+                        customButton={customButtonLarge}
+                        background={background}
+                        CountdownClockDescription={['Win Now', '$ 100.000']}
+                        buttonLabel="Buy Your Ticket"
+                    />
+                    <BottomComponent
+                        headline={"Current Round"}
+                        historyListHeader={"Latest Predictions"}
+                        historyListData={historyListData}
+                        historyListConfig={historyListConfig}
+                        bottomCTAHeadline={["100% Trustless Blockchain Lottery",
+                            <br/>, "Open Source, Verified Contract"]}
+                        customButton={customButton}
+                        customButtonSecondary={customButtonSecondary}
+                        buttonLabel={["Buy Your Ticket", "Read the Rules"]}
+                    />
+                    <Footer
+                        disclaimer={"EtherOrb.com owns itself.\n" +
+                        "It is an autonomous entity, executing as code on the Ethereum (ETH) P2P network.\n" +
+                        "It lives in the Ether; in the realm of ideas and magic.\n" +
+                        "Enjoy it."}
+                        title={"EtherOrb.com"}
+                    />
                 </div>
             </DocumentTitle>
         );

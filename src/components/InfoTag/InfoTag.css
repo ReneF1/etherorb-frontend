@@ -3,9 +3,8 @@
     height: 56px;
     border-radius: 60px;
     background-color: #e6e6e6;
-    display: block;
     margin: 15px;
-    float: left;
+    display: inline-block;
 }
 .infoTag_wrapper{
     padding: 20px 10px;
