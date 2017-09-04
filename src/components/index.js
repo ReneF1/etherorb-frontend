@@ -2,7 +2,7 @@
  * Created by renefuchtenkordt on 13.07.17.
  */
 import HeaderBar from './HeaderBar/HeaderBar';
-import EthChart from './EthChart/EthChart';
+import Chart from './Chart/Chart';
 import Footer from './Footer/Footer';
 import BetInput from './BetInputForm';
 import CountdownClock from './CountdownClock/CountdownClock';

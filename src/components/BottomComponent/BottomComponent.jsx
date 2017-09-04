@@ -3,6 +3,7 @@ import './BottomComponent.css';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import {Col, Grid, Row} from 'react-flexbox-grid';
 import InfoTag from '../InfoTag/InfoTag';
+import Chart from '../Chart/Chart';
 import HistoryList from '../HistoryList/HistoryList';
 import BottomCTA from '../BottomCTA/BottomCTA';
 
@@ -26,6 +27,13 @@ const BottomComponent = props =>
                                 <InfoTag icon={'timelapse'} text={'Next payout: '} value={'42:34'}/>
                                 <InfoTag icon={'monetization_on'} text={'Pot size: '} value={'$ 100.000'}/>
                                 <InfoTag icon={'timer_off'} text={'Deadline: '} value={'32:34'}/>
+                            </div>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={12} md={12}>
+                            <div className='bottomComponent__paddingWrapper'>
+                                <Chart chartData={props.chartData}/>
                             </div>
                         </Col>
                     </Row>
