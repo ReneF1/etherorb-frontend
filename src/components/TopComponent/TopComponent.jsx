@@ -31,6 +31,7 @@ const TopComponent = props =>
                                               overlayStyle={props.customButton.overlayStyle}
                                               labelStyle={props.customButton.labelStyle}
                                               labelColor={props.muiTheme.palette.accent1Color}
+                                              onClick={props.toggleBuyingDialog}
                                               className='headerBar_raisedButton'/>
                             </div>
                         </Col>

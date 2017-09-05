@@ -16,8 +16,13 @@ const HeaderBar = props => (
                 className='headerBar__logoTextSecondary'
                 style={{color: props.muiTheme.palette.accent1Color}}>{props.title[1]}</span></div>
             <div className='headerBar__rightElement'>
-                <RaisedButton label={props.buttonLabel} secondary={true} style={props.customButton.style} buttonStyle={props.customButton.buttonStyle}
-                              overlayStyle={props.customButton.overlayStyle} className='headerBar_raisedButton'/>
+                <RaisedButton
+                    label={props.buttonLabel} secondary={true}
+                    style={props.customButton.style}
+                    buttonStyle={props.customButton.buttonStyle}
+                    onClick={props.toggleBuyingDialog}
+                    overlayStyle={props.customButton.overlayStyle}
+                    className='headerBar_raisedButton'/>
             </div>
         </div>
     </div>
