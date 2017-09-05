@@ -9,7 +9,7 @@ import DocumentTitle from 'react-document-title';
 import ethLogo from '../../logo.svg';
 import background from '../../bg.svg';
 import './Landingpage.css';
-import {BottomComponent, Footer, HeaderBar, TopComponent} from '../../components';
+import {BottomComponent, BuyingModal, Footer, HeaderBar, TopComponent} from '../../components';
 import {
     buildCountdownDuration,
     buildTimeArray,
@@ -20,6 +20,7 @@ import {
     loadPoolSize,
     placeBet,
     postBet,
+    toggleBuyingDialog,
 } from '../../store/actions';
 
 class Landingpage extends Component {
@@ -28,10 +29,14 @@ class Landingpage extends Component {
         this.props.getNow();
         this.props.getLastHour();
         this.props.getNextHour();
-        this.props.buildCountdownDuration()
-        this.props.buildTimeArray()
+        this.props.buildCountdownDuration();
+        this.props.buildTimeArray();
         this.props.getCryptoValue('ETHUSDHOUR', 'ETH', 'USD', 'Kraken', [1503144000000, 1503144000000]);
         this.props.loadPoolSize();
+    }
+
+    componentDidUpdate() {
+        console.log(this.props)
     }
 
     render() {
@@ -116,9 +121,11 @@ class Landingpage extends Component {
                         title={["EtherOrb", ".com"]}
                         customButton={customButton}
                         buttonLabel="Buy Your Ticket"
+                        toggleBuyingDialog={this.props.toggleBuyingDialog}
                     />
                     <TopComponent
                         customButton={customButtonLarge}
+                        toggleBuyingDialog={this.props.toggleBuyingDialog}
                         background={background}
                         CountdownClockDescription={['Win Now', '$ 100.000']}
                         buttonLabel="Buy Your Ticket"
@@ -133,8 +140,10 @@ class Landingpage extends Component {
                             <br/>, "Open Source, Verified Contract"]}
                         customButton={customButton}
                         customButtonSecondary={customButtonSecondary}
+                        toggleBuyingDialog={this.props.toggleBuyingDialog}
                         buttonLabel={["Buy Your Ticket", "Read the Rules"]}
                     />
+                    <BuyingModal open={this.props.buyingDialog.open} toggleBuyingDialog={this.props.toggleBuyingDialog}/>
                     <Footer
                         disclaimer={"EtherOrb.com owns itself.\n" +
                         "It is an autonomous entity, executing as code on the Ethereum (ETH) P2P network.\n" +
@@ -157,6 +166,7 @@ Landingpage.propTypes = {
 };
 
 const mapStateToProps = state => ({
+    buyingDialog: state.pageConfig.buyingDialog,
     now: state.momentTime.now,
     lastHour: state.momentTime.lastHour,
     nextHour: state.momentTime.nextHour,
@@ -164,7 +174,7 @@ const mapStateToProps = state => ({
     timeArray: state.momentTime.timeArray,
     cryptoExchange: state.cryptoExchange.response,
     poolSize: state.betReducer.poolSize,
-    prediction: state.betReducer.prediction,
+    prediction: state.betReducer.prediction
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -177,6 +187,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     placeBet,
     loadPoolSize,
     postBet,
+    toggleBuyingDialog,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landingpage);

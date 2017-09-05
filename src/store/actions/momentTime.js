@@ -46,7 +46,6 @@ function buildCountdownDuration() {
 }
 
 function buildTimeArray() {
-
     return {
         type: 'GET_MOMENT_TIME_ARRAY',
         payload: timeArray,

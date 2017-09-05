@@ -56,6 +56,7 @@ const BottomComponent = props =>
                                     customButton={props.customButton}
                                     customButtonSecondary={props.customButtonSecondary}
                                     buttonLabel={props.buttonLabel}
+                                    toggleBuyingDialog={props.toggleBuyingDialog}
                                 />
                             </div>
                         </Col>

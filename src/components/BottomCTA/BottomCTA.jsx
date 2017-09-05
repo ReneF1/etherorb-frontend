@@ -18,12 +18,15 @@ const BottomCTA = props =>
                 <RaisedButton
                     label={props.buttonLabel[0]} secondary={true} style={props.customButton.style}
                     buttonStyle={props.customButton.buttonStyle}
-                    overlayStyle={props.customButton.overlayStyle} className='headerBar_raisedButton'
+                    overlayStyle={props.customButton.overlayStyle}
+                    onClick={props.toggleBuyingDialog}
+                    className='headerBar_raisedButton'
                 />
                 <RaisedButton
                     label={props.buttonLabel[1]} labelColor={'#ff3823'} secondary={false} style={props.customButtonSecondary.style}
                     buttonStyle={props.customButtonSecondary.buttonStyle}
-                    overlayStyle={props.customButtonSecondary.overlayStyle} className='headerBar_raisedButton'
+                    overlayStyle={props.customButtonSecondary.overlayStyle}
+                    className='headerBar_raisedButton'
                 />
             </div>
         </div>

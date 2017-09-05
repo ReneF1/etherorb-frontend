@@ -12,6 +12,7 @@ import InfoTag from './InfoTag/InfoTag';
 import BottomComponent from './BottomComponent/BottomComponent';
 import HistoryList from './HistoryList/HistoryList';
 import BottomCTA from './BottomCTA/BottomCTA';
+import BuyingModal from './BuyingModal/BuyingModal';
 
 export {
     HeaderBar,
@@ -22,5 +23,6 @@ export {
     InfoTag,
     BottomComponent,
     HistoryList,
-    BottomCTA
+    BottomCTA,
+    BuyingModal
 };
