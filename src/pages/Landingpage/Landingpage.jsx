@@ -127,6 +127,7 @@ class Landingpage extends Component {
                         customButton={customButtonLarge}
                         toggleBuyingDialog={this.props.toggleBuyingDialog}
                         background={background}
+                        headline={["The first Ethereum", <br />, "Prediciton Lottery"]}
                         CountdownClockDescription={['Win Now', '$ 100.000']}
                         buttonLabel="Buy Your Ticket"
                     />

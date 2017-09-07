@@ -13,6 +13,7 @@ import BottomComponent from './BottomComponent/BottomComponent';
 import HistoryList from './HistoryList/HistoryList';
 import BottomCTA from './BottomCTA/BottomCTA';
 import BuyingModal from './BuyingModal/BuyingModal';
+import ModalTabs from './ModalTabs/ModalTabs';
 
 export {
     HeaderBar,
@@ -24,5 +25,6 @@ export {
     BottomComponent,
     HistoryList,
     BottomCTA,
-    BuyingModal
+    BuyingModal,
+    ModalTabs
 };
