@@ -47,7 +47,7 @@ const BottomComponent = props =>
                                 <HistoryList
                                     ListHeader={props.historyList.header}
                                     columnNames={props.historyList.columnNames}
-                                    data={props.historyListData}
+                                    data={props.historyList.data}
                                     config={props.historyListConfig}
                                 />
                             </div>
