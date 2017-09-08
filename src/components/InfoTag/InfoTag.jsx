@@ -18,7 +18,7 @@ const InfoTag = props =>
         <div className="infoTag__shape">
             <div className="infoTag__wrapper">
                 <FontIcon className="material-icons infoTag__iconLeft" style={iconStyleLeft}>{props.icon}</FontIcon>
-                <span className="infoTag__text">{props.text + props.value}</span>
+                <span className="infoTag__text">{props.text + ": " + props.value}</span>
                 <FontIcon className="material-icons infoTag__iconRight" style={iconStyleRight}>info_outline</FontIcon>
             </div>
         </div>

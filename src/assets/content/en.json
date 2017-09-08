@@ -1,0 +1,72 @@
+{
+  "documentTitle": {
+    "title": "EtheOrb.com"
+  },
+  "headerBar": {
+    "title": "EtherOrb",
+    "subtitle": ".com",
+    "buttonLabel": "Buy Your Ticket"
+  },
+  "topComponent": {
+    "countdownClock": {
+      "headlineTop": "The first Ethereum",
+      "headlineBot": "Prediciton Lottery",
+      "countdownDescTop": "Win Now",
+      "countdownDescBot": "$ 100.000",
+      "buttonLabel": "Buy Your Ticket"
+    },
+    "bulletPoints": [
+      "Buy your Ticket",
+      "Correctly predict the ETH/USD value",
+      "Win the Pot"
+    ]
+  },
+  "bottomComponent": {
+    "headline": "Current Round",
+    "chart": {
+      "headline": "Prediction Chart",
+      "referenceLabel": "Present"
+    },
+    "historyList": {
+      "header": "Latest Predictions",
+      "columnNames": [
+        "Address",
+        "Timestamp",
+        "Prediction"
+      ]
+    },
+    "bottomCTAHeadlineTop": "100% Trustless Blockchain Lottery",
+    "bottomCTAHeadlineBot": "Open Source, Verified Contract",
+    "buttonLabelCTA": "Buy Your Ticket",
+    "buttonLabelSec": "Read the Rules",
+    "infoTags": [
+      "Predicion",
+      "Tickets sold",
+      "Next payout",
+      "Pot size",
+      "Deadline:"
+    ],
+    "values": [
+      "$ 220",
+      "230",
+      "42:34",
+      "$ 100.000",
+      "32:34"
+    ]
+  },
+  "buyingModal": {
+    "buttonPrimary": "Buy",
+    "buttonSecondary": "Cancel",
+    "title": "Buy your Ticket",
+    "modalTabs": {
+      "Headlines": [
+        "QR Code",
+        "MetaMask"
+      ]
+    }
+  },
+  "footer": {
+    "disclaimer": "EtherOrb.com owns itself. It is an autonomous entity, executing as code on the Ethereum (ETH) P2P network. It lives in the Ether; in the realm of ideas and magic. Enjoy it.",
+    "title": "EtherOrb.com"
+  }
+}

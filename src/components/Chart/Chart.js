@@ -5,14 +5,14 @@ import './Chart.css';
 const Chart = (props) =>
     (
         <div>
-            <h2 className='chart__headline'>Prediction Chart</h2>
+            <h2 className='chart__headline'>{props.headline}</h2>
             <AreaChart width={900} height={400} data={props.chartData}
                        margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                 <XAxis dataKey="Time"/>
-                <YAxis domain={['dataMin - 10', 'dataMax +10']}/>
+                <YAxis domain={['dataMin - 10', 'dataMax + 10']}/>
                 }
                 <CartesianGrid strokeDasharray="3 3"/>
-                <ReferenceLine x="13:40" stroke="#4527a0" label="Present"/>
+                <ReferenceLine x="13:40" stroke="#4527a0" label={props.referenceLabel}/>
                 <Tooltip/>
                 <Legend />
                 <Area dataKey="ETHxUSD" stroke="#4527a0" fill="url(#colorETHxUSD)"/>

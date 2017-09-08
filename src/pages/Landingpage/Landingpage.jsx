@@ -5,10 +5,11 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import FlatButton from 'material-ui/FlatButton';
 import DocumentTitle from 'react-document-title';
-import ethLogo from '../../logo.svg';
-import background from '../../bg.svg';
+import background from '../../assets/media/bg.svg';
 import './Landingpage.css';
+import {contentEn, logo} from "../../assets"
 import {BottomComponent, BuyingModal, Footer, HeaderBar, TopComponent} from '../../components';
 import {
     buildCountdownDuration,
@@ -111,46 +112,75 @@ class Landingpage extends Component {
                 timestamp: '1504524929105'
             },
         ]
+        const content = contentEn
+        const buyingModalActions = [
+            <FlatButton
+                label={content.buyingModal.buttonSecondary}
+                primary={true}
+                onClick={this.props.toggleBuyingDialog}
+            />,
+            <FlatButton
+                label={content.buyingModal.buttonPrimary}
+                primary={true}
+                disabled={false}
+                onClick={this.props.toggleBuyingDialog}
+            />,
+        ];
         return (
             <DocumentTitle
-                title={`${'EtherOrb $'}${this.props.prediction} @ ${this.props.nextHour}`}
+                title={content.documentTitle.title}
             >
                 <div>
                     <HeaderBar
-                        logo={ethLogo}
-                        title={["EtherOrb", ".com"]}
+                        logo={logo}
                         customButton={customButton}
-                        buttonLabel="Buy Your Ticket"
                         toggleBuyingDialog={this.props.toggleBuyingDialog}
+                        title={content.headerBar.title}
+                        subtitle={content.headerBar.subtitle}
+                        buttonLabel={content.headerBar.buttonLabel}
                     />
                     <TopComponent
                         customButton={customButtonLarge}
                         toggleBuyingDialog={this.props.toggleBuyingDialog}
                         background={background}
-                        headline={["The first Ethereum", <br />, "Prediciton Lottery"]}
-                        CountdownClockDescription={['Win Now', '$ 100.000']}
-                        buttonLabel="Buy Your Ticket"
+                        headlineTop={content.topComponent.countdownClock.headlineTop}
+                        headlineBot={content.topComponent.countdownClock.headlineBot}
+                        countdownDescTop={content.topComponent.countdownClock.countdownDescTop}
+                        countdownDescBot={content.topComponent.countdownClock.countdownDescBot}
+                        buttonLabel={content.topComponent.countdownClock.buttonLabel}
+                        bulletPoints={content.topComponent.bulletPoints}
                     />
                     <BottomComponent
-                        headline={"Current Round"}
                         chartData={chartData}
-                        historyListHeader={"Latest Predictions"}
+                        chartHeadline={content.bottomComponent.chart.headline}
+                        chartReferenceLabel={content.bottomComponent.chart.referenceLabel}
                         historyListData={historyListData}
                         historyListConfig={historyListConfig}
-                        bottomCTAHeadline={["100% Trustless Blockchain Lottery",
-                            <br/>, "Open Source, Verified Contract"]}
                         customButton={customButton}
                         customButtonSecondary={customButtonSecondary}
                         toggleBuyingDialog={this.props.toggleBuyingDialog}
-                        buttonLabel={["Buy Your Ticket", "Read the Rules"]}
+                        headline={content.bottomComponent.headline}
+                        historyListHeader={content.bottomComponent.historyList.header}
+                        historyListColumnNames={content.bottomComponent.historyList.columnNames}
+                        infoTags={content.bottomComponent.infoTags}
+                        values={content.bottomComponent.values}
+                        bottomCTAHeadlineTop={content.bottomComponent.bottomCTAHeadlineTop}
+                        bottomCTAHeadlineBot={content.bottomComponent.bottomCTAHeadlineBot}
+                        buttonLabelCTA={content.bottomComponent.buttonLabelCTA}
+                        buttonLabelSec={content.bottomComponent.buttonLabelSec}
                     />
-                    <BuyingModal open={this.props.buyingDialog.open} toggleBuyingDialog={this.props.toggleBuyingDialog}/>
+                    <BuyingModal
+                        open={this.props.buyingDialog.open}
+                        toggleBuyingDialog={this.props.toggleBuyingDialog}
+                        title={content.buyingModal.title}
+                        actions={buyingModalActions}
+                        buttonPrimary={content.buyingModal.buttonPrimary}
+                        buttonSecondary={content.buyingModal.buttonSecondary}
+                        modalTabsHeadlines={content.buyingModal.modalTabs.Headlines}
+                    />
                     <Footer
-                        disclaimer={"EtherOrb.com owns itself.\n" +
-                        "It is an autonomous entity, executing as code on the Ethereum (ETH) P2P network.\n" +
-                        "It lives in the Ether; in the realm of ideas and magic.\n" +
-                        "Enjoy it."}
-                        title={"EtherOrb.com"}
+                        disclaimer={content.footer.disclaimer}
+                        title={content.footer.title}
                     />
                 </div>
             </DocumentTitle>
