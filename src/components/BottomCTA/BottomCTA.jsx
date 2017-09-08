@@ -8,7 +8,7 @@ import githubLogo from '../../assets/media/github.png'
 const BottomCTA = props =>
     (
         <div>
-            <h2>{props.bottomCTAHeadlineTop}<br/>{props.bottomCTAHeadlineBot}</h2>
+            <h2>{props.headLineTop}<br/>{props.headLineBot}</h2>
             <div className="bottomCTA__Divider" style={{backgroundColor: props.muiTheme.palette.accent1Color}}></div>
             <div className='bottomCTA__LogoWrapper'>
                 <img className="bottomCTA__Logo bottomCTA__Logo--left" src={etherscanLogo}/>

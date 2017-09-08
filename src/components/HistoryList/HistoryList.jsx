@@ -8,19 +8,19 @@ const HistoryList = props =>
     (
         <div>
             <Table
-                height={props.historyListConfig.height}
-                fixedHeader={props.historyListConfig.fixedHeader}
-                selectable={props.historyListConfig.selectable}
-                multiSelectable={props.historyListConfig.multiSelectable}
+                height={props.config.height}
+                fixedHeader={props.config.fixedHeader}
+                selectable={props.config.selectable}
+                multiSelectable={props.config.multiSelectable}
             >
-                <TableHeader adjustForCheckbox={props.historyListConfig.showCheckboxes}
-                             displaySelectAll={props.historyListConfig.showCheckboxes}>
+                <TableHeader adjustForCheckbox={props.config.showCheckboxes}
+                             displaySelectAll={props.config.showCheckboxes}>
                     <TableRow>
-                        <TableHeaderColumn colSpan="3" tooltip={props.historyListHeader}
+                        <TableHeaderColumn colSpan="3" tooltip={props.header}
                                            style={{color: props.muiTheme.palette.accent1Color}}
                                            className='historyList__headerText'
                         >
-                            {props.historyListHeader}
+                            {props.header}
                         </TableHeaderColumn>
                     </TableRow>
                     <TableRow>
@@ -30,11 +30,11 @@ const HistoryList = props =>
                     </TableRow>
                 </TableHeader>
                 <TableBody
-                    displayRowCheckbox={props.historyListConfig.showCheckboxes}
-                    showRowHover={props.historyListConfig.showRowHover}
-                    stripedRows={props.historyListConfig.stripedRows}
+                    displayRowCheckbox={props.config.showCheckboxes}
+                    showRowHover={props.config.showRowHover}
+                    stripedRows={props.config.stripedRows}
                 >
-                    {props.historyListData.map((row, index) => (
+                    {props.data.map((row, index) => (
                         <TableRow>
                             <TableRowColumn style={{color: props.muiTheme.palette.primary1Color}}>{row.address}</TableRowColumn>
                             <TableRowColumn>{moment(row.timestamp, 'x').fromNow()}</TableRowColumn>

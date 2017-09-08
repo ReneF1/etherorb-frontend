@@ -1,20 +1,18 @@
 {
-  "documentTitle": {
-    "title": "EtheOrb.com"
-  },
+  "pageTitle": "EtheOrb.com",
   "headerBar": {
     "title": "EtherOrb",
     "subtitle": ".com",
     "buttonLabel": "Buy Your Ticket"
   },
   "topComponent": {
+    "headlineTop": "The first Ethereum",
+    "headlineBot": "Prediciton Lottery",
     "countdownClock": {
-      "headlineTop": "The first Ethereum",
-      "headlineBot": "Prediciton Lottery",
       "countdownDescTop": "Win Now",
-      "countdownDescBot": "$ 100.000",
-      "buttonLabel": "Buy Your Ticket"
+      "countdownDescBot": "$ 100.000"
     },
+    "buttonLabel": "Buy Your Ticket",
     "bulletPoints": [
       "Buy your Ticket",
       "Correctly predict the ETH/USD value",
@@ -35,10 +33,12 @@
         "Prediction"
       ]
     },
-    "bottomCTAHeadlineTop": "100% Trustless Blockchain Lottery",
-    "bottomCTAHeadlineBot": "Open Source, Verified Contract",
-    "buttonLabelCTA": "Buy Your Ticket",
-    "buttonLabelSec": "Read the Rules",
+    "bottomCTA": {
+      "headLineTop": "100% Trustless Blockchain Lottery",
+      "headLineBot": "Open Source, Verified Contract",
+      "buttonLabelCTA": "Buy Your Ticket",
+      "buttonLabelSec": "Read the Rules"
+    },
     "infoTags": [
       "Predicion",
       "Tickets sold",
@@ -59,7 +59,7 @@
     "buttonSecondary": "Cancel",
     "title": "Buy your Ticket",
     "modalTabs": {
-      "Headlines": [
+      "headlines": [
         "QR Code",
         "MetaMask"
       ]

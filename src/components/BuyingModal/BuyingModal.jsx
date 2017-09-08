@@ -30,7 +30,7 @@ const BuyingModal = props =>
                 open={props.open}
                 actionsContainerStyle={actionsContainerStyle}
             >
-                <ModalTabs headlines={props.modalTabsHeadlines}/>
+                <ModalTabs headlines={props.modalTabs.headlines}/>
             </Dialog>
         </div>
     );

@@ -17,15 +17,15 @@ const TopComponent = props =>
                 <Grid fluid>
                     <Row className="topComponent__row topComponent__paddingWrapper">
                         <Col xs={12} md={12}>
-                            <h1 className="topComponent__headline">{props.headline}</h1>
+                            <h1 className="topComponent__headline">{[props.headlineTop,<br/>,props.headlineBot]}</h1>
                         </Col>
                     </Row>
                     <Row className='topComponent__row topComponent__paddingWrapper'>
                         <CountdownClock
                             seconds={1000}
                             color={props.muiTheme.palette.accent1Color}
-                            countdownDescTop={props.countdownDescTop}
-                            countdownDescBot={props.countdownDescBot}
+                            countdownDescTop={props.countdownClock.countdownDescTop}
+                            countdownDescBot={props.countdownClock.countdownDescBot}
                         />
                     </Row>
                     <Row>
