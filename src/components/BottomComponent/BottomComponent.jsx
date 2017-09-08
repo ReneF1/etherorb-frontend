@@ -35,7 +35,7 @@ const BottomComponent = props =>
                             <div className='bottomComponent__paddingWrapper'>
                                 <Chart
                                     chartData={props.chartData}
-                                    headline={props.chartHeadline}
+                                    headline={props.chart.headline}
                                     referenceLabel={props.chartReferenceLabel}
                                 />
                             </div>
@@ -45,10 +45,10 @@ const BottomComponent = props =>
                         <Col xs={12} md={12}>
                             <div className='bottomComponent__paddingWrapper'>
                                 <HistoryList
-                                    historyListHeader={props.historyListHeader}
-                                    columnNames={props.historyListColumnNames}
-                                    historyListData={props.historyListData}
-                                    historyListConfig={props.historyListConfig}
+                                    ListHeader={props.historyList.header}
+                                    columnNames={props.historyList.columnNames}
+                                    data={props.historyListData}
+                                    config={props.historyListConfig}
                                 />
                             </div>
                         </Col>
@@ -59,11 +59,10 @@ const BottomComponent = props =>
                                 <BottomCTA
                                     customButton={props.customButton}
                                     customButtonSecondary={props.customButtonSecondary}
-                                    bottomCTAHeadlineTop={props.bottomCTAHeadlineTop}
-                                    bottomCTAHeadlineBot={props.bottomCTAHeadlineBot}
-                                    buttonLabelCTA={props.buttonLabelCTA}
-                                    buttonLabelSec={props.buttonLabelSec}
-                                    buttonLabel={props.buttonLabel}
+                                    headLineTop={props.bottomCTA.headLineTop}
+                                    headLineBot={props.bottomCTA.headLineBot}
+                                    buttonLabelCTA={props.bottomCTA.buttonLabelCTA}
+                                    buttonLabelSec={props.bottomCTA.buttonLabelSec}
                                     toggleBuyingDialog={props.toggleBuyingDialog}
                                 />
                             </div>

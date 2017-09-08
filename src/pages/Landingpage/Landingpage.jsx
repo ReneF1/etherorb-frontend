@@ -128,59 +128,38 @@ class Landingpage extends Component {
         ];
         return (
             <DocumentTitle
-                title={content.documentTitle.title}
+                title={content.pageTitle}
             >
                 <div>
                     <HeaderBar
                         logo={logo}
                         customButton={customButton}
                         toggleBuyingDialog={this.props.toggleBuyingDialog}
-                        title={content.headerBar.title}
-                        subtitle={content.headerBar.subtitle}
-                        buttonLabel={content.headerBar.buttonLabel}
+                        {...content.headerBar}
                     />
                     <TopComponent
                         customButton={customButtonLarge}
                         toggleBuyingDialog={this.props.toggleBuyingDialog}
                         background={background}
-                        headlineTop={content.topComponent.countdownClock.headlineTop}
-                        headlineBot={content.topComponent.countdownClock.headlineBot}
-                        countdownDescTop={content.topComponent.countdownClock.countdownDescTop}
-                        countdownDescBot={content.topComponent.countdownClock.countdownDescBot}
-                        buttonLabel={content.topComponent.countdownClock.buttonLabel}
-                        bulletPoints={content.topComponent.bulletPoints}
+                        {...content.topComponent}
                     />
                     <BottomComponent
                         chartData={chartData}
-                        chartHeadline={content.bottomComponent.chart.headline}
-                        chartReferenceLabel={content.bottomComponent.chart.referenceLabel}
                         historyListData={historyListData}
                         historyListConfig={historyListConfig}
                         customButton={customButton}
                         customButtonSecondary={customButtonSecondary}
                         toggleBuyingDialog={this.props.toggleBuyingDialog}
-                        headline={content.bottomComponent.headline}
-                        historyListHeader={content.bottomComponent.historyList.header}
-                        historyListColumnNames={content.bottomComponent.historyList.columnNames}
-                        infoTags={content.bottomComponent.infoTags}
-                        values={content.bottomComponent.values}
-                        bottomCTAHeadlineTop={content.bottomComponent.bottomCTAHeadlineTop}
-                        bottomCTAHeadlineBot={content.bottomComponent.bottomCTAHeadlineBot}
-                        buttonLabelCTA={content.bottomComponent.buttonLabelCTA}
-                        buttonLabelSec={content.bottomComponent.buttonLabelSec}
+                        {...content.bottomComponent}
                     />
                     <BuyingModal
                         open={this.props.buyingDialog.open}
                         toggleBuyingDialog={this.props.toggleBuyingDialog}
-                        title={content.buyingModal.title}
                         actions={buyingModalActions}
-                        buttonPrimary={content.buyingModal.buttonPrimary}
-                        buttonSecondary={content.buyingModal.buttonSecondary}
-                        modalTabsHeadlines={content.buyingModal.modalTabs.Headlines}
+                        {...content.buyingModal}
                     />
                     <Footer
-                        disclaimer={content.footer.disclaimer}
-                        title={content.footer.title}
+                        {...content.footer}
                     />
                 </div>
             </DocumentTitle>
