@@ -21,30 +21,37 @@ const TopComponent = props =>
                         </Col>
                     </Row>
                     <Row className='topComponent__row topComponent__paddingWrapper'>
-                        <CountdownClock seconds={1000} color={props.muiTheme.palette.accent1Color} description={props.CountdownClockDescription}/>
+                        <CountdownClock
+                            seconds={1000}
+                            color={props.muiTheme.palette.accent1Color}
+                            countdownDescTop={props.countdownDescTop}
+                            countdownDescBot={props.countdownDescBot}
+                        />
                     </Row>
                     <Row>
                         <Col xs={12} md={12}>
                             <div className='topComponent__buttonWrapper topComponent__paddingWrapper'>
-                                <RaisedButton label={props.buttonLabel} style={props.customButton.style}
-                                              buttonStyle={props.customButton.buttonStyle}
-                                              overlayStyle={props.customButton.overlayStyle}
-                                              labelStyle={props.customButton.labelStyle}
-                                              labelColor={props.muiTheme.palette.accent1Color}
-                                              onClick={props.toggleBuyingDialog}
-                                              className='headerBar_raisedButton'/>
+                                <RaisedButton
+                                    label={props.buttonLabel} style={props.customButton.style}
+                                    buttonStyle={props.customButton.buttonStyle}
+                                    overlayStyle={props.customButton.overlayStyle}
+                                    labelStyle={props.customButton.labelStyle}
+                                    labelColor={props.muiTheme.palette.accent1Color}
+                                    onClick={props.toggleBuyingDialog}
+                                    className='headerBar_raisedButton'
+                                />
                             </div>
                         </Col>
                     </Row>
                     <Row around="xs">
                         <Col xs={4} md={4}>
-                            <BulletPoint text={'Buy your Ticket'} icon={'add_shopping_cart'}/>
+                            <BulletPoint text={props.bulletPoints[0]} icon={'add_shopping_cart'}/>
                         </Col>
                         <Col xs={4} md={4}>
-                            <BulletPoint text={'Correctly predict the ETH/USD value'} icon={'av_timer'}/>
+                            <BulletPoint text={props.bulletPoints[1]} icon={'av_timer'}/>
                         </Col>
                         <Col xs={4} md={4}>
-                            <BulletPoint text={'Win the Pot'} icon={'attach_money'}/>
+                            <BulletPoint text={props.bulletPoints[2]} icon={'attach_money'}/>
                         </Col>
                     </Row>
                 </Grid>

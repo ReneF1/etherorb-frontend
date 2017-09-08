@@ -10,11 +10,11 @@ const HeaderBar = props => (
     <div className='headerBar'>
         <div className='headerBar__wrapper'>
             <div className='headerBar__leftElement'><img src={props.logo} className='headerBar__logo'
-                                                         alt={props.title[0] + props.title[1] + ' logo'}/><span
+                                                         alt={props.title + props.subtitle + ' logo'}/><span
                 className='headerBar__logoTextPrimary'
-                style={{color: props.muiTheme.palette.accent1Color}}>{props.title[0]}</span><span
+                style={{color: props.muiTheme.palette.accent1Color}}>{props.title}</span><span
                 className='headerBar__logoTextSecondary'
-                style={{color: props.muiTheme.palette.accent1Color}}>{props.title[1]}</span></div>
+                style={{color: props.muiTheme.palette.accent1Color}}>{props.subtitle}</span></div>
             <div className='headerBar__rightElement'>
                 <RaisedButton
                     label={props.buttonLabel} secondary={true}

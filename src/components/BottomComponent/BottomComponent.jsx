@@ -22,18 +22,22 @@ const BottomComponent = props =>
                     <Row>
                         <Col xs={12} md={12}>
                             <div className='bottomComponent__buttonWrapper bottomComponent__paddingWrapper'>
-                                <InfoTag icon={'av_timer'} text={'Predicion: '} value={'$ 220'}/>
-                                <InfoTag icon={'shopping_cart'} text={'Tickets sold: '} value={'230'}/>
-                                <InfoTag icon={'timelapse'} text={'Next payout: '} value={'42:34'}/>
-                                <InfoTag icon={'monetization_on'} text={'Pot size: '} value={'$ 100.000'}/>
-                                <InfoTag icon={'timer_off'} text={'Deadline: '} value={'32:34'}/>
+                                <InfoTag icon={'av_timer'} text={props.infoTags[0]} value={props.values[0]}/>
+                                <InfoTag icon={'shopping_cart'} text={props.infoTags[1]} value={props.values[1]}/>
+                                <InfoTag icon={'timelapse'} text={props.infoTags[2]} value={props.values[2]}/>
+                                <InfoTag icon={'monetization_on'} text={props.infoTags[3]} value={props.values[3]}/>
+                                <InfoTag icon={'timer_off'} text={props.infoTags[4]} value={props.values[4]}/>
                             </div>
                         </Col>
                     </Row>
                     <Row>
                         <Col xs={12} md={12}>
                             <div className='bottomComponent__paddingWrapper'>
-                                <Chart chartData={props.chartData}/>
+                                <Chart
+                                    chartData={props.chartData}
+                                    headline={props.chartHeadline}
+                                    referenceLabel={props.chartReferenceLabel}
+                                />
                             </div>
                         </Col>
                     </Row>
@@ -42,6 +46,7 @@ const BottomComponent = props =>
                             <div className='bottomComponent__paddingWrapper'>
                                 <HistoryList
                                     historyListHeader={props.historyListHeader}
+                                    columnNames={props.historyListColumnNames}
                                     historyListData={props.historyListData}
                                     historyListConfig={props.historyListConfig}
                                 />
@@ -52,9 +57,12 @@ const BottomComponent = props =>
                         <Col xs={12} md={12}>
                             <div className='bottomComponent__paddingWrapper'>
                                 <BottomCTA
-                                    headline={props.bottomCTAHeadline}
                                     customButton={props.customButton}
                                     customButtonSecondary={props.customButtonSecondary}
+                                    bottomCTAHeadlineTop={props.bottomCTAHeadlineTop}
+                                    bottomCTAHeadlineBot={props.bottomCTAHeadlineBot}
+                                    buttonLabelCTA={props.buttonLabelCTA}
+                                    buttonLabelSec={props.buttonLabelSec}
                                     buttonLabel={props.buttonLabel}
                                     toggleBuyingDialog={props.toggleBuyingDialog}
                                 />

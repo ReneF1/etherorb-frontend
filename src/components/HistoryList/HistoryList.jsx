@@ -24,9 +24,9 @@ const HistoryList = props =>
                         </TableHeaderColumn>
                     </TableRow>
                     <TableRow>
-                        <TableHeaderColumn tooltip="The Name">Address</TableHeaderColumn>
-                        <TableHeaderColumn tooltip="The Timestamp">Timestamp</TableHeaderColumn>
-                        <TableHeaderColumn tooltip="The Status">Prediction</TableHeaderColumn>
+                        <TableHeaderColumn tooltip={"The " + props.columnNames[0]}>{props.columnNames[0]}</TableHeaderColumn>
+                        <TableHeaderColumn tooltip={"The " + props.columnNames[1]}>{props.columnNames[1]}</TableHeaderColumn>
+                        <TableHeaderColumn tooltip={"The " + props.columnNames[2]}>{props.columnNames[2]}</TableHeaderColumn>
                     </TableRow>
                 </TableHeader>
                 <TableBody
