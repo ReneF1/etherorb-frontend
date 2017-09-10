@@ -1,62 +1,86 @@
 import React from 'react';
 import './TopComponent.css';
-import {Col, Grid, Row} from 'react-flexbox-grid';
+import { Col, Grid, Row } from 'react-flexbox-grid';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import RaisedButton from 'material-ui/RaisedButton';
-import {BulletPoint} from '../../components';
-import CountdownClock from "../CountdownClock/CountdownClock";
+import { BulletPoint } from '../../components';
+import CountdownClock from '../CountdownClock/CountdownClock';
+import { contentEn } from '../../assets';
+import PropTypes from 'prop-types';
 
-const TopComponent = props =>
-    (
-        <div className='topComponent' style={{
-            backgroundColor: props.muiTheme.palette.primary1Color,
-            backgroundImage: 'url(' + props.background + ')',
-            backgroundPositionY: '200px'
-        }}>
-            <div className="topComponent__container">
-                <Grid fluid>
-                    <Row className="topComponent__row topComponent__paddingWrapper">
-                        <Col xs={12} md={12}>
-                            <h1 className="topComponent__headline">{[props.headlineTop,<br/>,props.headlineBot]}</h1>
-                        </Col>
-                    </Row>
-                    <Row className='topComponent__row topComponent__paddingWrapper'>
-                        <CountdownClock
-                            seconds={1000}
-                            color={props.muiTheme.palette.accent1Color}
-                            countdownDescTop={props.countdownClock.countdownDescTop}
-                            countdownDescBot={props.countdownClock.countdownDescBot}
-                        />
-                    </Row>
-                    <Row>
-                        <Col xs={12} md={12}>
-                            <div className='topComponent__buttonWrapper topComponent__paddingWrapper'>
-                                <RaisedButton
-                                    label={props.buttonLabel} style={props.customButton.style}
-                                    buttonStyle={props.customButton.buttonStyle}
-                                    overlayStyle={props.customButton.overlayStyle}
-                                    labelStyle={props.customButton.labelStyle}
-                                    labelColor={props.muiTheme.palette.accent1Color}
-                                    onClick={props.toggleBuyingDialog}
-                                    className='headerBar_raisedButton'
-                                />
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row around="xs">
-                        <Col xs={4} md={4}>
-                            <BulletPoint text={props.bulletPoints[0]} icon={'add_shopping_cart'}/>
-                        </Col>
-                        <Col xs={4} md={4}>
-                            <BulletPoint text={props.bulletPoints[1]} icon={'av_timer'}/>
-                        </Col>
-                        <Col xs={4} md={4}>
-                            <BulletPoint text={props.bulletPoints[2]} icon={'attach_money'}/>
-                        </Col>
-                    </Row>
-                </Grid>
+const content = contentEn.topComponent;
+
+const style = {
+  customButtonLarge: {
+    buttonStyle: { borderRadius: '100px', height: '56px', lineHeight: '35px' },
+    overlayStyle: { borderRadius: '100px' },
+    style: { borderRadius: '100px', minWidth: '260px' },
+    labelStyle: { fontSize: '20px', textTransform: 'Uppercase', fontWeight: 'bold' },
+  },
+};
+
+// TODO: Rene where does this muiTheme come from?
+const TopComponent = ({ muiTheme, background, buyTicket }) => (
+  <div
+    className="topComponent"
+    style={{
+      backgroundColor: muiTheme.palette.primary1Color,
+      backgroundImage: `url(${background})`,
+      backgroundPositionY: '200px',
+    }}
+  >
+    <div className="topComponent__container">
+      <Grid fluid>
+        <Row className="topComponent__row topComponent__paddingWrapper">
+          <Col xs={12} md={12}>
+            <h1 className="topComponent__headline">{[content.headlineTop,
+              <br />, content.headlineBot]}</h1>
+          </Col>
+        </Row>
+        <Row className="topComponent__row topComponent__paddingWrapper">
+          <CountdownClock
+            seconds={1000}
+            color={muiTheme.palette.accent1Color}
+            countdownDescTop={content.countdownClock.countdownDescTop}
+            countdownDescBot={content.countdownClock.countdownDescBot}
+          />
+        </Row>
+        <Row>
+          <Col xs={12} md={12}>
+            <div className="topComponent__buttonWrapper topComponent__paddingWrapper">
+              <RaisedButton
+                label={content.buttonLabel}
+                style={style.customButtonLarge.style}
+                buttonStyle={style.customButtonLarge.buttonStyle}
+                overlayStyle={style.customButtonLarge.overlayStyle}
+                labelStyle={style.customButtonLarge.labelStyle}
+                labelColor={muiTheme.palette.accent1Color}
+                onClick={() => buyTicket(200)}
+                className="headerBar_raisedButton"
+              />
             </div>
-        </div>
-    );
+          </Col>
+        </Row>
+        <Row around="xs">
+          <Col xs={4} md={4}>
+            <BulletPoint text={content.bulletPoints[0]} icon={'add_shopping_cart'} />
+          </Col>
+          <Col xs={4} md={4}>
+            <BulletPoint text={content.bulletPoints[1]} icon={'av_timer'} />
+          </Col>
+          <Col xs={4} md={4}>
+            <BulletPoint text={content.bulletPoints[2]} icon={'attach_money'} />
+          </Col>
+        </Row>
+      </Grid>
+    </div>
+  </div>
+);
+
+TopComponent.propTypes = {
+  muiTheme: PropTypes.object.isRequired,
+  background: PropTypes.string.isRequired,
+  buyTicket: PropTypes.func.isRequired,
+};
 
 export default muiThemeable()(TopComponent);

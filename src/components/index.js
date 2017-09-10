@@ -26,5 +26,5 @@ export {
     HistoryList,
     BottomCTA,
     BuyingModal,
-    ModalTabs
+    ModalTabs,
 };
