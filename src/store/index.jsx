@@ -1,49 +1,28 @@
-import {applyMiddleware, compose, createStore} from 'redux';
-import {routerMiddleware} from 'react-router-redux';
-import axios from 'axios';
-import {multiClientMiddleware} from 'redux-axios-middleware';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
 import reducer from './reducers';
+import promiseMiddleware from 'redux-promise-middleware';
+import multiClientMiddleWare from './middleware/multiClientMiddleware';
 
 export const history = createHistory();
-
-const clients =
-    {
-        kraken: {
-            client: axios.create({
-                baseURL: 'https://api.kraken.com/0/public/',
-                responseType: 'json',
-            }),
-        },
-        etherOrbApi: {
-            client: axios.create({
-                baseURL: '/db.json',
-                responseType: 'json',
-            }),
-        },
-        cryptoCompareApi: {
-            client: axios.create({
-                baseURL: 'https://min-api.cryptocompare.com/data/',
-                responseType: 'json',
-            }),
-        },
-    };
 
 const initialState = {};
 const enhancers = [];
 const middleware = [
-    thunk,
-    routerMiddleware(history),
-    multiClientMiddleware(clients),
+  thunk,
+  routerMiddleware(history),
+  promiseMiddleware(),
+  multiClientMiddleWare,
 ];
 
 if (process.env.NODE_ENV === 'development') {
-    const devToolsExtension = window.devToolsExtension;
+  const devToolsExtension = window.devToolsExtension;
 
-    if (typeof devToolsExtension === 'function') {
-        enhancers.push(devToolsExtension());
-    }
+  if (typeof devToolsExtension === 'function') {
+    enhancers.push(devToolsExtension());
+  }
 }
 
 const composedEnhancers = compose(
