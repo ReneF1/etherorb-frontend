@@ -10,7 +10,7 @@ import DocumentTitle from 'react-document-title';
 import background from '../../assets/media/bg.svg';
 import './Landingpage.css';
 import {contentEn, logo} from "../../assets"
-import {BottomComponent, BuyingModal, Footer, HeaderBar, TopComponent} from '../../components';
+import {BottomComponent, BuyingModal, InfoModal, Footer, HeaderBar, TopComponent} from '../../components';
 import {
     buildCountdownDuration,
     buildTimeArray,
@@ -89,6 +89,14 @@ class Landingpage extends Component {
                 onClick={this.props.toggleBuyingDialog}
             />,
         ];
+        const infoModalActions = [
+            <FlatButton
+                label={content.infoModal.buttonPrimary}
+                primary={true}
+                disabled={false}
+                onClick={this.props.toggleBuyingDialog}
+            />,
+        ];
         return (
             <DocumentTitle
                 title={content.pageTitle}
@@ -119,6 +127,10 @@ class Landingpage extends Component {
                         toggleBuyingDialog={this.props.toggleBuyingDialog}
                         actions={buyingModalActions}
                         {...content.buyingModal}
+                    />
+                    <InfoModal
+                        actions={infoModalActions}
+                        {...content.infoModal}
                     />
                     <Footer
                         {...content.footer}
