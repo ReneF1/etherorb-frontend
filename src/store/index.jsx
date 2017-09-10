@@ -1,9 +1,9 @@
 import { applyMiddleware, compose, createStore } from 'redux';
+import promiseMiddleware from 'redux-promise-middleware';
 import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
 import reducer from './reducers';
-import promiseMiddleware from 'redux-promise-middleware';
 import multiClientMiddleWare from './middleware/multiClientMiddleware';
 
 export const history = createHistory();

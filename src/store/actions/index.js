@@ -1,10 +1,10 @@
 /**
  * Created by renefuchtenkordt on 13.07.17.
  */
-import { toggleBuyingDialog } from './pageConfig';
-import { getCryptoValue } from './cryptoExchange';
+import toggleBuyingDialog from './pageConfig';
+import getCryptoValue from './cryptoExchange';
+import buyTicket from './contract';
 import { buildCountdownDuration, buildTimeArray, getLastHour, getNextHour, getNow } from './momentTime';
-import { loadPoolSize, placeBet, postBet, buyTicket } from './contract';
 
 export {
     getNow,
@@ -13,9 +13,6 @@ export {
     buildCountdownDuration,
     buildTimeArray,
     getCryptoValue,
-    placeBet,
-    loadPoolSize,
-    postBet,
     buyTicket,
     toggleBuyingDialog,
 };

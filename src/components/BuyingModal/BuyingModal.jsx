@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Dialog from 'material-ui/Dialog';
 import ModalTabs from '../ModalTabs/ModalTabs';
 
@@ -34,4 +35,12 @@ const BuyingModal = props =>
         </Dialog>
       </div>
     );
+
+BuyingModal.propTypes = {
+  title: PropTypes.string.isRequired,
+  actions: PropTypes.element.isRequired,
+  open: PropTypes.bool.isRequired,
+  modalTabs: PropTypes.element.isRequired,
+};
+
 export default BuyingModal;

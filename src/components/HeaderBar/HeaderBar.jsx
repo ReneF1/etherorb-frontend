@@ -2,6 +2,7 @@
  * Created by renefuchtenkordt on 07.07.17.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import './HeaderBar.css';
@@ -34,4 +35,15 @@ const HeaderBar = props => (
     </div>
   </div>
 );
+
+HeaderBar.propTypes = {
+  logo: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  muiTheme: PropTypes.string.isRequired,
+  buttonLabel: PropTypes.string.isRequired,
+  customButton: PropTypes.string.isRequired,
+  toggleBuyingDialog: PropTypes.string.isRequired,
+};
+
 export default muiThemeable()(HeaderBar);

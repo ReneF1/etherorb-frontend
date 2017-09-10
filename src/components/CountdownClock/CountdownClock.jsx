@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactCountdownClock from 'react-countdown-clock';
 import './CountdownClock.css';
 
@@ -16,4 +17,12 @@ const CountdownClock = props =>
         <p className="countdownSubhead--bottom">{props.countdownDescBot}</p>
       </div>
     );
+
+CountdownClock.propTypes = {
+  seconds: PropTypes.number.isRequired,
+  color: PropTypes.string.isRequired,
+  countdownDescTop: PropTypes.string.isRequired,
+  countdownDescBot: PropTypes.string.isRequired,
+};
+
 export default CountdownClock;

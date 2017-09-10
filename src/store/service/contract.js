@@ -1,7 +1,7 @@
 import web3Connect from '../util/web3/web3Connect';
-import { TICKET_PRICE } from '../../shared/constant';
+import TICKET_PRICE from '../../shared/constant';
 
-export const buyTicket = (estimate, account) => {
+const buyTicket = (estimate, account) => {
   if (web3Connect().contract != null) {
     return new Promise((resolve, reject) => {
       web3Connect().contract.buyTicket.sendTransaction(estimate, {
@@ -16,4 +16,7 @@ export const buyTicket = (estimate, account) => {
     });
   }
   return null;
+};
+export {
+    buyTicket,
 };

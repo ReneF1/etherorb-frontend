@@ -1,7 +1,8 @@
 import React from 'react';
-import './BottomCTA.css';
 import RaisedButton from 'material-ui/RaisedButton';
 import muiThemeable from 'material-ui/styles/muiThemeable';
+import PropTypes from 'prop-types';
+import './BottomCTA.css';
 import etherscanLogo from '../../assets/media/etherscan.png';
 import githubLogo from '../../assets/media/github.png';
 
@@ -9,10 +10,13 @@ const BottomCTA = props =>
     (
       <div>
         <h2>{props.headLineTop}<br />{props.headLineBot}</h2>
-        <div className="bottomCTA__Divider" style={{ backgroundColor: props.muiTheme.palette.accent1Color }} />
+        <div
+          className="bottomCTA__Divider"
+          style={{ backgroundColor: props.muiTheme.palette.accent1Color }}
+        />
         <div className="bottomCTA__LogoWrapper">
-          <img className="bottomCTA__Logo bottomCTA__Logo--left" src={etherscanLogo} />
-          <img className="bottomCTA__Logo" src={githubLogo} />
+          <img className="bottomCTA__Logo bottomCTA__Logo--left" alt="" src={etherscanLogo} />
+          <img className="bottomCTA__Logo" alt="" src={githubLogo} />
         </div>
         <div className="bottomCTA__ButtonWrapper">
           <RaisedButton
@@ -36,5 +40,16 @@ const BottomCTA = props =>
         </div>
       </div>
     );
+
+BottomCTA.propTypes = {
+  headLineTop: PropTypes.string.isRequired,
+  headLineBot: PropTypes.string.isRequired,
+  muiTheme: PropTypes.element.isRequired,
+  buttonLabelCTA: PropTypes.string.isRequired,
+  customButton: PropTypes.element.isRequired,
+  toggleBuyingDialog: PropTypes.element.isRequired,
+  buttonLabelSec: PropTypes.string.isRequired,
+  customButtonSecondary: PropTypes.element.isRequired,
+};
 
 export default muiThemeable()(BottomCTA);

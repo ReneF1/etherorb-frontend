@@ -1,8 +1,9 @@
 import React from 'react';
-import './HistoryList.css';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import muiThemeable from 'material-ui/styles/muiThemeable';
+import './HistoryList.css';
 
 const HistoryList = props =>
     (
@@ -38,16 +39,32 @@ const HistoryList = props =>
             showRowHover={props.config.showRowHover}
             stripedRows={props.config.stripedRows}
           >
-            {props.data.map((row, index) => (
+            {props.data.map(row => (
               <TableRow>
-                <TableRowColumn style={{ color: props.muiTheme.palette.primary1Color }}>{row.address}</TableRowColumn>
+                <TableRowColumn
+                  style={{ color: props.muiTheme.palette.primary1Color }}
+                >
+                  {row.address}
+                </TableRowColumn>
                 <TableRowColumn>{moment(row.timestamp, 'x').fromNow()}</TableRowColumn>
-                <TableRowColumn className="historyList__tableRowColumn--3">{row.prediction}</TableRowColumn>
+                <TableRowColumn
+                  className="historyList__tableRowColumn--3"
+                >
+                  {row.prediction}
+                </TableRowColumn>
               </TableRow>
                     ))}
           </TableBody>
         </Table>
       </div>
     );
+
+HistoryList.propTypes = {
+  config: PropTypes.element.isRequired,
+  header: PropTypes.string.isRequired,
+  muiTheme: PropTypes.element.isRequired,
+  columnNames: PropTypes.element.isRequired,
+  data: PropTypes.element.isRequired,
+};
 
 export default muiThemeable()(HistoryList);

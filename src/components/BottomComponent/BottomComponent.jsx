@@ -1,7 +1,8 @@
 import React from 'react';
-import './BottomComponent.css';
+import PropTypes from 'prop-types';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import { Col, Grid, Row } from 'react-flexbox-grid';
+import './BottomComponent.css';
 import InfoTag from '../InfoTag/InfoTag';
 import Chart from '../Chart/Chart';
 import HistoryList from '../HistoryList/HistoryList';
@@ -75,5 +76,22 @@ const BottomComponent = props =>
         </div>
       </div>
     );
+
+BottomComponent.propTypes = {
+  muiTheme: PropTypes.element.isRequired,
+  headline: PropTypes.string.isRequired,
+  infoTags: PropTypes.string.isRequired,
+  values: PropTypes.element.isRequired,
+  chartData: PropTypes.element.isRequired,
+  chart: PropTypes.element.isRequired,
+  chartReferenceLabel: PropTypes.string.isRequired,
+  historyList: PropTypes.element.isRequired,
+  historyListData: PropTypes.element.isRequired,
+  historyListConfig: PropTypes.element.isRequired,
+  customButton: PropTypes.element.isRequired,
+  customButtonSecondary: PropTypes.element.isRequired,
+  bottomCTA: PropTypes.element.isRequired,
+  toggleBuyingDialog: PropTypes.element.isRequired,
+};
 
 export default muiThemeable()(BottomComponent);

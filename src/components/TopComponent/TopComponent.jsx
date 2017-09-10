@@ -1,12 +1,12 @@
 import React from 'react';
-import './TopComponent.css';
 import { Col, Grid, Row } from 'react-flexbox-grid';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import RaisedButton from 'material-ui/RaisedButton';
+import PropTypes from 'prop-types';
+import './TopComponent.css';
 import { BulletPoint } from '../../components';
 import CountdownClock from '../CountdownClock/CountdownClock';
 import { contentEn } from '../../assets';
-import PropTypes from 'prop-types';
 
 const content = contentEn.topComponent;
 
@@ -19,7 +19,6 @@ const style = {
   },
 };
 
-// TODO: Rene where does this muiTheme come from?
 const TopComponent = ({ muiTheme, background, buyTicket }) => (
   <div
     className="topComponent"
@@ -78,7 +77,7 @@ const TopComponent = ({ muiTheme, background, buyTicket }) => (
 );
 
 TopComponent.propTypes = {
-  muiTheme: PropTypes.object.isRequired,
+  muiTheme: PropTypes.element.isRequired,
   background: PropTypes.string.isRequired,
   buyTicket: PropTypes.func.isRequired,
 };

@@ -1,16 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Tab, Tabs } from 'material-ui/Tabs';
 import qrCodeLogo from '../../assets/media/qr.png';
 import metaMaskLogo from '../../assets/media/metamask.png';
 
-const styles = {
-  headline: {
-    fontSize: 24,
-    paddingTop: 16,
-    marginBottom: 12,
-    fontWeight: 400,
-  },
-};
 const tabsStyle = {
   color: '#000000',
 };
@@ -22,11 +15,6 @@ const inkBarStyle = {
   border: '2p',
 };
 
-
-function handleActive(tab) {
-  alert(`A tab with this route property ${tab.props['data-route']} was activated.`);
-}
-
 const ModalTabs = props => (
   <Tabs
     style={tabsStyle}
@@ -34,7 +22,7 @@ const ModalTabs = props => (
     tabItemContainerStyle={{ backgroundColor: '#ffffff' }}
   >
     <Tab
-      label={[<img src={qrCodeLogo} style={{ padding: '2px' }} />, 'QR Code']}
+      label={[<img src={qrCodeLogo} alt="" style={{ padding: '2px' }} />, 'QR Code']}
       style={tabStyle}
     >
       <div>
@@ -42,7 +30,7 @@ const ModalTabs = props => (
       </div>
     </Tab>
     <Tab
-      label={[<img src={metaMaskLogo} style={{ padding: '2px' }} />, 'MetaMask']}
+      label={[<img src={metaMaskLogo} alt="" style={{ padding: '2px' }} />, 'MetaMask']}
       style={tabStyle}
     >
       <div>
@@ -51,5 +39,9 @@ const ModalTabs = props => (
     </Tab>
   </Tabs>
 );
+
+ModalTabs.propTypes = {
+  headlines: PropTypes.element.isRequired,
+};
 
 export default ModalTabs;

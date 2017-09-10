@@ -18,6 +18,4 @@ function getCryptoValue(id, cryptoSymbol, currencySymbol, market, timeArray) {
   };
 }
 
-export {
-    getCryptoValue,
-};
+export default getCryptoValue;

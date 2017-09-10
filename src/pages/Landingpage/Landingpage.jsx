@@ -9,7 +9,7 @@ import FlatButton from 'material-ui/FlatButton';
 import DocumentTitle from 'react-document-title';
 import background from '../../assets/media/bg.svg';
 import './Landingpage.css';
-import { contentEn, logo } from "../../assets";
+import { contentEn, logo } from '../../assets';
 import { BottomComponent, BuyingModal, InfoModal, Footer, HeaderBar, TopComponent } from '../../components';
 import {
     buildCountdownDuration,
@@ -18,9 +18,6 @@ import {
     getLastHour,
     getNextHour,
     getNow,
-    loadPoolSize,
-    placeBet,
-    postBet,
     buyTicket,
     toggleBuyingDialog,
 } from '../../store/actions';
@@ -36,11 +33,6 @@ class Landingpage extends Component {
     this.props.buildCountdownDuration();
     this.props.buildTimeArray();
     this.props.getCryptoValue('ETHUSDHOUR', 'ETH', 'USD', 'Kraken', [1503144000000, 1503144000000]);
-    this.props.loadPoolSize();
-  }
-
-  componentDidUpdate() {
-    console.log(this.props);
   }
 
   render() {
@@ -123,14 +115,14 @@ class Landingpage extends Component {
         onClick={this.props.toggleBuyingDialog}
       />,
     ];
-      const infoModalActions = [
-          <FlatButton
-              label={content.infoModal.buttonPrimary}
-              primary={true}
-              disabled={false}
-              onClick={this.props.toggleBuyingDialog}
-          />,
-      ];
+    const infoModalActions = [
+      <FlatButton
+        label={content.infoModal.buttonPrimary}
+        primary
+        disabled={false}
+        onClick={this.props.toggleBuyingDialog}
+      />,
+    ];
     return (
       <DocumentTitle
         title={content.pageTitle}
@@ -172,11 +164,18 @@ class Landingpage extends Component {
 }
 
 Landingpage.propTypes = {
-  getLastHour: PropTypes.func,
-  getNextHour: PropTypes.func,
-  callCryptoExchange: PropTypes.func,
-  prediction: PropTypes.number,
-  loadPoolSize: PropTypes.func,
+  getLastHour: PropTypes.func.isRequired,
+  getNextHour: PropTypes.func.isRequired,
+  callCryptoExchange: PropTypes.func.isRequired,
+  prediction: PropTypes.number.isRequired,
+  loadPoolSize: PropTypes.func.isRequired,
+  getNow: PropTypes.func.isRequired,
+  buildCountdownDuration: PropTypes.func.isRequired,
+  buildTimeArray: PropTypes.func.isRequired,
+  getCryptoValue: PropTypes.func.isRequired,
+  toggleBuyingDialog: PropTypes.func.isRequired,
+  buyTicket: PropTypes.func.isRequired,
+  buyingDialog: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -198,9 +197,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   buildCountdownDuration,
   buildTimeArray,
   getCryptoValue,
-  placeBet,
-  loadPoolSize,
-  postBet,
   toggleBuyingDialog,
   buyTicket,
 }, dispatch);

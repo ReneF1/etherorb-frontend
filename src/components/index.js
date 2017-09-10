@@ -4,7 +4,6 @@
 import HeaderBar from './HeaderBar/HeaderBar';
 import Chart from './Chart/Chart';
 import Footer from './Footer/Footer';
-import BetInput from './BetInputForm';
 import CountdownClock from './CountdownClock/CountdownClock';
 import TopComponent from './TopComponent/TopComponent';
 import BulletPoint from './BulletPoint/BulletPoint';
@@ -18,6 +17,7 @@ import ModalTabs from './ModalTabs/ModalTabs';
 
 export {
     HeaderBar,
+    Chart,
     Footer,
     CountdownClock,
     TopComponent,
@@ -28,5 +28,5 @@ export {
     BottomCTA,
     BuyingModal,
     ModalTabs,
-    InfoModal
+    InfoModal,
 };
