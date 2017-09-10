@@ -2,11 +2,20 @@
  * Created by renefuchtenkordt on 08.07.17.
  */
 import BetInput from '../../components/BetInputForm/BetInputForm';
+import { buyTicket as buyTicketService } from '../service/contract';
+
 
 function placeBet() {
   return {
     type: 'PLACE_BET',
     payload: BetInput,
+  };
+}
+// TODO: I only need buyTicket - can you clean the rest plz :)
+function buyTicket(estimate) {
+  return {
+    type: 'BUY_TICKET',
+    payload: buyTicketService(estimate),
   };
 }
 
@@ -40,4 +49,5 @@ export {
     placeBet,
     postBet,
     loadPoolSize,
+    buyTicket,
 };
