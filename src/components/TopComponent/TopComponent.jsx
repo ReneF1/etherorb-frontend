@@ -77,7 +77,7 @@ const TopComponent = ({ muiTheme, background, buyTicket }) => (
 );
 
 TopComponent.propTypes = {
-  muiTheme: PropTypes.element.isRequired,
+  muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
   background: PropTypes.string.isRequired,
   buyTicket: PropTypes.func.isRequired,
 };

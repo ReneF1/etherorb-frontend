@@ -44,9 +44,9 @@ const BottomCTA = props =>
 BottomCTA.propTypes = {
   headLineTop: PropTypes.string.isRequired,
   headLineBot: PropTypes.string.isRequired,
-  muiTheme: PropTypes.element.isRequired,
+  muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
   buttonLabelCTA: PropTypes.string.isRequired,
-  customButton: PropTypes.element.isRequired,
+  customButton: PropTypes.shape(PropTypes.object.isRequired).isRequired,
   toggleBuyingDialog: PropTypes.element.isRequired,
   buttonLabelSec: PropTypes.string.isRequired,
   customButtonSecondary: PropTypes.element.isRequired,

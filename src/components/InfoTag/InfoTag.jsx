@@ -31,7 +31,7 @@ const InfoTag = props =>
           </span>
           <FontIcon
             className="material-icons infoTag__iconRight"
-            tyle={iconStyleRight}
+            style={iconStyleRight}
           >
               info_outline
           </FontIcon>
@@ -42,7 +42,7 @@ const InfoTag = props =>
 InfoTag.propTypes = {
   icon: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  value: PropTypes.element.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 export default InfoTag;

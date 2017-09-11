@@ -40,10 +40,10 @@ HeaderBar.propTypes = {
   logo: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
-  muiTheme: PropTypes.string.isRequired,
+  muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
   buttonLabel: PropTypes.string.isRequired,
-  customButton: PropTypes.string.isRequired,
-  toggleBuyingDialog: PropTypes.string.isRequired,
+  customButton: PropTypes.shape(PropTypes.object.isRequired).isRequired,
+  toggleBuyingDialog: PropTypes.func.isRequired,
 };
 
 export default muiThemeable()(HeaderBar);

@@ -38,9 +38,11 @@ const BuyingModal = props =>
 
 BuyingModal.propTypes = {
   title: PropTypes.string.isRequired,
-  actions: PropTypes.element.isRequired,
+  actions: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   open: PropTypes.bool.isRequired,
-  modalTabs: PropTypes.element.isRequired,
+  modalTabs: PropTypes.shape({
+    headlines: PropTypes.array.isRequired,
+  }).isRequired,
 };
 
 export default BuyingModal;

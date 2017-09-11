@@ -47,7 +47,7 @@ const Chart = props =>
 
 Chart.propTypes = {
   headline: PropTypes.string.isRequired,
-  chartData: PropTypes.element.isRequired,
+  chartData: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   referenceLabel: PropTypes.string.isRequired,
 };
 

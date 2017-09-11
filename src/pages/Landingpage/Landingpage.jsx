@@ -10,15 +10,15 @@ import DocumentTitle from 'react-document-title';
 import background from '../../assets/media/bg.svg';
 import './Landingpage.css';
 import { contentEn, logo } from '../../assets';
-import { BottomComponent, BuyingModal, InfoModal, Footer, HeaderBar, TopComponent } from '../../components';
+import { BottomComponent, BuyingModal, Footer, HeaderBar, TopComponent } from '../../components';
 import {
     buildCountdownDuration,
     buildTimeArray,
+    buyTicket,
     getCryptoValue,
     getLastHour,
     getNextHour,
     getNow,
-    buyTicket,
     toggleBuyingDialog,
 } from '../../store/actions';
 
@@ -34,6 +34,11 @@ class Landingpage extends Component {
     this.props.buildTimeArray();
     this.props.getCryptoValue('ETHUSDHOUR', 'ETH', 'USD', 'Kraken', [1503144000000, 1503144000000]);
   }
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    console.log(this.props);
+  }
+
 
   render() {
     const customButton = {
@@ -175,7 +180,9 @@ Landingpage.propTypes = {
   getCryptoValue: PropTypes.func.isRequired,
   toggleBuyingDialog: PropTypes.func.isRequired,
   buyTicket: PropTypes.func.isRequired,
-  buyingDialog: PropTypes.func.isRequired,
+  buyingDialog: PropTypes.shape({
+    open: PropTypes.bool.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({

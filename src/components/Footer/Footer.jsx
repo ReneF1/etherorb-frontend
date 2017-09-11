@@ -16,7 +16,7 @@ const Footer = props =>
     </div>);
 
 Footer.propTypes = {
-  muiTheme: PropTypes.element.isRequired,
+  muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
   disclaimer: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };

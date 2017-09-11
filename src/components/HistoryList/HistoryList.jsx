@@ -60,11 +60,11 @@ const HistoryList = props =>
     );
 
 HistoryList.propTypes = {
-  config: PropTypes.element.isRequired,
+  config: PropTypes.shape(PropTypes.object.isRequired).isRequired,
   header: PropTypes.string.isRequired,
-  muiTheme: PropTypes.element.isRequired,
-  columnNames: PropTypes.element.isRequired,
-  data: PropTypes.element.isRequired,
+  muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
+  columnNames: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
 };
 
 export default muiThemeable()(HistoryList);

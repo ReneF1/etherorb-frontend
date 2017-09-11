@@ -5,7 +5,6 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import {ConnectedRouter} from 'react-router-redux';
 import {MuiThemeProvider} from 'material-ui/styles';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import {cyan500, cyan700, grey100, grey400, grey500, pinkA200,} from 'material-ui/styles/colors';
 import App from './App';
 import store, {history} from './store/index';
 import './index.css';

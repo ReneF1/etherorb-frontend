@@ -78,20 +78,24 @@ const BottomComponent = props =>
     );
 
 BottomComponent.propTypes = {
-  muiTheme: PropTypes.element.isRequired,
+  muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
   headline: PropTypes.string.isRequired,
-  infoTags: PropTypes.string.isRequired,
-  values: PropTypes.element.isRequired,
-  chartData: PropTypes.element.isRequired,
-  chart: PropTypes.element.isRequired,
+  infoTags: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  values: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  chartData: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  chart: PropTypes.shape(PropTypes.object.isRequired).isRequired,
   chartReferenceLabel: PropTypes.string.isRequired,
-  historyList: PropTypes.element.isRequired,
-  historyListData: PropTypes.element.isRequired,
-  historyListConfig: PropTypes.element.isRequired,
-  customButton: PropTypes.element.isRequired,
-  customButtonSecondary: PropTypes.element.isRequired,
-  bottomCTA: PropTypes.element.isRequired,
-  toggleBuyingDialog: PropTypes.element.isRequired,
+  historyList: PropTypes.shape({
+      columnNames : PropTypes.array.isRequired,
+      data: PropTypes.array.isRequired,
+      header: PropTypes.string.isRequired
+  }).isRequired,
+  historyListData: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  historyListConfig: PropTypes.shape(PropTypes.object.isRequired).isRequired,
+  customButton: PropTypes.shape(PropTypes.object.isRequired).isRequired,
+  customButtonSecondary: PropTypes.shape(PropTypes.object.isRequired).isRequired,
+  bottomCTA: PropTypes.shape(PropTypes.object.isRequired).isRequired,
+  toggleBuyingDialog: PropTypes.func.isRequired,
 };
 
 export default muiThemeable()(BottomComponent);
