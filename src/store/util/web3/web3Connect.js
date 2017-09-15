@@ -1,7 +1,7 @@
 import Web3 from 'web3';
 import ABI from './contract.json';
 
-export const web3Connect = () => {
+const web3Connect = () => {
   const canUseDOM = !!(
         (typeof window !== 'undefined' &&
         window.document && window.document.createElement)

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontIcon from 'material-ui/FontIcon';
 import './BulletPoint.css';
 
@@ -14,5 +15,10 @@ const BulletPoint = props =>
         <p className="bulletPoint__text">{props.text}</p>
       </div>
     );
+
+BulletPoint.propTypes = {
+  icon: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+};
 
 export default BulletPoint;

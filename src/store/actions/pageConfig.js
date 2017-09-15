@@ -8,6 +8,4 @@ function toggleBuyingDialog() {
   };
 }
 
-export {
-    toggleBuyingDialog,
-};
+export default toggleBuyingDialog;

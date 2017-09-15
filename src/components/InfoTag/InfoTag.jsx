@@ -1,6 +1,7 @@
 import React from 'react';
-import './InfoTag.css';
+import PropTypes from 'prop-types';
 import FontIcon from 'material-ui/FontIcon';
+import './InfoTag.css';
 
 const iconStyleLeft = {
   fontSize: '35px',
@@ -17,11 +18,31 @@ const InfoTag = props =>
     (
       <div className="infoTag__shape">
         <div className="infoTag__wrapper">
-          <FontIcon className="material-icons infoTag__iconLeft" style={iconStyleLeft}>{props.icon}</FontIcon>
-          <span className="infoTag__text">{`${props.text}: ${props.value}`}</span>
-          <FontIcon className="material-icons infoTag__iconRight" style={iconStyleRight}>info_outline</FontIcon>
+          <FontIcon
+            className="material-icons infoTag__iconLeft"
+            style={iconStyleLeft}
+          >
+            {props.icon}
+          </FontIcon>
+          <span
+            className="infoTag__text"
+          >
+            {`${props.text}: ${props.value}`}
+          </span>
+          <FontIcon
+            className="material-icons infoTag__iconRight"
+            style={iconStyleRight}
+          >
+              info_outline
+          </FontIcon>
         </div>
       </div>
     );
+
+InfoTag.propTypes = {
+  icon: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+};
 
 export default InfoTag;
