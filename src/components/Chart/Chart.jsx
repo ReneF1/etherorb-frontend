@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine } from 'recharts';
+import { contentEn } from '../../assets';
 import './Chart.css';
 
 const Chart = props =>
     (
       <div>
-        <h2 className="chart__headline">{props.headline}</h2>
+        <h2 className="chart__headline">{contentEn.chart.headline}</h2>
         <AreaChart
           width={900}
           height={400}
@@ -16,7 +17,7 @@ const Chart = props =>
           <XAxis dataKey="Time" />
           <YAxis domain={['dataMin - 10', 'dataMax + 10']} />
           <CartesianGrid strokeDasharray="3 3" />
-          <ReferenceLine x="13:40" stroke="#4527a0" label={props.referenceLabel} />
+          <ReferenceLine x="13:40" stroke="#4527a0" label={contentEn.chart.referenceLabel} />
           <Tooltip />
           <Legend />
           <Area
@@ -46,9 +47,7 @@ const Chart = props =>
     );
 
 Chart.propTypes = {
-  headline: PropTypes.string.isRequired,
   chartData: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  referenceLabel: PropTypes.string.isRequired,
 };
 
 export default Chart;

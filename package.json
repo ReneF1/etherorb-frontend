@@ -30,6 +30,7 @@
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^4.4.1",
     "redux-thunk": "^2.2.0",
+    "shortid": "^2.2.8",
     "web3": "0.18.2"
   },
   "scripts": {

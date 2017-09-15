@@ -11,7 +11,6 @@ import InfoTag from './InfoTag/InfoTag';
 import BottomComponent from './BottomComponent/BottomComponent';
 import HistoryList from './HistoryList/HistoryList';
 import BottomCTA from './BottomCTA/BottomCTA';
-import BuyingModal from './BuyingModal/BuyingModal';
 import InfoModal from './InfoModal/InfoModal';
 import ModalTabs from './ModalTabs/ModalTabs';
 
@@ -26,7 +25,6 @@ export {
     BottomComponent,
     HistoryList,
     BottomCTA,
-    BuyingModal,
     ModalTabs,
     InfoModal,
 };

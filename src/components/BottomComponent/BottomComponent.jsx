@@ -2,13 +2,71 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import { Col, Grid, Row } from 'react-flexbox-grid';
+import shortid from 'shortid';
 import './BottomComponent.css';
 import InfoTag from '../InfoTag/InfoTag';
 import Chart from '../Chart/Chart';
 import HistoryList from '../HistoryList/HistoryList';
 import BottomCTA from '../BottomCTA/BottomCTA';
+import { contentEn } from '../../assets';
 
-const BottomComponent = props =>
+const chartData = [
+    { Time: '13:00', ETHxUSD: 220 },
+    { Time: '13:10', ETHxUSD: 225 },
+    { Time: '13:20', ETHxUSD: 223 },
+    { Time: '13:30', ETHxUSD: 231 },
+    { Time: '13:40', ETHxUSD: 243, Prediction: 243 },
+    { Time: '13:50' },
+    { Time: '14:00', Prediction: 250 },
+];
+
+const historyListData = [
+  {
+    address: '0x22b854DBF5c9A20f5C3374E814733060C942AeDf',
+    prediction: '$ 222.10',
+    timestamp: '1504524903805',
+    id: shortid.generate(),
+  },
+  {
+    address: '0xeB3a84E326DE0cF8976fDfB0231AD31Ed8f19f28',
+    prediction: '$ 227.50',
+    timestamp: '1504524908741',
+    id: shortid.generate(),
+  },
+  {
+    address: '0x22b854DBF5c9A20f5C3374E814733060C942AeDf',
+    prediction: '$ 229.70',
+    timestamp: '1504524913061',
+    id: shortid.generate(),
+  },
+  {
+    address: '0xFa705A686fe2d02D11cFc35fB5fEE40594ABD1B1',
+    prediction: '$ 212.30',
+    timestamp: '1504524916965',
+    id: shortid.generate(),
+  },
+  {
+    address: '0x35A1eea8AE6f734EfE14fc3715Ab51785D8D1D84',
+    prediction: '$ 217.90',
+    timestamp: '1504524920701',
+    id: shortid.generate(),
+  },
+  {
+    address: '0x22b854DBF5c9A20f5C3374E814733060C942AeDf',
+    prediction: '$ 218.90',
+    timestamp: '1504524924943',
+    id: shortid.generate(),
+  },
+  {
+    address: '0xf67757E7C326b5c1Bb8C0012B2644661011580E7',
+    prediction: '$ 205.00',
+    timestamp: '1504524929105',
+    id: shortid.generate(),
+  },
+];
+
+
+const BottomComponent = ({ muiTheme }) =>
     (
       <div className="bottomComponent">
         <div className="bottomComponent__container">
@@ -18,57 +76,40 @@ const BottomComponent = props =>
                 <h2
                   className="bottomComponent__headline"
                   style={{
-                    color: props.muiTheme.palette.accent1Color,
+                    color: muiTheme.palette.accent1Color,
                   }}
-                >{props.headline}</h2>
+                >{contentEn.bottomComponent.headline}</h2>
               </Col>
             </Row>
             <Row>
               <Col xs={12} md={12}>
                 <div className="bottomComponent__buttonWrapper bottomComponent__paddingWrapper">
-                  <InfoTag icon={'av_timer'} text={props.infoTags[0]} value={props.values[0]} />
-                  <InfoTag icon={'shopping_cart'} text={props.infoTags[1]} value={props.values[1]} />
-                  <InfoTag icon={'timelapse'} text={props.infoTags[2]} value={props.values[2]} />
-                  <InfoTag icon={'monetization_on'} text={props.infoTags[3]} value={props.values[3]} />
-                  <InfoTag icon={'timer_off'} text={props.infoTags[4]} value={props.values[4]} />
+                  <InfoTag icon={'av_timer'} text={contentEn.bottomComponent.infoTags[0]} value={contentEn.bottomComponent.values[0]} />
+                  <InfoTag icon={'shopping_cart'} text={contentEn.bottomComponent.infoTags[1]} value={contentEn.bottomComponent.values[1]} />
+                  <InfoTag icon={'timelapse'} text={contentEn.bottomComponent.infoTags[2]} value={contentEn.bottomComponent.values[2]} />
+                  <InfoTag icon={'monetization_on'} text={contentEn.bottomComponent.infoTags[3]} value={contentEn.bottomComponent.values[3]} />
+                  <InfoTag icon={'timer_off'} text={contentEn.bottomComponent.infoTags[4]} value={contentEn.bottomComponent.values[4]} />
                 </div>
               </Col>
             </Row>
             <Row>
               <Col xs={12} md={12}>
                 <div className="bottomComponent__paddingWrapper">
-                  <Chart
-                    chartData={props.chartData}
-                    headline={props.chart.headline}
-                    referenceLabel={props.chartReferenceLabel}
-                  />
+                  <Chart chartData={chartData} />
                 </div>
               </Col>
             </Row>
             <Row>
               <Col xs={12} md={12}>
                 <div className="bottomComponent__paddingWrapper">
-                  <HistoryList
-                    ListHeader={props.historyList.header}
-                    columnNames={props.historyList.columnNames}
-                    data={props.historyListData}
-                    config={props.historyListConfig}
-                  />
+                  <HistoryList data={historyListData} />
                 </div>
               </Col>
             </Row>
             <Row>
               <Col xs={12} md={12}>
                 <div className="bottomComponent__paddingWrapper">
-                  <BottomCTA
-                    customButton={props.customButton}
-                    customButtonSecondary={props.customButtonSecondary}
-                    headLineTop={props.bottomCTA.headLineTop}
-                    headLineBot={props.bottomCTA.headLineBot}
-                    buttonLabelCTA={props.bottomCTA.buttonLabelCTA}
-                    buttonLabelSec={props.bottomCTA.buttonLabelSec}
-                    toggleBuyingDialog={props.toggleBuyingDialog}
-                  />
+                  <BottomCTA />
                 </div>
               </Col>
             </Row>
@@ -79,23 +120,6 @@ const BottomComponent = props =>
 
 BottomComponent.propTypes = {
   muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
-  headline: PropTypes.string.isRequired,
-  infoTags: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  values: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  chartData: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  chart: PropTypes.shape(PropTypes.object.isRequired).isRequired,
-  chartReferenceLabel: PropTypes.string.isRequired,
-  historyList: PropTypes.shape({
-      columnNames : PropTypes.array.isRequired,
-      data: PropTypes.array.isRequired,
-      header: PropTypes.string.isRequired
-  }).isRequired,
-  historyListData: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  historyListConfig: PropTypes.shape(PropTypes.object.isRequired).isRequired,
-  customButton: PropTypes.shape(PropTypes.object.isRequired).isRequired,
-  customButtonSecondary: PropTypes.shape(PropTypes.object.isRequired).isRequired,
-  bottomCTA: PropTypes.shape(PropTypes.object.isRequired).isRequired,
-  toggleBuyingDialog: PropTypes.func.isRequired,
 };
 
 export default muiThemeable()(BottomComponent);

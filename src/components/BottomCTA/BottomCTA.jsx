@@ -2,14 +2,26 @@ import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import PropTypes from 'prop-types';
+import { contentEn } from '../../assets';
 import './BottomCTA.css';
 import etherscanLogo from '../../assets/media/etherscan.png';
 import githubLogo from '../../assets/media/github.png';
 
+const customButton = {
+  buttonStyle: { borderRadius: '100px', height: '40px', lineHeight: '35px' },
+  overlayStyle: { borderRadius: '100px' },
+  style: { borderRadius: '100px', minWidth: '200px' },
+};
+const customButtonSecondary = {
+  buttonStyle: { borderRadius: '100px', height: '40px', border: '1px solid #ff3823', lineHeight: '35px' },
+  overlayStyle: { borderRadius: '100px' },
+  style: { borderRadius: '100px', minWidth: '200px' },
+};
+
 const BottomCTA = props =>
     (
       <div>
-        <h2>{props.headLineTop}<br />{props.headLineBot}</h2>
+        <h2>{contentEn.bottomCTA.headLineTop}<br />{contentEn.bottomCTA.headLineBot}</h2>
         <div
           className="bottomCTA__Divider"
           style={{ backgroundColor: props.muiTheme.palette.accent1Color }}
@@ -20,21 +32,20 @@ const BottomCTA = props =>
         </div>
         <div className="bottomCTA__ButtonWrapper">
           <RaisedButton
-            label={props.buttonLabelCTA}
+            label={contentEn.bottomCTA.buttonLabelCTA}
             secondary
-            style={props.customButton.style}
-            buttonStyle={props.customButton.buttonStyle}
-            overlayStyle={props.customButton.overlayStyle}
-            onClick={props.toggleBuyingDialog}
+            style={customButton.style}
+            buttonStyle={customButton.buttonStyle}
+            overlayStyle={customButton.overlayStyle}
             className="headerBar_raisedButton"
           />
           <RaisedButton
-            label={props.buttonLabelSec}
+            label={contentEn.bottomCTA.buttonLabelSec}
             labelColor={'#ff3823'}
             secondary={false}
-            style={props.customButtonSecondary.style}
-            buttonStyle={props.customButtonSecondary.buttonStyle}
-            overlayStyle={props.customButtonSecondary.overlayStyle}
+            style={customButtonSecondary.style}
+            buttonStyle={customButtonSecondary.buttonStyle}
+            overlayStyle={customButtonSecondary.overlayStyle}
             className="headerBar_raisedButton"
           />
         </div>
@@ -42,14 +53,7 @@ const BottomCTA = props =>
     );
 
 BottomCTA.propTypes = {
-  headLineTop: PropTypes.string.isRequired,
-  headLineBot: PropTypes.string.isRequired,
   muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
-  buttonLabelCTA: PropTypes.string.isRequired,
-  customButton: PropTypes.shape(PropTypes.object.isRequired).isRequired,
-  toggleBuyingDialog: PropTypes.element.isRequired,
-  buttonLabelSec: PropTypes.string.isRequired,
-  customButtonSecondary: PropTypes.element.isRequired,
 };
 
 export default muiThemeable()(BottomCTA);

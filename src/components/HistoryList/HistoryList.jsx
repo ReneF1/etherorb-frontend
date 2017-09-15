@@ -3,44 +3,46 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import muiThemeable from 'material-ui/styles/muiThemeable';
+import shortid from 'shortid';
+import { contentEn } from '../../assets';
 import './HistoryList.css';
 
-const HistoryList = props =>
+const HistoryList = (props =>
     (
       <div>
         <Table
-          height={props.config.height}
-          fixedHeader={props.config.fixedHeader}
-          selectable={props.config.selectable}
-          multiSelectable={props.config.multiSelectable}
+          height={'auto'}
+          fixedHeader
+          selectable={false}
+          multiSelectable={false}
         >
           <TableHeader
-            adjustForCheckbox={props.config.showCheckboxes}
-            displaySelectAll={props.config.showCheckboxes}
+            adjustForCheckbox={false}
+            displaySelectAll={false}
           >
-            <TableRow>
+            <TableRow key={shortid.generate()}>
               <TableHeaderColumn
                 colSpan="3"
-                tooltip={props.header}
+                tooltip={contentEn.historyList.header}
                 style={{ color: props.muiTheme.palette.accent1Color }}
                 className="historyList__headerText"
               >
-                {props.header}
+                {contentEn.historyList.header}
               </TableHeaderColumn>
             </TableRow>
-            <TableRow>
-              <TableHeaderColumn tooltip={`The ${props.columnNames[0]}`}>{props.columnNames[0]}</TableHeaderColumn>
-              <TableHeaderColumn tooltip={`The ${props.columnNames[1]}`}>{props.columnNames[1]}</TableHeaderColumn>
-              <TableHeaderColumn tooltip={`The ${props.columnNames[2]}`}>{props.columnNames[2]}</TableHeaderColumn>
+            <TableRow key={shortid.generate()}>
+              <TableHeaderColumn tooltip={`The ${contentEn.historyList.columnNames[0]}`} key={shortid.generate()}>{contentEn.historyList.columnNames[0]}</TableHeaderColumn>
+              <TableHeaderColumn tooltip={`The ${contentEn.historyList.columnNames[1]}`} key={shortid.generate()}>{contentEn.historyList.columnNames[1]}</TableHeaderColumn>
+              <TableHeaderColumn tooltip={`The ${contentEn.historyList.columnNames[2]}`} key={shortid.generate()}>{contentEn.historyList.columnNames[2]}</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody
-            displayRowCheckbox={props.config.showCheckboxes}
-            showRowHover={props.config.showRowHover}
-            stripedRows={props.config.stripedRows}
+            displayRowCheckbox={false}
+            showRowHover
+            stripedRows
           >
             {props.data.map(row => (
-              <TableRow>
+              <TableRow key={shortid.generate()}>
                 <TableRowColumn
                   style={{ color: props.muiTheme.palette.primary1Color }}
                 >
@@ -57,14 +59,12 @@ const HistoryList = props =>
           </TableBody>
         </Table>
       </div>
-    );
+    )
+);
 
 HistoryList.propTypes = {
-  config: PropTypes.shape(PropTypes.object.isRequired).isRequired,
-  header: PropTypes.string.isRequired,
   muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
-  columnNames: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  data: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
+  data: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
 };
 
 export default muiThemeable()(HistoryList);
