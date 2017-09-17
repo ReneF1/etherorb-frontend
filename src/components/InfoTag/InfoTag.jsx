@@ -14,6 +14,7 @@ const iconStyleRight = {
   top: '15px',
 };
 
+
 const InfoTag = props =>
     (
       <div className="infoTag__shape">
@@ -42,7 +43,7 @@ const InfoTag = props =>
 InfoTag.propTypes = {
   icon: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
 };
 
 export default InfoTag;

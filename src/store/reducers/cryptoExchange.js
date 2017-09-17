@@ -1,13 +1,13 @@
 export default function reducer(state = {
   loading: null,
-  response: '',
+  priceHistory: '',
   error: false,
 }, action) {
   switch (action.type) {
-    case 'BUILD_CRYPTO_ARRAY_SUCCESS': {
+    case 'BUILD_PRICE_HISTORY': {
       return {
         ...state,
-        response: action.payload,
+        [action.id]: action.payload.data,
       };
     }
     default:

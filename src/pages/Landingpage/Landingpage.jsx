@@ -10,23 +10,28 @@ import './Landingpage.css';
 import { contentEn } from '../../assets';
 import { BottomComponent, Footer, HeaderBar, TopComponent } from '../../components';
 import {
-    buildCountdownDuration,
+    setPayoutDuration,
+    setDeadlineDuration,
     buildTimeArray,
-    getCryptoValue,
-    getLastHour,
-    getNextHour,
-    getNow,
+    buildPriceHistory,
+    setLastHour,
+    setNextHour,
+    setNow,
+    getContractData,
 } from '../../store/actions';
 
 class Landingpage extends Component {
 
   componentWillMount() {
-    this.props.getNow();
-    this.props.getLastHour();
-    this.props.getNextHour();
-    this.props.buildCountdownDuration();
+    this.props.setNow();
+    this.props.setLastHour();
+    this.props.setNextHour();
+    this.props.setPayoutDuration();
+    this.props.setDeadlineDuration();
     this.props.buildTimeArray();
-    this.props.getCryptoValue('ETHUSDHOUR', 'ETH', 'USD', 'Kraken', [1503144000000, 1503144000000]);
+    this.props.buildPriceHistory('ETH_USD_HOUR', 'ETH', 'USD', 'Kraken', [1503144000000, 1503144000000]);
+    this.props.buildPriceHistory('ETH_USD_NOW', 'ETH', 'USD', 'Kraken', []);
+    this.props.getContractData();
   }
 
   render() {
@@ -43,32 +48,36 @@ class Landingpage extends Component {
   }
 }
 
-Landingpage.propTypes = {
-  getLastHour: PropTypes.func.isRequired,
-  getNextHour: PropTypes.func.isRequired,
-  getNow: PropTypes.func.isRequired,
-  buildCountdownDuration: PropTypes.func.isRequired,
-  buildTimeArray: PropTypes.func.isRequired,
-  getCryptoValue: PropTypes.func.isRequired,
-};
-
 const mapStateToProps = state => ({
   now: state.momentTime.now,
   lastHour: state.momentTime.lastHour,
   nextHour: state.momentTime.nextHour,
-  countdownTimer: state.momentTime.countdownTimer,
+  payoutDuration: state.momentTime.payoutDuration,
   timeArray: state.momentTime.timeArray,
   cryptoExchange: state.cryptoExchange.response,
   poolSize: state.betReducer.poolSize,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  getNow,
-  getLastHour,
-  getNextHour,
-  buildCountdownDuration,
+  setNow,
+  setLastHour,
+  setNextHour,
+  setPayoutDuration,
+  setDeadlineDuration,
   buildTimeArray,
-  getCryptoValue,
+  buildPriceHistory,
+  getContractData,
 }, dispatch);
+
+Landingpage.propTypes = {
+  setLastHour: PropTypes.func.isRequired,
+  setNextHour: PropTypes.func.isRequired,
+  setNow: PropTypes.func.isRequired,
+  setPayoutDuration: PropTypes.func.isRequired,
+  setDeadlineDuration: PropTypes.func.isRequired,
+  buildTimeArray: PropTypes.func.isRequired,
+  buildPriceHistory: PropTypes.func.isRequired,
+  getContractData: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landingpage);

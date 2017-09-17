@@ -16,46 +16,57 @@ const range = moment.range(start, end);
 const minutes = Array.from(range.by('minute'));
 const timeArray = minutes.map(m => m.format('x'));
 
-function getNow() {
+const payout = moment.duration(moment(roundUp).format('x') - moment().format('x')).asSeconds();
+
+const deadline = moment.duration(moment(roundUp).format('x') - moment().format('x')).asSeconds() - 900;
+
+function setNow() {
   return {
-    type: 'GET_MOMENT_TIME_NOW',
+    type: 'SET_NOW',
     payload: now,
   };
 }
 
-function getLastHour() {
+function setLastHour() {
   return {
-    type: 'GET_MOMENT_TIME_LAST_HOUR',
+    type: 'SET_LAST_HOUR',
     payload: roundDown,
   };
 }
 
-function getNextHour() {
+function setNextHour() {
   return {
-    type: 'GET_MOMENT_TIME_NEXT_HOUR',
+    type: 'SET_NEXT_HOUR',
     payload: roundUp,
   };
 }
 
-function buildCountdownDuration() {
-  const duration = moment.duration(moment(roundUp).format('x') - moment().format('x'), 'milliseconds');
+function setPayoutDuration() {
   return {
-    type: 'GET_MOMENT_TIME_COUNTDOWN',
-    payload: duration,
+    type: 'SET_PAYOUT_DURATION',
+    payload: payout,
+  };
+}
+
+function setDeadlineDuration() {
+  return {
+    type: 'SET_DEADLINE_DURATION',
+    payload: deadline,
   };
 }
 
 function buildTimeArray() {
   return {
-    type: 'GET_MOMENT_TIME_ARRAY',
+    type: 'SET_ARRAY',
     payload: timeArray,
   };
 }
 
 export {
-    getNow,
-    getLastHour,
-    getNextHour,
-    buildCountdownDuration,
+    setNow,
+    setLastHour,
+    setNextHour,
+    setPayoutDuration,
+    setDeadlineDuration,
     buildTimeArray,
 };

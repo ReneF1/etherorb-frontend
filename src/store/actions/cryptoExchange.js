@@ -3,7 +3,7 @@
  */
 import axios from 'axios';
 
-function getCryptoValue(id, cryptoSymbol, currencySymbol, market, timeArray) {
+function buildPriceHistory(id, cryptoSymbol, currencySymbol, market, timeArray) {
   const cryptoArray = [];
   timeArray.forEach((value) => {
     axios.get(`https://min-api.cryptocompare.com/data/pricehistorical?fsym=${cryptoSymbol}&tsyms=${currencySymbol}&markets=${market}&ts=${value}`).then((response) => {
@@ -11,9 +11,10 @@ function getCryptoValue(id, cryptoSymbol, currencySymbol, market, timeArray) {
     });
   });
   return {
-    type: 'BUILD_CRYPTO_ARRAY_SUCCESS',
-    payload: { [id]: cryptoArray },
+    type: 'BUILD_PRICE_HISTORY',
+    payload: { data: cryptoArray },
+    id,
   };
 }
 
-export default getCryptoValue;
+export default buildPriceHistory;

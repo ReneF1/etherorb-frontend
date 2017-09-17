@@ -7,6 +7,12 @@ export default function reducer(state = {
   buyTicket: false,
 }, action) {
   switch (action.type) {
+    case 'GET_CONTRACT_DATA': {
+      return {
+        ...state,
+        contractData: action.payload,
+      };
+    }
     case 'PLACE_BET': {
       return {
         ...state,

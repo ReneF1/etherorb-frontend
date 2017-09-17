@@ -12,7 +12,7 @@ import BottomComponent from './BottomComponent/BottomComponent';
 import HistoryList from './HistoryList/HistoryList';
 import BottomCTA from './BottomCTA/BottomCTA';
 import InfoModal from './InfoModal/InfoModal';
-import ModalTabs from './ModalTabs/ModalTabs';
+import ModalTabs from './Tabs/Tabs';
 
 export {
     HeaderBar,
