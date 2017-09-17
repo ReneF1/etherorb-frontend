@@ -1,6 +1,9 @@
 export default function reducer(state = {
   price: '',
   poolSize: '',
+  potSize: 0,
+  ticketPrice: 0,
+  isActive: true,
   prediction: 1,
   loading: null,
   error: null,
@@ -25,6 +28,17 @@ export default function reducer(state = {
         loading: false,
         poolSize: action.payload.data.Poolsize,
         prediction: action.payload.data.Prediction,
+      };
+    }
+    case 'GAME_DATA_FULFILLED': {
+      return {
+        ...state,
+        loading: false,
+        poolSize: action.payload.totalTickets,
+        prediction: action.payload.totalEstimation / action.payload.totalTickets,
+        potSize: action.payload.totalPot,
+        isActive: action.payload.isActive,
+        ticketPrice: action.payload.ticketPrice,
       };
     }
     case 'BUY_TICKET_PENDING':
