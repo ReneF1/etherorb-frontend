@@ -1,6 +1,3 @@
-/**
- * Created by renefuchtenkordt on 07.07.17.
- */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -17,7 +14,6 @@ import {
     setLastHour,
     setNextHour,
     setNow,
-    getContractData,
 } from '../../store/actions';
 
 class Landingpage extends Component {
@@ -31,7 +27,6 @@ class Landingpage extends Component {
     this.props.buildTimeArray();
     this.props.buildPriceHistory('ETH_USD_HOUR', 'ETH', 'USD', 'Kraken', [1503144000000, 1503144000000]);
     this.props.buildPriceHistory('ETH_USD_NOW', 'ETH', 'USD', 'Kraken', []);
-    this.props.getContractData();
   }
 
   render() {
@@ -66,7 +61,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   setDeadlineDuration,
   buildTimeArray,
   buildPriceHistory,
-  getContractData,
 }, dispatch);
 
 Landingpage.propTypes = {
@@ -77,7 +71,6 @@ Landingpage.propTypes = {
   setDeadlineDuration: PropTypes.func.isRequired,
   buildTimeArray: PropTypes.func.isRequired,
   buildPriceHistory: PropTypes.func.isRequired,
-  getContractData: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landingpage);

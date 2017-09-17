@@ -1,6 +1,3 @@
-/**
- * Created by renefuchtenkordt on 13.07.17.
- */
 import buildPriceHistory from './cryptoExchange';
 import { buyTicket, getGameData } from './contract';
 import { setPayoutDuration, setDeadlineDuration, buildTimeArray, setLastHour, setNextHour, setNow } from './momentTime';

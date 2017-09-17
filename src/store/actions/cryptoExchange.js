@@ -1,6 +1,3 @@
-/**
- * Created by renefuchtenkordt on 08.07.17.
- */
 import axios from 'axios';
 
 function buildPriceHistory(id, cryptoSymbol, currencySymbol, market, timeArray) {

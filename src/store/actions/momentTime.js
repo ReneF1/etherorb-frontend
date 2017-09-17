@@ -1,6 +1,3 @@
-/**
- * Created by renefuchtenkordt on 08.07.17.
- */
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 
