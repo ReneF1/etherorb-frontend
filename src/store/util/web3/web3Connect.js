@@ -1,5 +1,6 @@
 import Web3 from 'web3';
 import ABI from './contract.json';
+import { CONTRACT_ADDRESS } from '../../../shared/constant';
 
 const web3Connect = () => {
   const canUseDOM = !!(
@@ -10,7 +11,8 @@ const web3Connect = () => {
     if (window.web3) {
       const web3 = new Web3(window.web3.currentProvider);
       return {
-        contract: web3.eth.contract(ABI.abi).at('0x73995d25a1e13572ced9e9c090fc39565d9a5af7'),
+        web3,
+        contract: web3.eth.contract(ABI.abi).at(CONTRACT_ADDRESS),
         account: window.web3.eth.defaultAccount,
       };
     }
