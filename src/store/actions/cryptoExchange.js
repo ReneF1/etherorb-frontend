@@ -1,10 +1,10 @@
 import cryptoExchangeService from '../service/cryptoExchange';
 
-function buildPriceHistory(id, cryptoSymbol, currencySymbol, market, timeArray) {
+const buildPriceHistory = (id, cryptoSymbol, currencySymbol, market, timeArray) => {
+  console.log(id);
   return {
     type: 'BUILD_PRICE_HISTORY',
-    payload: cryptoExchangeService(cryptoSymbol, currencySymbol, market, timeArray),
-    id,
+    payload: cryptoExchangeService(id, cryptoSymbol, currencySymbol, market, timeArray),
   };
 }
 export default buildPriceHistory;

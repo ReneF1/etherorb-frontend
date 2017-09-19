@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-
-const cryptoExchangeService = (cryptoSymbol, currencySymbol, market, timeArray) => new Promise((resolve) => {
+const cryptoExchangeService = (id, cryptoSymbol, currencySymbol, market, timeArray) => new Promise((resolve) => {
   const data = [];
   const promises = [];
 
@@ -12,8 +11,11 @@ const cryptoExchangeService = (cryptoSymbol, currencySymbol, market, timeArray) 
 
   Promise.all(promises).then((results) => {
     results.forEach((response) => {
-      data.push = response.data[cryptoSymbol][currencySymbol];
-      resolve(data);
+      data.push(response.data[cryptoSymbol][currencySymbol]);
+    });
+    resolve({
+      data,
+      id
     });
   });
 });

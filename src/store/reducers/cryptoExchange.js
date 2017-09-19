@@ -4,10 +4,10 @@ export default function reducer(state = {
   error: false,
 }, action) {
   switch (action.type) {
-    case 'BUILD_PRICE_HISTORY': {
+    case 'BUILD_PRICE_HISTORY_FULFILLED': {
       return {
         ...state,
-        [action.id]: action.payload.data,
+        [action.payload.id]: action.payload.data,
       };
     }
     default:
