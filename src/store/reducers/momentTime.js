@@ -36,7 +36,7 @@ export default function reducer(state = {
         deadlineDuration: action.payload,
       };
     }
-    case 'SET_ARRAY': {
+    case 'BUILD_ARRAY': {
       return {
         ...state,
         timeArray: action.payload,

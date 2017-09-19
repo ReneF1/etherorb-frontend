@@ -1,17 +1,11 @@
-import axios from 'axios';
+import cryptoExchangeService from '../service/cryptoExchange'
 
 function buildPriceHistory(id, cryptoSymbol, currencySymbol, market, timeArray) {
-  const cryptoArray = [];
-  timeArray.forEach((value) => {
-    axios.get(`https://min-api.cryptocompare.com/data/pricehistorical?fsym=${cryptoSymbol}&tsyms=${currencySymbol}&markets=${market}&ts=${value}`).then((response) => {
-      cryptoArray.push({ date: value, close: response.data });
-    });
-  });
-  return {
-    type: 'BUILD_PRICE_HISTORY',
-    payload: { data: cryptoArray },
-    id,
-  };
+    return {
+        type: 'BUILD_PRICE_HISTORY',
+        payload: cryptoExchangeService(cryptoSymbol, currencySymbol, market, timeArray),
+        id,
+    };
 }
-
 export default buildPriceHistory;
+

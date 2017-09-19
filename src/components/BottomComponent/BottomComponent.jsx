@@ -95,7 +95,7 @@ class BottomComponent extends Component {
                     icon={'av_timer'}
                     text={contentEn.bottomComponent.infoTags[0]}
                     value={contentEn.bottomComponent.values[0]}
-                    format={ethToDollar(40)}
+                    format={ethToDollar(this.props.ETH_USD_NOW, 40)}
                   />
                   <InfoTag
                     icon={'shopping_cart'}
@@ -155,6 +155,7 @@ BottomComponent.propTypes = {
 const mapStateToProps = state => ({
   payoutDuration: state.momentTime.payoutDuration,
   deadlineDuration: state.momentTime.deadlineDuration,
+  ETH_USD_NOW: state.cryptoExchange.ETH_USD_NOW,
 });
 
 export default connect(mapStateToProps)(muiThemeable()(BottomComponent));
