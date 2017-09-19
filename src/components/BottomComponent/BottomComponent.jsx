@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import { Col, Grid, Row } from 'react-flexbox-grid';
+import { connect } from 'react-redux';
 import shortid from 'shortid';
 import './BottomComponent.css';
+import { ethToDollar } from '../../shared/formater';
 import InfoTag from '../InfoTag/InfoTag';
 import Chart from '../Chart/Chart';
 import HistoryList from '../HistoryList/HistoryList';
@@ -65,9 +67,14 @@ const historyListData = [
   },
 ];
 
+class BottomComponent extends Component {
 
-const BottomComponent = ({ muiTheme }) =>
-    (
+  componentWillReceiveProps() {
+    const payout = this.props.payoutDuration;
+  }
+
+  render() {
+    return (
       <div className="bottomComponent">
         <div className="bottomComponent__container">
           <Grid fluid>
@@ -76,7 +83,7 @@ const BottomComponent = ({ muiTheme }) =>
                 <h2
                   className="bottomComponent__headline"
                   style={{
-                    color: muiTheme.palette.accent1Color,
+                    color: this.props.muiTheme.palette.accent1Color,
                   }}
                 >{contentEn.bottomComponent.headline}</h2>
               </Col>
@@ -84,11 +91,32 @@ const BottomComponent = ({ muiTheme }) =>
             <Row>
               <Col xs={12} md={12}>
                 <div className="bottomComponent__buttonWrapper bottomComponent__paddingWrapper">
-                  <InfoTag icon={'av_timer'} text={contentEn.bottomComponent.infoTags[0]} value={contentEn.bottomComponent.values[0]} />
-                  <InfoTag icon={'shopping_cart'} text={contentEn.bottomComponent.infoTags[1]} value={contentEn.bottomComponent.values[1]} />
-                  <InfoTag icon={'timelapse'} text={contentEn.bottomComponent.infoTags[2]} value={contentEn.bottomComponent.values[2]} />
-                  <InfoTag icon={'monetization_on'} text={contentEn.bottomComponent.infoTags[3]} value={contentEn.bottomComponent.values[3]} />
-                  <InfoTag icon={'timer_off'} text={contentEn.bottomComponent.infoTags[4]} value={contentEn.bottomComponent.values[4]} />
+                  <InfoTag
+                    icon={'av_timer'}
+                    text={contentEn.bottomComponent.infoTags[0]}
+                    value={contentEn.bottomComponent.values[0]}
+                    format={ethToDollar(this.props.ETH_USD_NOW, 40)}
+                  />
+                  <InfoTag
+                    icon={'shopping_cart'}
+                    text={contentEn.bottomComponent.infoTags[1]}
+                    value={contentEn.bottomComponent.values[1]}
+                  />
+                  <InfoTag
+                    icon={'timelapse'}
+                    text={contentEn.bottomComponent.infoTags[2]}
+                    value={'test'}
+                  />
+                  <InfoTag
+                    icon={'monetization_on'}
+                    text={contentEn.bottomComponent.infoTags[3]}
+                    value={contentEn.bottomComponent.values[3]}
+                  />
+                  <InfoTag
+                    icon={'timer_off'}
+                    text={contentEn.bottomComponent.infoTags[4]}
+                    value={contentEn.bottomComponent.values[4]}
+                  />
                 </div>
               </Col>
             </Row>
@@ -117,9 +145,17 @@ const BottomComponent = ({ muiTheme }) =>
         </div>
       </div>
     );
+  }
+}
 
 BottomComponent.propTypes = {
   muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
 };
 
-export default muiThemeable()(BottomComponent);
+const mapStateToProps = state => ({
+  payoutDuration: state.momentTime.payoutDuration,
+  deadlineDuration: state.momentTime.deadlineDuration,
+  ETH_USD_NOW: state.cryptoExchange.ETH_USD_NOW,
+});
+
+export default connect(mapStateToProps)(muiThemeable()(BottomComponent));

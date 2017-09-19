@@ -1,6 +1,3 @@
-/**
- * Created by renefuchtenkordt on 07.07.17.
- */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -10,23 +7,32 @@ import './Landingpage.css';
 import { contentEn } from '../../assets';
 import { BottomComponent, Footer, HeaderBar, TopComponent } from '../../components';
 import {
-    buildCountdownDuration,
+    buildPriceHistory,
     buildTimeArray,
-    getCryptoValue,
-    getLastHour,
-    getNextHour,
-    getNow,
+    setDeadlineDuration,
+    setLastHour,
+    setNextHour,
+    setNow,
+    setPayoutDuration,
 } from '../../store/actions';
 
 class Landingpage extends Component {
 
   componentWillMount() {
-    this.props.getNow();
-    this.props.getLastHour();
-    this.props.getNextHour();
-    this.props.buildCountdownDuration();
-    this.props.buildTimeArray();
-    this.props.getCryptoValue('ETHUSDHOUR', 'ETH', 'USD', 'Kraken', [1503144000000, 1503144000000]);
+    Promise.all([
+      this.props.setNow(),
+      this.props.setLastHour(),
+      this.props.setNextHour(),
+      this.props.setPayoutDuration(),
+      this.props.setDeadlineDuration(),
+      this.props.buildTimeArray(),
+    ],
+        ).then(() => {
+          this.props.buildPriceHistory('ETH_USD_NOW', 'ETH', 'USD', 'Kraken', [parseInt(this.props.now)]);
+        })
+            .then(() => {
+              this.props.buildPriceHistory('ETH_USD_HOUR', 'ETH', 'USD', 'Kraken', this.props.timeArray);
+            });
   }
 
   render() {
@@ -43,32 +49,33 @@ class Landingpage extends Component {
   }
 }
 
-Landingpage.propTypes = {
-  getLastHour: PropTypes.func.isRequired,
-  getNextHour: PropTypes.func.isRequired,
-  getNow: PropTypes.func.isRequired,
-  buildCountdownDuration: PropTypes.func.isRequired,
-  buildTimeArray: PropTypes.func.isRequired,
-  getCryptoValue: PropTypes.func.isRequired,
-};
-
 const mapStateToProps = state => ({
   now: state.momentTime.now,
   lastHour: state.momentTime.lastHour,
   nextHour: state.momentTime.nextHour,
-  countdownTimer: state.momentTime.countdownTimer,
+  payoutDuration: state.momentTime.payoutDuration,
   timeArray: state.momentTime.timeArray,
-  cryptoExchange: state.cryptoExchange.response,
   poolSize: state.betReducer.poolSize,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  getNow,
-  getLastHour,
-  getNextHour,
-  buildCountdownDuration,
+  setNow,
+  setLastHour,
+  setNextHour,
+  setPayoutDuration,
+  setDeadlineDuration,
   buildTimeArray,
-  getCryptoValue,
+  buildPriceHistory,
 }, dispatch);
+
+Landingpage.propTypes = {
+  setLastHour: PropTypes.func.isRequired,
+  setNextHour: PropTypes.func.isRequired,
+  setNow: PropTypes.func.isRequired,
+  setPayoutDuration: PropTypes.func.isRequired,
+  setDeadlineDuration: PropTypes.func.isRequired,
+  buildTimeArray: PropTypes.func.isRequired,
+  buildPriceHistory: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landingpage);

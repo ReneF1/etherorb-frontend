@@ -1,19 +1,11 @@
-/**
- * Created by renefuchtenkordt on 08.07.17.
- */
-import axios from 'axios';
+import cryptoExchangeService from '../service/cryptoExchange';
 
-function getCryptoValue(id, cryptoSymbol, currencySymbol, market, timeArray) {
-  const cryptoArray = [];
-  timeArray.forEach((value) => {
-    axios.get(`https://min-api.cryptocompare.com/data/pricehistorical?fsym=${cryptoSymbol}&tsyms=${currencySymbol}&markets=${market}&ts=${value}`).then((response) => {
-      cryptoArray.push({ date: value, close: response.data });
-    });
-  });
+const buildPriceHistory = (id, cryptoSymbol, currencySymbol, market, timeArray) => {
+  console.log(id);
   return {
-    type: 'BUILD_CRYPTO_ARRAY_SUCCESS',
-    payload: { [id]: cryptoArray },
+    type: 'BUILD_PRICE_HISTORY',
+    payload: cryptoExchangeService(id, cryptoSymbol, currencySymbol, market, timeArray),
   };
 }
+export default buildPriceHistory;
 
-export default getCryptoValue;
