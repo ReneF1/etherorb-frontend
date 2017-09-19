@@ -13,8 +13,8 @@ const cryptoExchangeService = (cryptoSymbol, currencySymbol, market, timeArray) 
   Promise.all(promises).then((results) => {
     results.forEach((response) => {
       data.push = response.data[cryptoSymbol][currencySymbol];
-      resolve(data);
     });
+      resolve(data);
   });
 });
 export default cryptoExchangeService;
