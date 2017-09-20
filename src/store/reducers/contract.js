@@ -1,6 +1,7 @@
 export default function reducer(state = {
   price: '',
   poolSize: '',
+  buyingHistory: [],
   potSize: 0,
   ticketPrice: 0,
   isActive: true,
@@ -64,6 +65,26 @@ export default function reducer(state = {
         loading: null,
         error: true,
       };
+
+    case 'BUYING_HISTORY_PENDING':
+      return {
+        ...state,
+        loading: true,
+      };
+    case 'BUYING_HISTORY_FULFILLED':
+      return {
+        ...state,
+        loading: false,
+        buyingHistory: action.payload,
+      };
+    case 'BUYING_HISTORY_REJECTED':
+      return {
+        ...state,
+        loading: null,
+        error: true,
+      };
+
+
     case 'GET_POOLSIZE_ERROR': {
       return {
         ...state,

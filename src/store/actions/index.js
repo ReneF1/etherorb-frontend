@@ -1,5 +1,5 @@
 import buildPriceHistory from './cryptoExchange';
-import { buyTicket, getGameData } from './contract';
+import { buyTicket, getGameData, getBuyingHistory } from './contract';
 import { setPayoutDuration, setDeadlineDuration, buildTimeArray, setLastHour, setNextHour, setNow } from './momentTime';
 
 export {
@@ -7,10 +7,11 @@ export {
     setLastHour,
     setNextHour,
     setPayoutDuration,
+    setDeadlineDuration,
     buildTimeArray,
     buildPriceHistory,
-    setDeadlineDuration,
     buyTicket,
     getGameData,
+    getBuyingHistory,
 };
 
