@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import { Col, Grid, Row } from 'react-flexbox-grid';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
 import './BottomComponent.css';
-import { ethToDollar } from '../../shared/formater';
+import ethToDollar from '../../shared/formater';
 import InfoTag from '../InfoTag/InfoTag';
 import Chart from '../Chart/Chart';
 import HistoryList from '../HistoryList/HistoryList';
@@ -67,14 +67,8 @@ const historyListData = [
   },
 ];
 
-class BottomComponent extends Component {
-
-  componentWillReceiveProps() {
-    const payout = this.props.payoutDuration;
-  }
-
-  render() {
-    return (
+const BottomComponent = props =>
+    (
       <div className="bottomComponent">
         <div className="bottomComponent__container">
           <Grid fluid>
@@ -83,7 +77,7 @@ class BottomComponent extends Component {
                 <h2
                   className="bottomComponent__headline"
                   style={{
-                    color: this.props.muiTheme.palette.accent1Color,
+                    color: props.muiTheme.palette.accent1Color,
                   }}
                 >{contentEn.bottomComponent.headline}</h2>
               </Col>
@@ -95,7 +89,7 @@ class BottomComponent extends Component {
                     icon={'av_timer'}
                     text={contentEn.bottomComponent.infoTags[0]}
                     value={contentEn.bottomComponent.values[0]}
-                    format={ethToDollar(this.props.ETH_USD_NOW, 40)}
+                    format={ethToDollar(props.ETH_USD_NOW[0].val, 40)}
                   />
                   <InfoTag
                     icon={'shopping_cart'}
@@ -145,11 +139,18 @@ class BottomComponent extends Component {
         </div>
       </div>
     );
-  }
-}
 
 BottomComponent.propTypes = {
   muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
+  ETH_USD_NOW: PropTypes.shape(PropTypes.object),
+};
+BottomComponent.defaultProps = {
+  ETH_USD_NOW: [
+    {
+      val: '',
+      timestamp: '',
+    },
+  ],
 };
 
 const mapStateToProps = state => ({

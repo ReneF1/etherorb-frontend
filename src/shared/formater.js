@@ -1,1 +1,2 @@
-export const ethToDollar = (eth, dollar) => eth * dollar;
+const ethToDollar = (eth, dollar) => eth * dollar;
+export default ethToDollar;

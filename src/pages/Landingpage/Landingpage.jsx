@@ -28,16 +28,16 @@ class Landingpage extends Component {
       this.props.buildTimeArray(),
     ],
         ).then(() => {
-          this.props.buildPriceHistory('ETH_USD_NOW', 'ETH', 'USD', 'Kraken', [parseInt(this.props.now)]);
+          this.props.buildPriceHistory('ETH_USD_NOW', 'ETH', 'USD', 'Kraken', [this.props.now], this.props.now);
         })
             .then(() => {
-              this.props.buildPriceHistory('ETH_USD_HOUR', 'ETH', 'USD', 'Kraken', this.props.timeArray);
+              this.props.buildPriceHistory('ETH_USD_HOUR', 'ETH', 'USD', 'Kraken', this.props.timeArray, this.props.now);
             });
   }
 
   render() {
     return (
-      <DocumentTitle title={contentEn.pageTitle}>
+      <DocumentTitle title={contentEn.pageTitle + this.props.ETH_USD_NOW[0].val}>
         <div>
           <HeaderBar />
           <TopComponent />
@@ -53,6 +53,7 @@ const mapStateToProps = state => ({
   now: state.momentTime.now,
   lastHour: state.momentTime.lastHour,
   nextHour: state.momentTime.nextHour,
+  ETH_USD_NOW: state.cryptoExchange.ETH_USD_NOW,
   payoutDuration: state.momentTime.payoutDuration,
   timeArray: state.momentTime.timeArray,
   poolSize: state.betReducer.poolSize,
@@ -72,10 +73,21 @@ Landingpage.propTypes = {
   setLastHour: PropTypes.func.isRequired,
   setNextHour: PropTypes.func.isRequired,
   setNow: PropTypes.func.isRequired,
+  now: PropTypes.number.isRequired,
+  timeArray: PropTypes.shape(PropTypes.number.isRequired).isRequired,
   setPayoutDuration: PropTypes.func.isRequired,
   setDeadlineDuration: PropTypes.func.isRequired,
   buildTimeArray: PropTypes.func.isRequired,
   buildPriceHistory: PropTypes.func.isRequired,
+  ETH_USD_NOW: PropTypes.shape(PropTypes.object),
+};
+Landingpage.defaultProps = {
+  ETH_USD_NOW: [
+    {
+      val: '',
+      timestamp: '',
+    },
+  ],
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landingpage);

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Col, Grid, Row } from 'react-flexbox-grid';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import PropTypes from 'prop-types';
@@ -9,14 +9,12 @@ import { BulletPoint } from '../../components';
 import CountdownClock from '../CountdownClock/CountdownClock';
 import { contentEn, background } from '../../assets';
 
-class TopComponent extends Component {
-
-  render() {
-    return (
+const TopComponent = props =>
+    (
       <div
         className="topComponent"
         style={{
-          backgroundColor: this.props.muiTheme.palette.primary1Color,
+          backgroundColor: props.muiTheme.palette.primary1Color,
           backgroundImage: `url(${background})`,
           backgroundPositionY: '200px',
         }}
@@ -31,8 +29,8 @@ class TopComponent extends Component {
             </Row>
             <Row className="topComponent__row topComponent__paddingWrapper">
               <CountdownClock
-                seconds={this.props.deadlineDuration}
-                color={this.props.muiTheme.palette.accent1Color}
+                seconds={props.deadlineDuration}
+                color={props.muiTheme.palette.accent1Color}
                 countdownDescTop={contentEn.countdownClock.countdownDescTop}
                 countdownDescBot={contentEn.countdownClock.countdownDescBot}
               />
@@ -59,11 +57,10 @@ class TopComponent extends Component {
         </div>
       </div>
     );
-  }
-}
 
 TopComponent.propTypes = {
   muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
+  deadlineDuration: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({

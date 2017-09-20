@@ -1,20 +1,30 @@
 import axios from 'axios';
 
+const cryptoExchangeService = (id, cryptoSymbol, currencySymbol, market, timeArray, now) =>
+    new Promise((resolve) => {
+      const data = [];
+      const promises = [];
+      const timestamp = [];
 
-const cryptoExchangeService = (cryptoSymbol, currencySymbol, market, timeArray) => new Promise((resolve) => {
-  const data = [];
-  const promises = [];
+      timeArray.forEach((value) => {
+        if (now >= value) {
+          const requestUrl = `https://min-api.cryptocompare.com/data/pricehistorical?fsym=${cryptoSymbol}&tsyms=${currencySymbol}&markets=${market}&ts=${value}`;
+          promises.push(axios.get(requestUrl));
+          timestamp.push(value);
+        }
+      });
 
-  timeArray.forEach((value) => {
-    const requestUrl = `https://min-api.cryptocompare.com/data/pricehistorical?fsym=${cryptoSymbol}&tsyms=${currencySymbol}&markets=${market}&ts=${value}`;
-    promises.push(axios.get(requestUrl));
-  });
-
-  Promise.all(promises).then((results) => {
-    results.forEach((response) => {
-      data.push = response.data[cryptoSymbol][currencySymbol];
+      Promise.all(promises).then((results) => {
+        results.forEach((response, index) => {
+          data.push({
+            val: response.data[cryptoSymbol][currencySymbol],
+            timestamp: timestamp[index],
+          });
+        });
+        resolve({
+          data,
+          id,
+        });
+      });
     });
-      resolve(data);
-  });
-});
 export default cryptoExchangeService;

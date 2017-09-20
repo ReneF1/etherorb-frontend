@@ -43,7 +43,7 @@ const InfoTag = props =>
 InfoTag.propTypes = {
   icon: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  value: PropTypes.string,
+  value: PropTypes.string.isRequired,
 };
 
 export default InfoTag;
