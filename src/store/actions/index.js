@@ -2,7 +2,7 @@
  * Created by renefuchtenkordt on 13.07.17.
  */
 import getCryptoValue from './cryptoExchange';
-import { buyTicket, getGameData } from './contract';
+import { buyTicket, getGameData, getBuyingHistory } from './contract';
 import { buildCountdownDuration, buildTimeArray, getLastHour, getNextHour, getNow } from './momentTime';
 
 export {
@@ -14,5 +14,6 @@ export {
     getCryptoValue,
     buyTicket,
     getGameData,
+    getBuyingHistory,
 };
 
