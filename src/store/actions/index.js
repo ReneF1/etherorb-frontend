@@ -1,17 +1,15 @@
-/**
- * Created by renefuchtenkordt on 13.07.17.
- */
-import getCryptoValue from './cryptoExchange';
+import buildPriceHistory from './cryptoExchange';
 import { buyTicket, getGameData, getBuyingHistory } from './contract';
-import { buildCountdownDuration, buildTimeArray, getLastHour, getNextHour, getNow } from './momentTime';
+import { setPayoutDuration, setDeadlineDuration, buildTimeArray, setLastHour, setNextHour, setNow } from './momentTime';
 
 export {
-    getNow,
-    getLastHour,
-    getNextHour,
-    buildCountdownDuration,
+    setNow,
+    setLastHour,
+    setNextHour,
+    setPayoutDuration,
+    setDeadlineDuration,
     buildTimeArray,
-    getCryptoValue,
+    buildPriceHistory,
     buyTicket,
     getGameData,
     getBuyingHistory,

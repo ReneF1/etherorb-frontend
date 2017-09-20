@@ -1,6 +1,3 @@
-/**
- * Created by renefuchtenkordt on 08.07.17.
- */
 import { buyTicketService, getGameDataService, getBuyingHistoryService } from '../service/contract';
 
 export const buyTicket = estimate => ({

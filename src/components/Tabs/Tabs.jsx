@@ -23,19 +23,19 @@ const ModalTabs = () => (
     tabItemContainerStyle={{ backgroundColor: '#ffffff' }}
   >
     <Tab
-      label={[<img src={qrCodeLogo} alt="" style={{ padding: '2px' }} key={shortid.generate()} />, 'QR Code']}
-      style={tabStyle}
-    >
-      <div>
-        <h1>{contentEn.modalTabs.headlines[0]}</h1>
-      </div>
-    </Tab>
-    <Tab
       label={[<img src={metaMaskLogo} alt="" style={{ padding: '2px' }} key={shortid.generate()} />, 'MetaMask']}
       style={tabStyle}
     >
       <div>
         <h1>{contentEn.modalTabs.headlines[1]}</h1>
+      </div>
+    </Tab>
+    <Tab
+      label={[<img src={qrCodeLogo} alt="" style={{ padding: '2px' }} key={shortid.generate()} />, 'QR Code']}
+      style={tabStyle}
+    >
+      <div>
+        <h1>{contentEn.modalTabs.headlines[0]}</h1>
       </div>
     </Tab>
   </Tabs>

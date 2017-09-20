@@ -14,6 +14,7 @@ const iconStyleRight = {
   top: '15px',
 };
 
+
 const InfoTag = props =>
     (
       <div className="infoTag__shape">
