@@ -4,6 +4,9 @@ export default function reducer(state = {
   payoutDuration: '',
   deadlineDuration: '',
   timeArray: '',
+  startedAt: undefined,
+  stoppedAt: undefined,
+  deadline: undefined,
 }, action) {
   switch (action.type) {
     case 'SET_NOW': {

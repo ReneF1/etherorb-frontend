@@ -29,7 +29,7 @@ const TopComponent = props =>
             </Row>
             <Row className="topComponent__row topComponent__paddingWrapper">
               <CountdownClock
-                seconds={props.deadlineDuration}
+                seconds={props.deadlineDuration / 1000}
                 color={props.muiTheme.palette.accent1Color}
                 countdownDescTop={contentEn.countdownClock.countdownDescTop}
                 countdownDescBot={contentEn.countdownClock.countdownDescBot}

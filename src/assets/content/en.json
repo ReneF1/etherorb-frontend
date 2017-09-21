@@ -22,11 +22,11 @@
   "bottomComponent": {
     "headline": "Current Round",
     "infoTags": [
-      "Predicion",
+      "Prediction",
       "Tickets sold",
       "Next payout",
       "Pot size",
-      "Deadline:"
+      "Deadline"
     ],
     "values": [
       "$ 220",

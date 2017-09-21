@@ -5,7 +5,7 @@ import { Col, Grid, Row } from 'react-flexbox-grid';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
 import './BottomComponent.css';
-import ethToDollar from '../../shared/formater';
+import { ethToDollar, formatDollar, unixTimestampToCountdown } from '../../shared/formater';
 import InfoTag from '../InfoTag/InfoTag';
 import Chart from '../Chart/Chart';
 import HistoryList from '../HistoryList/HistoryList';
@@ -88,8 +88,7 @@ const BottomComponent = props =>
                   <InfoTag
                     icon={'av_timer'}
                     text={contentEn.bottomComponent.infoTags[0]}
-                    value={contentEn.bottomComponent.values[0]}
-                    format={ethToDollar(props.ETH_USD_NOW[0].val, 40)}
+                    value={formatDollar(280.50)}
                   />
                   <InfoTag
                     icon={'shopping_cart'}
@@ -99,17 +98,17 @@ const BottomComponent = props =>
                   <InfoTag
                     icon={'timelapse'}
                     text={contentEn.bottomComponent.infoTags[2]}
-                    value={'test'}
+                    value={unixTimestampToCountdown(props.payoutDuration)}
                   />
                   <InfoTag
                     icon={'monetization_on'}
                     text={contentEn.bottomComponent.infoTags[3]}
-                    value={contentEn.bottomComponent.values[3]}
+                    value={ethToDollar(props.ETH_USD_NOW[0].val, 60)}
                   />
                   <InfoTag
                     icon={'timer_off'}
                     text={contentEn.bottomComponent.infoTags[4]}
-                    value={contentEn.bottomComponent.values[4]}
+                    value={unixTimestampToCountdown(props.deadlineDuration)}
                   />
                 </div>
               </Col>
@@ -143,6 +142,7 @@ const BottomComponent = props =>
 BottomComponent.propTypes = {
   muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
   ETH_USD_NOW: PropTypes.shape(PropTypes.object),
+  deadlineDuration: PropTypes.number,
 };
 BottomComponent.defaultProps = {
   ETH_USD_NOW: [
@@ -151,6 +151,7 @@ BottomComponent.defaultProps = {
       timestamp: '',
     },
   ],
+  deadlineDuration: '',
 };
 
 const mapStateToProps = state => ({

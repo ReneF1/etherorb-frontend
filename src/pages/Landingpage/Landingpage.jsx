@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import DocumentTitle from 'react-document-title';
 import './Landingpage.css';
 import { contentEn } from '../../assets';
+import { formatDollar, subtractTime } from '../../shared/formater';
 import { BottomComponent, Footer, HeaderBar, TopComponent } from '../../components';
 import {
     buildPriceHistory,
@@ -17,6 +18,14 @@ import {
 } from '../../store/actions';
 
 class Landingpage extends Component {
+
+    constructor(){
+        super()
+        this.state = {
+            deadlineDuration: "",
+            payoutDuration: "",
+        }
+    }
 
   componentWillMount() {
     Promise.all([
@@ -33,15 +42,33 @@ class Landingpage extends Component {
             .then(() => {
               this.props.buildPriceHistory('ETH_USD_HOUR', 'ETH', 'USD', 'Kraken', this.props.timeArray, this.props.now);
             });
+    this.timerID = setInterval(
+          () => this.tick(),
+          1000,
+      );
+  }
+
+  componentWillReceiveProps() {
+    this.setState({
+      deadlineDuration: this.props.deadlineDuration,
+      payoutDuration: this.props.payoutDuration,
+    });
+  }
+
+  tick() {
+    this.setState({
+      deadlineDuration: subtractTime(this.state.deadlineDuration, 1000),
+      payoutDuration: subtractTime(this.state.payoutDuration, 1000),
+    });
   }
 
   render() {
     return (
-      <DocumentTitle title={contentEn.pageTitle + this.props.ETH_USD_NOW[0].val}>
+      <DocumentTitle title={contentEn.pageTitle + formatDollar(280.50)}>
         <div>
           <HeaderBar />
           <TopComponent />
-          <BottomComponent />
+          <BottomComponent deadlineDuration={this.state.deadlineDuration} payoutDuration={this.state.payoutDuration}/>
           <Footer />
         </div>
       </DocumentTitle>
@@ -55,6 +82,7 @@ const mapStateToProps = state => ({
   nextHour: state.momentTime.nextHour,
   ETH_USD_NOW: state.cryptoExchange.ETH_USD_NOW,
   payoutDuration: state.momentTime.payoutDuration,
+  deadlineDuration: state.momentTime.deadlineDuration,
   timeArray: state.momentTime.timeArray,
   poolSize: state.betReducer.poolSize,
 });
