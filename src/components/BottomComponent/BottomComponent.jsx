@@ -5,11 +5,8 @@ import { Col, Grid, Row } from 'react-flexbox-grid';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
 import './BottomComponent.css';
-import { ethToDollar, formatDollar, unixTimestampToCountdown } from '../../shared/formater';
-import InfoTag from '../InfoTag/InfoTag';
-import Chart from '../Chart/Chart';
-import HistoryList from '../HistoryList/HistoryList';
-import BottomCTA from '../BottomCTA/BottomCTA';
+import { ethToDollar, formatDollar } from '../../shared/formater';
+import { InfoTag, Chart, HistoryList, BottomCTA, Timer } from '../';
 import { contentEn } from '../../assets';
 
 const chartData = [
@@ -98,7 +95,7 @@ const BottomComponent = props =>
                   <InfoTag
                     icon={'timelapse'}
                     text={contentEn.bottomComponent.infoTags[2]}
-                    value={unixTimestampToCountdown(props.payoutDuration)}
+                    value={'here'}
                   />
                   <InfoTag
                     icon={'monetization_on'}
@@ -108,8 +105,10 @@ const BottomComponent = props =>
                   <InfoTag
                     icon={'timer_off'}
                     text={contentEn.bottomComponent.infoTags[4]}
-                    value={unixTimestampToCountdown(props.deadlineDuration)}
+                    value={'here'}
                   />
+                  <Timer timestamp={props.deadlineDuration} id={'deadlineTimer'} /><br />
+                  <Timer timestamp={props.payoutDuration} id={'payoutTimer'} /><br />
                 </div>
               </Col>
             </Row>
@@ -141,8 +140,9 @@ const BottomComponent = props =>
 
 BottomComponent.propTypes = {
   muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
-  ETH_USD_NOW: PropTypes.shape(PropTypes.object),
+  ETH_USD_NOW: PropTypes.arrayOf(PropTypes.shape),
   deadlineDuration: PropTypes.number,
+  payoutDuration: PropTypes.number,
 };
 BottomComponent.defaultProps = {
   ETH_USD_NOW: [
@@ -151,7 +151,8 @@ BottomComponent.defaultProps = {
       timestamp: '',
     },
   ],
-  deadlineDuration: '',
+  deadlineDuration: 0,
+  payoutDuration: 0,
 };
 
 const mapStateToProps = state => ({

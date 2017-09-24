@@ -10,6 +10,7 @@ import HistoryList from './HistoryList/HistoryList';
 import BottomCTA from './BottomCTA/BottomCTA';
 import InfoModal from './InfoModal/InfoModal';
 import ModalTabs from './Tabs/Tabs';
+import Timer from './Timer/Timer';
 
 export {
     HeaderBar,
@@ -24,4 +25,5 @@ export {
     BottomCTA,
     ModalTabs,
     InfoModal,
+    Timer,
 };

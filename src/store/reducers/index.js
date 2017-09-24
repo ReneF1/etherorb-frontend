@@ -4,6 +4,7 @@ import cryptoExchange from './cryptoExchange';
 import pageConfig from './pageConfig';
 import betReducer from './contract';
 import momentTime from './momentTime';
+import timer from './timer';
 
 
 export default combineReducers({
@@ -11,5 +12,6 @@ export default combineReducers({
   betReducer,
   momentTime,
   pageConfig,
+  timer,
   form: formReducer,
 });

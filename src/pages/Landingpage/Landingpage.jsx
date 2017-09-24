@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import DocumentTitle from 'react-document-title';
 import './Landingpage.css';
 import { contentEn } from '../../assets';
-import { formatDollar, subtractTime } from '../../shared/formater';
+import { formatDollar } from '../../shared/formater';
 import { BottomComponent, Footer, HeaderBar, TopComponent } from '../../components';
 import {
     buildPriceHistory,
@@ -18,14 +18,6 @@ import {
 } from '../../store/actions';
 
 class Landingpage extends Component {
-
-    constructor(){
-        super()
-        this.state = {
-            deadlineDuration: "",
-            payoutDuration: "",
-        }
-    }
 
   componentWillMount() {
     Promise.all([
@@ -42,24 +34,6 @@ class Landingpage extends Component {
             .then(() => {
               this.props.buildPriceHistory('ETH_USD_HOUR', 'ETH', 'USD', 'Kraken', this.props.timeArray, this.props.now);
             });
-    this.timerID = setInterval(
-          () => this.tick(),
-          1000,
-      );
-  }
-
-  componentWillReceiveProps() {
-    this.setState({
-      deadlineDuration: this.props.deadlineDuration,
-      payoutDuration: this.props.payoutDuration,
-    });
-  }
-
-  tick() {
-    this.setState({
-      deadlineDuration: subtractTime(this.state.deadlineDuration, 1000),
-      payoutDuration: subtractTime(this.state.payoutDuration, 1000),
-    });
   }
 
   render() {
@@ -68,7 +42,7 @@ class Landingpage extends Component {
         <div>
           <HeaderBar />
           <TopComponent />
-          <BottomComponent deadlineDuration={this.state.deadlineDuration} payoutDuration={this.state.payoutDuration}/>
+          <BottomComponent />
           <Footer />
         </div>
       </DocumentTitle>
@@ -81,8 +55,6 @@ const mapStateToProps = state => ({
   lastHour: state.momentTime.lastHour,
   nextHour: state.momentTime.nextHour,
   ETH_USD_NOW: state.cryptoExchange.ETH_USD_NOW,
-  payoutDuration: state.momentTime.payoutDuration,
-  deadlineDuration: state.momentTime.deadlineDuration,
   timeArray: state.momentTime.timeArray,
   poolSize: state.betReducer.poolSize,
 });
@@ -101,21 +73,16 @@ Landingpage.propTypes = {
   setLastHour: PropTypes.func.isRequired,
   setNextHour: PropTypes.func.isRequired,
   setNow: PropTypes.func.isRequired,
-  now: PropTypes.number.isRequired,
-  timeArray: PropTypes.shape(PropTypes.number.isRequired).isRequired,
+  now: PropTypes.string,
+  timeArray: PropTypes.arrayOf(PropTypes.string),
   setPayoutDuration: PropTypes.func.isRequired,
   setDeadlineDuration: PropTypes.func.isRequired,
   buildTimeArray: PropTypes.func.isRequired,
   buildPriceHistory: PropTypes.func.isRequired,
-  ETH_USD_NOW: PropTypes.shape(PropTypes.object),
 };
 Landingpage.defaultProps = {
-  ETH_USD_NOW: [
-    {
-      val: '',
-      timestamp: '',
-    },
-  ],
+  now: '',
+  timeArray: [],
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landingpage);
