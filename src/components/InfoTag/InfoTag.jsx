@@ -44,11 +44,9 @@ InfoTag.propTypes = {
   icon: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   value: PropTypes.string,
-  time: PropTypes.string,
 };
 InfoTag.defaultProps = {
   value: '',
-  time: 1000,
 };
 
 export default InfoTag;

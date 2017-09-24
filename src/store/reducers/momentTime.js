@@ -3,10 +3,7 @@ export default function reducer(state = {
   nextHour: '',
   payoutDuration: '',
   deadlineDuration: '',
-  timeArray: '',
-  startedAt: undefined,
-  stoppedAt: undefined,
-  deadline: undefined,
+  timeArray: [],
 }, action) {
   switch (action.type) {
     case 'SET_NOW': {
@@ -45,6 +42,11 @@ export default function reducer(state = {
         timeArray: action.payload,
       };
     }
+    case 'START_TIMER':
+      return {
+        ...state,
+        [action.payload.id]: action.payload.timestamp,
+      };
     default:
       return state;
   }
