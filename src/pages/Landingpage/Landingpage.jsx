@@ -15,6 +15,8 @@ import {
     setNextHour,
     setNow,
     setPayoutDuration,
+    getGameData,
+    buyTicket,
 } from '../../store/actions';
 
 class Landingpage extends Component {
@@ -27,6 +29,8 @@ class Landingpage extends Component {
       this.props.setPayoutDuration(),
       this.props.setDeadlineDuration(),
       this.props.buildTimeArray(),
+      this.props.getGameData(),
+            //this.props.buyTicket(200),
     ],
         ).then(() => {
           this.props.buildPriceHistory('ETH_USD_NOW', 'ETH', 'USD', 'Kraken', [this.props.now], this.props.now);
@@ -67,6 +71,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   setDeadlineDuration,
   buildTimeArray,
   buildPriceHistory,
+    getGameData,
+    buyTicket,
 }, dispatch);
 
 Landingpage.propTypes = {
