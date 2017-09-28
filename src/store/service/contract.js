@@ -47,16 +47,18 @@ export const getBuyingHistoryService = (limit = 5) =>
 
 export const getGameDataService = () => isInjected().then(() => new Promise((resolve, reject) => {
   web3Connect().contract.getGameData.call((err, res) => {
-    if (err) {
+    if (err || !res) {
       reject(err);
     }
-    const data = {
-      totalPot: parseFloat(new Web3().fromWei(res[0], 'ether').toString()),
-      totalTickets: parseInt(res[1].toString(), 10),
-      totalEstimation: parseFloat(res[2].toString()),
-      isActive: res[3],
-      ticketPrice: parseFloat(new Web3().fromWei(res[4], 'ether').toString()),
-    };
-    resolve(data);
+    if (res) {
+      const data = {
+        totalPot: parseFloat(new Web3().fromWei(res[0], 'ether').toString()),
+        totalTickets: parseInt(res[1].toString(), 10),
+        totalEstimation: parseFloat(res[2].toString()),
+        isActive: res[3],
+        ticketPrice: parseFloat(new Web3().fromWei(res[4], 'ether').toString()),
+      };
+      resolve(data);
+    }
   });
 }));

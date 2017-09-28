@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 
 import { contentEn } from '../../assets';
 import { INTERVAL_TIMER } from '../../shared/constant';
-import {formatDollar} from '../../shared/formater';
+import { formatDollar } from '../../shared/formater';
 import List from '../List/List';
 import {
     getBuyingHistory,
@@ -14,13 +14,15 @@ import {
 
 const mapDataToListData = (data) => {
   const listData = [];
-  if (data) {
+  if (data && data.length > 0) {
     data.forEach((val) => {
       const column = [];
       column.push(val.address);
-      column.push(<span style={{color:'green'}}>{formatDollar(val.estimate)}</span>);
+      column.push(<span style={{ color: 'green' }}>{formatDollar(val.estimate)}</span>);
       listData.push(column);
     });
+  } else {
+    listData.push(['-', '-']);
   }
   return listData;
 };
