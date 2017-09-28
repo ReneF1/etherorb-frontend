@@ -6,6 +6,7 @@ import DocumentTitle from 'react-document-title';
 import './Landingpage.css';
 import { contentEn } from '../../assets';
 import { formatDollar } from '../../shared/formater';
+import { INTERVAL_TIMER } from '../../shared/constant';
 import { BottomComponent, Footer, HeaderBar, TopComponent } from '../../components';
 import {
     buildPriceHistory,
@@ -21,6 +22,9 @@ import {
 class Landingpage extends Component {
 
   componentWillMount() {
+    this.interval = setInterval(() => {
+      this.updateGameData();
+    }, INTERVAL_TIMER.GAME_DATA);
     Promise.all([
       this.props.setNow(),
       this.props.setLastHour(),
@@ -32,10 +36,24 @@ class Landingpage extends Component {
     ],
         ).then(() => {
           this.props.buildPriceHistory('ETH_USD_NOW', 'ETH', 'USD', 'Kraken', [this.props.now], this.props.now);
-        })
-            .then(() => {
-              this.props.buildPriceHistory('ETH_USD_HOUR', 'ETH', 'USD', 'Kraken', this.props.timeArray, this.props.now);
-            });
+          this.props.buildPriceHistory('ETH_USD_HOUR', 'ETH', 'USD', 'Kraken', this.props.timeArray, this.props.now);
+        });
+  }
+
+  componentWillUnmount() {
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
+  }
+
+  updateGameData() {
+    Promise.all([
+      this.props.getGameData(),
+    ],
+    ).then(() => {
+      this.props.buildPriceHistory('ETH_USD_NOW', 'ETH', 'USD', 'Kraken', [this.props.now], this.props.now);
+      this.props.buildPriceHistory('ETH_USD_HOUR', 'ETH', 'USD', 'Kraken', this.props.timeArray, this.props.now);
+    });
   }
 
   render() {
