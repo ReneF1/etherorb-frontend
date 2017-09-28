@@ -40,11 +40,11 @@
     "header": "Latest Predictions",
     "columnNames": [
       {
-        "tooltip": "Address",
+        "tooltip": "Address of the participant",
         "title" : "Address"
       },
       {
-        "tooltip": "Estimation",
+        "tooltip": "Estimation given by a participant",
         "title" : "Estimation"
       }
     ]

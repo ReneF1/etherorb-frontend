@@ -28,7 +28,7 @@ const List = ({ header, columnNames, data, settings, muiTheme }) => {
         >
           <TableRow key="list_table_row1">
             <TableHeaderColumn
-              colSpan="3"
+              colSpan={columnNames ? columnNames.length : 2}
               tooltip={header}
               style={style.tableHeaderColumn}
               className="List__headerText"
@@ -47,8 +47,6 @@ const List = ({ header, columnNames, data, settings, muiTheme }) => {
         </TableHeader>
         <TableBody
           displayRowCheckbox={false}
-          showRowHover
-          stripedRows
         >
           {data.map((row, rowIndex) => (
             <TableRow key={`${rowIndex}_row`}>

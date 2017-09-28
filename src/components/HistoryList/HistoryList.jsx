@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 
 import { contentEn } from '../../assets';
 import { INTERVAL_TIMER } from '../../shared/constant';
+import {formatDollar} from '../../shared/formater';
 import List from '../List/List';
 import {
     getBuyingHistory,
@@ -17,7 +18,7 @@ const mapDataToListData = (data) => {
     data.forEach((val) => {
       const column = [];
       column.push(val.address);
-      column.push(val.estimate);
+      column.push(<span style={{color:'green'}}>{formatDollar(val.estimate)}</span>);
       listData.push(column);
     });
   }
