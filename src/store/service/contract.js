@@ -21,7 +21,7 @@ export const getBuyingHistoryService = (limit = 5) =>
       web3Connect().web3.eth.getBlockNumber((blockErr, blockNumber) => {
         web3Connect().web3.eth.filter({
           address: CONTRACT_ADDRESS,
-          fromBlock: blockNumber > 40 ? blockNumber - 40 : blockNumber,
+          fromBlock: blockNumber > 40 ? blockNumber - 40 : 0,
           toBlock: 'latest',
           topics: ['0xa5a5638118b7e367fd61a47cde37cb2a2a311354958c2bb1165b181ee4b38c85'],
         }).get((err, res) => {
