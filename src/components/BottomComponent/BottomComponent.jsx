@@ -64,7 +64,7 @@ const historyListData = [
   },
 ];
 
-const BottomComponent = props =>
+const BottomComponent = ({contract,payoutDuration, deadlineDuration, ETH_USD_NOW, muiTheme }) =>
     (
       <div className="bottomComponent">
         <div className="bottomComponent__container">
@@ -74,7 +74,7 @@ const BottomComponent = props =>
                 <h2
                   className="bottomComponent__headline"
                   style={{
-                    color: props.muiTheme.palette.accent1Color,
+                    color: muiTheme.palette.accent1Color,
                   }}
                 >{contentEn.bottomComponent.headline}</h2>
               </Col>
@@ -85,30 +85,28 @@ const BottomComponent = props =>
                   <InfoTag
                     icon={'av_timer'}
                     text={contentEn.bottomComponent.infoTags[0]}
-                    value={formatDollar(280.50)}
+                    value={contract.prediction ? formatDollar(contract.prediction) : formatDollar(0)}
                   />
                   <InfoTag
                     icon={'shopping_cart'}
                     text={contentEn.bottomComponent.infoTags[1]}
-                    value={contentEn.bottomComponent.values[1]}
+                    value={contract.poolSize}
                   />
                   <InfoTag
                     icon={'timelapse'}
                     text={contentEn.bottomComponent.infoTags[2]}
-                    value={'here'}
+                    value={<Timer timestamp={payoutDuration} id={'payoutTimer'} />}
                   />
                   <InfoTag
                     icon={'monetization_on'}
                     text={contentEn.bottomComponent.infoTags[3]}
-                    value={ethToDollar(props.ETH_USD_NOW[0].val, 60)}
+                    value={ethToDollar(ETH_USD_NOW[0].val, contract.potSize || 0)}
                   />
                   <InfoTag
                     icon={'timer_off'}
                     text={contentEn.bottomComponent.infoTags[4]}
-                    value={'here'}
+                    value={<Timer timestamp={deadlineDuration} id={'deadlineTimer'} />}
                   />
-                  <Timer timestamp={props.deadlineDuration} id={'deadlineTimer'} /><br />
-                  <Timer timestamp={props.payoutDuration} id={'payoutTimer'} /><br />
                 </div>
               </Col>
             </Row>
@@ -156,6 +154,7 @@ BottomComponent.defaultProps = {
 };
 
 const mapStateToProps = state => ({
+  contract: state.betReducer,
   payoutDuration: state.momentTime.payoutDuration,
   deadlineDuration: state.momentTime.deadlineDuration,
   ETH_USD_NOW: state.cryptoExchange.ETH_USD_NOW,
