@@ -21,7 +21,7 @@ export const getBuyingHistoryService = (limit = 5) =>
       web3Connect().web3.eth.getBlockNumber((blockErr, blockNumber) => {
         web3Connect().web3.eth.filter({
           address: CONTRACT_ADDRESS,
-          fromBlock: blockNumber > 40 ? blockNumber - 40 : blockNumber,
+          fromBlock: blockNumber > 40 ? blockNumber - 40 : 0,
           toBlock: 'latest',
           topics: ['0xa5a5638118b7e367fd61a47cde37cb2a2a311354958c2bb1165b181ee4b38c85'],
         }).get((err, res) => {
@@ -47,16 +47,18 @@ export const getBuyingHistoryService = (limit = 5) =>
 
 export const getGameDataService = () => isInjected().then(() => new Promise((resolve, reject) => {
   web3Connect().contract.getGameData.call((err, res) => {
-    if (err) {
+    if (err || !res) {
       reject(err);
     }
-    const data = {
-      totalPot: parseFloat(new Web3().fromWei(res[0], 'ether').toString()),
-      totalTickets: parseInt(res[1].toString(), 10),
-      totalEstimation: parseFloat(res[2].toString()),
-      isActive: res[3],
-      ticketPrice: parseFloat(new Web3().fromWei(res[4], 'ether').toString()),
-    };
-    resolve(data);
+    if (res) {
+      const data = {
+        totalPot: parseFloat(new Web3().fromWei(res[0], 'ether').toString()),
+        totalTickets: parseInt(res[1].toString(), 10),
+        totalEstimation: parseFloat(res[2].toString()),
+        isActive: res[3],
+        ticketPrice: parseFloat(new Web3().fromWei(res[4], 'ether').toString()),
+      };
+      resolve(data);
+    }
   });
 }));
