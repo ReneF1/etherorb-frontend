@@ -64,7 +64,7 @@ const historyListData = [
   },
 ];
 
-const BottomComponent = ({contract,payoutDuration, deadlineDuration, ETH_USD_NOW, muiTheme }) =>
+const BottomComponent = ({ contract, payoutDuration, deadlineDuration, ETH_USD_NOW, muiTheme }) =>
     (
       <div className="bottomComponent">
         <div className="bottomComponent__container">
@@ -85,7 +85,8 @@ const BottomComponent = ({contract,payoutDuration, deadlineDuration, ETH_USD_NOW
                   <InfoTag
                     icon={'av_timer'}
                     text={contentEn.bottomComponent.infoTags[0]}
-                    value={contract.prediction ? formatDollar(contract.prediction) : formatDollar(0)}
+                    value={contract.prediction ?
+                        formatDollar(contract.prediction) : formatDollar(0)}
                   />
                   <InfoTag
                     icon={'shopping_cart'}
@@ -137,6 +138,7 @@ const BottomComponent = ({contract,payoutDuration, deadlineDuration, ETH_USD_NOW
     );
 
 BottomComponent.propTypes = {
+  contract: PropTypes.shape(PropTypes.object.isRequired).isRequired,
   muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
   ETH_USD_NOW: PropTypes.arrayOf(PropTypes.shape),
   deadlineDuration: PropTypes.number,

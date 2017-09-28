@@ -28,7 +28,7 @@ const InfoTag = props =>
           <span
             className="infoTag__text"
           >
-              {props.text} : {props.value}
+            {props.text} : {props.value}
           </span>
           <FontIcon
             className="material-icons infoTag__iconRight"
