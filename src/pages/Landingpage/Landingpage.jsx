@@ -15,6 +15,7 @@ import {
     setNextHour,
     setNow,
     setPayoutDuration,
+    getGameData,
 } from '../../store/actions';
 
 class Landingpage extends Component {
@@ -27,6 +28,7 @@ class Landingpage extends Component {
       this.props.setPayoutDuration(),
       this.props.setDeadlineDuration(),
       this.props.buildTimeArray(),
+      this.props.getGameData(),
     ],
         ).then(() => {
           this.props.buildPriceHistory('ETH_USD_NOW', 'ETH', 'USD', 'Kraken', [this.props.now], this.props.now);
@@ -67,6 +69,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   setDeadlineDuration,
   buildTimeArray,
   buildPriceHistory,
+  getGameData,
 }, dispatch);
 
 Landingpage.propTypes = {
@@ -79,6 +82,7 @@ Landingpage.propTypes = {
   setDeadlineDuration: PropTypes.func.isRequired,
   buildTimeArray: PropTypes.func.isRequired,
   buildPriceHistory: PropTypes.func.isRequired,
+  getGameData: PropTypes.func.isRequired,
 };
 Landingpage.defaultProps = {
   now: '',

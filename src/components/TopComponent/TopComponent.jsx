@@ -4,9 +4,7 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './TopComponent.css';
-import ModalTabs from '../Tabs/Tabs';
-import { BulletPoint } from '../../components';
-import CountdownClock from '../CountdownClock/CountdownClock';
+import { BulletPoint, CountdownClock, BuyingFormContainer } from '../../components';
 import { contentEn, background } from '../../assets';
 
 const TopComponent = props =>
@@ -38,7 +36,7 @@ const TopComponent = props =>
             <Row>
               <Col xs={12} md={12}>
                 <div className="topComponent__paddingWrapper">
-                  <ModalTabs />
+                  <BuyingFormContainer />
                 </div>
               </Col>
             </Row>
