@@ -9,6 +9,7 @@
     "material-ui": "^0.18.7",
     "moment": "^2.18.1",
     "moment-range": "^3.0.3",
+    "moment-timezone": "^0.5.13",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-countdown-clock": "^2.0.0",

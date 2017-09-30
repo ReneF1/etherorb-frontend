@@ -1,4 +1,5 @@
 export default function reducer(state = {
+  now: 0,
   lastHour: '',
   nextHour: '',
   payoutDuration: '',

@@ -4,21 +4,20 @@ const cryptoExchangeService = (id, cryptoSymbol, currencySymbol, market, timeArr
     new Promise((resolve) => {
       const data = [];
       const promises = [];
-      const timestamp = [];
 
       timeArray.forEach((value) => {
         if (now >= value) {
           const requestUrl = `https://min-api.cryptocompare.com/data/pricehistorical?fsym=${cryptoSymbol}&tsyms=${currencySymbol}&markets=${market}&ts=${value}`;
           promises.push(axios.get(requestUrl));
-          timestamp.push(value);
         }
       });
 
       Promise.all(promises).then((results) => {
-        results.forEach((response, index) => {
+        results.forEach((response) => {
+            var url = new URL(response.config.url);
           data.push({
             val: response.data[cryptoSymbol][currencySymbol],
-            timestamp: timestamp[index],
+            timestamp: url.searchParams.get('ts'),
           });
         });
         resolve({
