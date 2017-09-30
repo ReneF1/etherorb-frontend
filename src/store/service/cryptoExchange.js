@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+// TODO: Use other crypto api -> this one gives out different values for same ts
 const cryptoExchangeService = (id, cryptoSymbol, currencySymbol, market, timeArray, now) =>
     new Promise((resolve) => {
       const data = [];
