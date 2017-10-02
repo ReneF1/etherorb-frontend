@@ -1,14 +1,20 @@
 import React from 'react';
-import {reduxForm} from 'redux-form';
+import {reduxForm, Field} from 'redux-form';
 import PropTypes from 'prop-types';
 import './BuyingForm.css';
 import CurrencyInput from 'react-currency-input';
 
 const buyingForm = (props) => {
-    const {handleSubmit, handleChange, pristine, submitting, value} = props;
+    const {handleSubmit} = props;
     return (
         <form onSubmit={handleSubmit}>
-            <CurrencyInput value={100} prefix="$" precision="2"/>
+            <Field name="myField" component={props =>
+                <CurrencyInput
+                    currentValue={{val: props.value}}
+                    thingsChanged={param => props.onChange(param.val)}
+                    prefix="$"
+                    precision="2"/>
+            }/>
         </form>
     );
 };
