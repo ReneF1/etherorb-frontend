@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import { Col, Grid, Row } from 'react-flexbox-grid';
 import { connect } from 'react-redux';
-import shortid from 'shortid';
 import './BottomComponent.css';
 import { ethToDollar, formatDollar } from '../../shared/formater';
 import { InfoTag, Chart, HistoryList, BottomCTA, Timer } from '../';
@@ -56,7 +55,7 @@ const BottomComponent = ({ contract, payoutDuration, deadlineDuration, ETH_USD_N
                   <InfoTag
                     icon={'monetization_on'}
                     text={contentEn.bottomComponent.infoTags[3]}
-                    value={ethToDollar(ETH_USD_NOW[0].val, contract.potSize || 0)}
+                    value={ethToDollar(ETH_USD_NOW[0].open, contract.potSize || 0)}
                   />
                   <InfoTag
                     icon={'timer_off'}
@@ -102,8 +101,7 @@ BottomComponent.propTypes = {
 BottomComponent.defaultProps = {
   ETH_USD_NOW: [
     {
-      val: '',
-      timestamp: '',
+      open: '',
     },
   ],
   deadlineDuration: 0,

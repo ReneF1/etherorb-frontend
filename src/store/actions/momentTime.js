@@ -2,7 +2,7 @@ import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 
 const moment = extendMoment(Moment);
-const now = moment().format('x');
+const now = moment().format('X');
 const roundDown = moment().minute() || moment().second() || moment().millisecond() ? moment().subtract(0, 'hour').startOf('hour') : moment().startOf('hour');
 const roundUp = moment().minute() || moment().second() || moment().millisecond() ? moment().add(1, 'hour').startOf('hour') : moment().startOf('hour');
 
@@ -11,11 +11,11 @@ const end = new Date(roundUp);
 const range = moment.range(start, end);
 
 const minutes = Array.from(range.by('minute'));
-const timeArray = minutes.map(m => m.format('x'));
+const timeArray = minutes.map(m => m.format('X'));
 
-const payout = moment(roundUp).format('x') - moment().format('x');
+const payout = moment(roundUp).format('X') - moment().format('X');
 
-const deadline = moment(roundUp).format('x') - moment().format('x') - 900000;
+const deadline = moment(roundUp).format('X') - moment().format('X') - 900000;
 
 function setNow() {
   return {
