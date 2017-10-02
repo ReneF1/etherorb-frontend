@@ -55,7 +55,7 @@ const BottomComponent = ({ contract, payoutDuration, deadlineDuration, ETH_USD_N
                   <InfoTag
                     icon={'monetization_on'}
                     text={contentEn.bottomComponent.infoTags[3]}
-                    value={ethToDollar(ETH_USD_NOW[0].val, contract.potSize || 0)}
+                    value={ethToDollar(ETH_USD_NOW[0].open, contract.potSize || 0)}
                   />
                   <InfoTag
                     icon={'timer_off'}
@@ -102,8 +102,7 @@ BottomComponent.propTypes = {
 BottomComponent.defaultProps = {
   ETH_USD_NOW: [
     {
-      val: '',
-      timestamp: '',
+      open: '',
     },
   ],
   ETH_USD_HOUR: [],

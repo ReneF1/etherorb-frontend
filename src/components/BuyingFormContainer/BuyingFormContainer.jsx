@@ -6,10 +6,18 @@ import { reduxForm } from 'redux-form';
 import './BuyingFormContainer.css';
 import { BuyingForm } from '../';
 import { buyTicket } from '../../store/actions';
+import RaisedButton from 'material-ui/RaisedButton';
+
+const customButton = {
+    buttonStyle: { borderRadius: '100px', height: '40px', lineHeight: '35px' },
+    overlayStyle: { borderRadius: '100px' },
+    style: { borderRadius: '100px', minWidth: '200px' },
+};
 
 const buyingFormContainer = props => (
   <div className="buyingForm__container">
-    <BuyingForm onSubmit={values => props.buyTicket(parseInt(values.buyingFormContainer, 10))} />
+    <BuyingForm/>
+    <RaisedButton style={customButton} onClick={props.buyTicket(parseInt(props.buyingForm, 10))}>Test</RaisedButton>
   </div>
     );
 
