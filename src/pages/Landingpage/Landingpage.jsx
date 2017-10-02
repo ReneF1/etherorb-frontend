@@ -25,6 +25,9 @@ class Landingpage extends Component {
     this.interval = setInterval(() => {
       this.updateGameData();
     }, INTERVAL_TIMER.GAME_DATA);
+    this.intervalChart = setInterval(()=>{
+      this.updateChartData();
+    }, INTERVAL_TIMER.CHART_DATA);
     Promise.all([
       this.props.setNow(),
       this.props.setLastHour(),
@@ -44,16 +47,27 @@ class Landingpage extends Component {
     if (this.interval) {
       clearInterval(this.interval);
     }
+    if(this.intervalChart){
+      clearInterval(this.intervalChart);
+    }
   }
-
-  updateGameData() {
+  updateChartData(){
     Promise.all([
-      this.props.getGameData(),
-    ],
+          this.props.setNow(),
+          this.props.setLastHour(),
+          this.props.setNextHour(),
+          this.props.setPayoutDuration(),
+          this.props.setDeadlineDuration(),
+          this.props.buildTimeArray(),
+        ],
     ).then(() => {
       this.props.buildPriceHistory('ETH_USD_NOW', 'ETH', 'USD', 'Kraken', [this.props.now], this.props.now);
       this.props.buildPriceHistory('ETH_USD_HOUR', 'ETH', 'USD', 'Kraken', this.props.timeArray, this.props.now);
     });
+  }
+
+  updateGameData() {
+    this.props.getGameData();
   }
 
   render() {
@@ -94,8 +108,8 @@ Landingpage.propTypes = {
   setLastHour: PropTypes.func.isRequired,
   setNextHour: PropTypes.func.isRequired,
   setNow: PropTypes.func.isRequired,
-  now: PropTypes.string,
-  timeArray: PropTypes.arrayOf(PropTypes.string),
+  now: PropTypes.number,
+  timeArray: PropTypes.arrayOf(PropTypes.number),
   setPayoutDuration: PropTypes.func.isRequired,
   setDeadlineDuration: PropTypes.func.isRequired,
   buildTimeArray: PropTypes.func.isRequired,
