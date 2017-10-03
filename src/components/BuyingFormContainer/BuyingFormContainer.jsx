@@ -2,10 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { reduxForm } from 'redux-form';
 import RaisedButton from 'material-ui/RaisedButton';
-import muiThemeable from 'material-ui/styles/muiThemeable';
 import './BuyingFormContainer.css';
+import { formatDollarToFloat } from "../../shared/formater";
 import { BuyingForm } from '../';
 import { buyTicket } from '../../store/actions';
 import { contentEn } from '../../assets';
@@ -15,6 +14,7 @@ const customButton = {
   overlayStyle: { borderRadius: '100px' },
   style: { borderRadius: '100px', minWidth: '200px', color: '#fffff' },
 };
+
 
 const buyingFormContainer = props => (
   <div className="buyingForm__container" id={'buyingForm'}>
@@ -26,10 +26,14 @@ const buyingFormContainer = props => (
       overlayStyle={customButton.overlayStyle}
       className="buyingForm_raisedButton"
       secondary
-      onClick={props.buyTicket(parseInt(props.buyingForm, 10))}
+      onClick={e => handleClick(e, props)}
     />
   </div>
-    );
+);
+
+function handleClick(e, props) {
+  props.buyTicket(formatDollarToFloat(props.buyingForm.values.buyingFormInput))
+}
 
 buyingFormContainer.propTypes = {
   buyTicket: PropTypes.func.isRequired,
@@ -43,4 +47,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   buyTicket,
 }, dispatch);
 
-export default reduxForm({ form: 'BuyingForm' })(connect(mapStateToProps, mapDispatchToProps)(buyingFormContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(buyingFormContainer);

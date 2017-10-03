@@ -9,26 +9,23 @@ const MaskedCurrencyInput = field => (
     prefix="$"
     precision="2"
     id={'buyingFormField'}
-    value={field.input.value}
-    onChange={() => field.input.onChange(field.input.value)}
     className="buyingFormField__input"
+    value={field.input.value}
+    onChangeEvent={field.input.onChange}
     type={field.input.type}
     onFocus={field.input.onFocus}
     onMouseUp={field.input.onMouseUp}
   />
 );
 
-const buyingForm = (props) => {
-  const { handleSubmit, pristine, reset, submitting } = props;
-  return (
-    <form onSubmit={handleSubmit}>
-      <Field
-        name="buyingFormInput"
-        component={MaskedCurrencyInput}
-      />
-    </form>
+const buyingForm = ({ handleSubmit }) => (
+  <form onSubmit={handleSubmit}>
+    <Field
+      name="buyingFormInput"
+      component={MaskedCurrencyInput}
+    />
+  </form>
   );
-};
 
 buyingForm.propTypes = {
   handleSubmit: PropTypes.func,
