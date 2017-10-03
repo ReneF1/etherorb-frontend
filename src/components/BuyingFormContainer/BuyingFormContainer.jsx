@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form';
+import RaisedButton from 'material-ui/RaisedButton';
+import muiThemeable from 'material-ui/styles/muiThemeable';
 import './BuyingFormContainer.css';
 import { BuyingForm } from '../';
 import { buyTicket } from '../../store/actions';
-import RaisedButton from 'material-ui/RaisedButton';
+import { contentEn } from '../../assets';
 
 const customButton = {
     buttonStyle: { borderRadius: '100px', height: '40px', lineHeight: '35px' },
@@ -17,7 +19,13 @@ const customButton = {
 const buyingFormContainer = props => (
   <div className="buyingForm__container">
     <BuyingForm/>
-    <RaisedButton style={customButton} onClick={props.buyTicket(parseInt(props.buyingForm, 10))}>Test</RaisedButton>
+    <RaisedButton
+        style={customButton.style}
+        buttonStyle={customButton.buttonStyle}
+        overlayStyle={customButton.overlayStyle}
+        className="BuyingFormConatainer_raisedButton"
+        secondary
+        onClick={props.buyTicket(parseInt(props.buyingForm, 10))}>{contentEn.topComponent.buttonLabel}</RaisedButton>
   </div>
     );
 

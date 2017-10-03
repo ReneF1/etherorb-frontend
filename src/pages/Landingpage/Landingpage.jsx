@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import DocumentTitle from 'react-document-title';
 import './Landingpage.css';
+import LinearProgress from 'material-ui/LinearProgress';
 import { contentEn } from '../../assets';
 import { formatDollar } from '../../shared/formater';
 import { INTERVAL_TIMER } from '../../shared/constant';
@@ -71,9 +72,16 @@ class Landingpage extends Component {
   }
 
   render() {
+      const LinearProgressStyle = {
+          'position': 'fixed',
+          'backgroundColor': '#ff3823',
+          'zIndex': '999999',
+          'display': 'none',
+      }
     return (
-      <DocumentTitle title={contentEn.pageTitle + formatDollar(280.50)}>
+      <DocumentTitle title={contentEn.pageTitle + formatDollar(this.props.ETH_USD_NOW[0].open)}>
         <div>
+          <LinearProgress style={LinearProgressStyle} mode="indeterminate" />
           <HeaderBar />
           <TopComponent />
           <BottomComponent />
@@ -115,10 +123,16 @@ Landingpage.propTypes = {
   buildTimeArray: PropTypes.func.isRequired,
   buildPriceHistory: PropTypes.func.isRequired,
   getGameData: PropTypes.func.isRequired,
+  ETH_USD_NOW: PropTypes.arrayOf(PropTypes.shape),
 };
 Landingpage.defaultProps = {
   now: '',
   timeArray: [],
+    ETH_USD_NOW: [
+        {
+            open: '',
+        },
+    ],
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landingpage);
