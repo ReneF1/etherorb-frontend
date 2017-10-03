@@ -1,7 +1,12 @@
-function toggleBuyingDialog() {
+export function toggleBuyingDialog() {
   return {
     type: 'TOGGLE_BUYING_DIALOG',
   };
 }
 
-export default toggleBuyingDialog;
+export function toggleSnackbar(message) {
+  return {
+    type: 'TOGGLE_SNACKBAR',
+    payload: message,
+  };
+}

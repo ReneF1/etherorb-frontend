@@ -11,21 +11,23 @@ import { buyTicket } from '../../store/actions';
 import { contentEn } from '../../assets';
 
 const customButton = {
-    buttonStyle: { borderRadius: '100px', height: '40px', lineHeight: '35px' },
-    overlayStyle: { borderRadius: '100px' },
-    style: { borderRadius: '100px', minWidth: '200px' },
+  buttonStyle: { borderRadius: '100px', height: '40px', lineHeight: '35px' },
+  overlayStyle: { borderRadius: '100px' },
+  style: { borderRadius: '100px', minWidth: '200px', color: '#fffff' },
 };
 
 const buyingFormContainer = props => (
   <div className="buyingForm__container" id={'buyingForm'}>
-    <BuyingForm/>
+    <BuyingForm />
     <RaisedButton
-        style={customButton.style}
-        buttonStyle={customButton.buttonStyle}
-        overlayStyle={customButton.overlayStyle}
-        className="BuyingFormConatainer_raisedButton"
-        secondary
-        onClick={props.buyTicket(parseInt(props.buyingForm, 10))}>{contentEn.topComponent.buttonLabel}</RaisedButton>
+      label={contentEn.topComponent.buttonLabel}
+      style={customButton.style}
+      buttonStyle={customButton.buttonStyle}
+      overlayStyle={customButton.overlayStyle}
+      className="buyingForm_raisedButton"
+      secondary
+      onClick={props.buyTicket(parseInt(props.buyingForm, 10))}
+    />
   </div>
     );
 

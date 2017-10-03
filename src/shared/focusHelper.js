@@ -1,5 +1,3 @@
-const focusId = (id) => {
-   return document.getElementById(id.toString()).focus();
-};
+const focusId = id => document.getElementById(id).focus();
 
-export default focusId
+export default focusId;

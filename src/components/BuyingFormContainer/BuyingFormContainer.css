@@ -3,11 +3,9 @@
     color: white;
     padding: 10px;
 }
-.buyingFormContainer_raisedButton, .buyingForm__logoTextPrimary, .buyingForm__logoTextSecondary {
-    position: relative;
-}
 
-.buyingFormContainer_raisedButton {
+.buyingForm_raisedButton {
+    position: relative;
     top: 10px;
     color: #ffffff;
     font-size: 14px;

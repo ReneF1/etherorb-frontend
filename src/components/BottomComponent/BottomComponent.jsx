@@ -68,7 +68,7 @@ const BottomComponent = ({ contract, payoutDuration, deadlineDuration, ETH_USD_N
             <Row>
               <Col xs={12} md={12}>
                 <div className="bottomComponent__paddingWrapper">
-                  <Chart chartData={ETH_USD_HOUR} prediction={contract.prediction} nextHour={nextHour}/>
+                  <Chart chartData={ETH_USD_HOUR} prediction={contract.prediction} nextHour={nextHour} />
                 </div>
               </Col>
             </Row>
@@ -95,7 +95,7 @@ BottomComponent.propTypes = {
   contract: PropTypes.shape(PropTypes.object.isRequired).isRequired,
   muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
   ETH_USD_NOW: PropTypes.arrayOf(PropTypes.shape),
-  ETH_USD_HOUR: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  ETH_USD_HOUR: PropTypes.arrayOf(PropTypes.object),
   deadlineDuration: PropTypes.number,
   payoutDuration: PropTypes.number,
 };
