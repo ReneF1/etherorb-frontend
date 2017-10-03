@@ -17,7 +17,7 @@ const customButton = {
 };
 
 const buyingFormContainer = props => (
-  <div className="buyingForm__container">
+  <div className="buyingForm__container" id={'buyingForm'}>
     <BuyingForm/>
     <RaisedButton
         style={customButton.style}

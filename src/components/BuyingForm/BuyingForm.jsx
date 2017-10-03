@@ -13,7 +13,8 @@ const buyingForm = (props) => {
                     currentValue={{val: props.value}}
                     thingsChanged={param => props.onChange(param.val)}
                     prefix="$"
-                    precision="2"/>
+                    precision="2"
+                    id={'buyingFormField'}/>
             }/>
         </form>
     );
