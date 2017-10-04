@@ -24,12 +24,12 @@ import {
 class Landingpage extends Component {
 
   componentWillMount() {
-        /* this.interval = setInterval(() => {
-            this.updateGameData();
-        }, INTERVAL_TIMER.GAME_DATA);
-        this.intervalChart = setInterval(() => {
-            this.updateChartData();
-        }, INTERVAL_TIMER.CHART_DATA); */
+    this.interval = setInterval(() => {
+      this.updateGameData();
+    }, INTERVAL_TIMER.GAME_DATA);
+    this.intervalChart = setInterval(() => {
+      this.updateChartData();
+    }, INTERVAL_TIMER.CHART_DATA);
     Promise.all([
       this.props.setNow(),
       this.props.setLastHour(),
