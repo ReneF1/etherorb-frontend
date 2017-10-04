@@ -29,10 +29,6 @@ const buyingForm = ({ handleSubmit }) => (
 
 buyingForm.propTypes = {
   handleSubmit: PropTypes.func,
-  handleChange: PropTypes.func,
-  pristine: PropTypes.bool,
-  submitting: PropTypes.bool,
-  value: PropTypes.func,
 };
 
 export default reduxForm({

@@ -14,7 +14,6 @@ const cryptoExchangeService = (id, cryptoSymbol, currencySymbol, market, timeArr
 
       Promise.all(promises).then((results) => {
         results.forEach((response) => {
-          console.log(response);
           data.push(response.data.Data[0]);
         });
         resolve({

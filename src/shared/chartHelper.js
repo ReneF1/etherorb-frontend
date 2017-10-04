@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export const mapChartData = (data, prediction, nextHour, timeZone) => {
+const mapChartData = (data, prediction, nextHour, timeZone) => {
   const chartData = [];
   data.forEach((d, index) => {
     const date = moment.unix(d.time);
@@ -24,7 +24,6 @@ export const mapChartData = (data, prediction, nextHour, timeZone) => {
     chartData.push({ Time: nextMinute });
     chartData.push(obj);
   }
-
-
   return chartData;
 };
+export default mapChartData;

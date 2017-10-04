@@ -133,10 +133,12 @@ Landingpage.propTypes = {
   buildPriceHistory: PropTypes.func.isRequired,
   getGameData: PropTypes.func.isRequired,
   ETH_USD_NOW: PropTypes.arrayOf(PropTypes.shape),
+  snackBar: PropTypes.pageConfig.shape(PropTypes.object()),
 };
 Landingpage.defaultProps = {
   now: '',
   timeArray: [],
+  snackBar: {},
   ETH_USD_NOW: [
     {
       open: '',

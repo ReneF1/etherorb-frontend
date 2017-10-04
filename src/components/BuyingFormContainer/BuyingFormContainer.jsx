@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import './BuyingFormContainer.css';
-import { formatDollarToFloat } from "../../shared/formater";
+import { formatDollarToFloat } from '../../shared/formater';
 import { BuyingForm } from '../';
 import { buyTicket } from '../../store/actions';
 import { contentEn } from '../../assets';
@@ -15,6 +15,9 @@ const customButton = {
   style: { borderRadius: '100px', minWidth: '200px', color: '#fffff' },
 };
 
+function handleClick(e, props) {
+  props.buyTicket(formatDollarToFloat(props.buyingForm.values.buyingFormInput));
+}
 
 const buyingFormContainer = props => (
   <div className="buyingForm__container" id={'buyingForm'}>
@@ -26,14 +29,10 @@ const buyingFormContainer = props => (
       overlayStyle={customButton.overlayStyle}
       className="buyingForm_raisedButton"
       secondary
-      onClick={e => handleClick(e, props)}
+      onClick={e => handleClick(e, props.buyTicket)}
     />
   </div>
 );
-
-function handleClick(e, props) {
-  props.buyTicket(formatDollarToFloat(props.buyingForm.values.buyingFormInput))
-}
 
 buyingFormContainer.propTypes = {
   buyTicket: PropTypes.func.isRequired,
