@@ -1,7 +1,12 @@
 .buyingForm__container {
-    background-color: rgba(237, 55, 47, 0.5);
-    border: 2px solid #ed372f;
     border-radius: 6px;
     color: white;
     padding: 10px;
+}
+
+.buyingForm_raisedButton {
+    position: relative;
+    top: 10px;
+    color: #ffffff;
+    font-size: 14px;
 }

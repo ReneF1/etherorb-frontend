@@ -3,20 +3,22 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import DocumentTitle from 'react-document-title';
-import './Landingpage.css';
+import Snackbar from 'material-ui/Snackbar';
+import LinearProgress from 'material-ui/LinearProgress';
 import { contentEn } from '../../assets';
 import { formatDollar } from '../../shared/formater';
 import { INTERVAL_TIMER } from '../../shared/constant';
 import { BottomComponent, Footer, HeaderBar, TopComponent } from '../../components';
+import './Landingpage.css';
 import {
     buildPriceHistory,
     buildTimeArray,
+    getGameData,
     setDeadlineDuration,
     setLastHour,
     setNextHour,
     setNow,
     setPayoutDuration,
-    getGameData,
 } from '../../store/actions';
 
 class Landingpage extends Component {
@@ -25,7 +27,7 @@ class Landingpage extends Component {
     this.interval = setInterval(() => {
       this.updateGameData();
     }, INTERVAL_TIMER.GAME_DATA);
-    this.intervalChart = setInterval(()=>{
+    this.intervalChart = setInterval(() => {
       this.updateChartData();
     }, INTERVAL_TIMER.CHART_DATA);
     Promise.all([
@@ -47,23 +49,24 @@ class Landingpage extends Component {
     if (this.interval) {
       clearInterval(this.interval);
     }
-    if(this.intervalChart){
+    if (this.intervalChart) {
       clearInterval(this.intervalChart);
     }
   }
-  updateChartData(){
+
+  updateChartData() {
     Promise.all([
-          this.props.setNow(),
-          this.props.setLastHour(),
-          this.props.setNextHour(),
-          this.props.setPayoutDuration(),
-          this.props.setDeadlineDuration(),
-          this.props.buildTimeArray(),
-        ],
-    ).then(() => {
-      this.props.buildPriceHistory('ETH_USD_NOW', 'ETH', 'USD', 'Kraken', [this.props.now], this.props.now);
-      this.props.buildPriceHistory('ETH_USD_HOUR', 'ETH', 'USD', 'Kraken', this.props.timeArray, this.props.now);
-    });
+      this.props.setNow(),
+      this.props.setLastHour(),
+      this.props.setNextHour(),
+      this.props.setPayoutDuration(),
+      this.props.setDeadlineDuration(),
+      this.props.buildTimeArray(),
+    ],
+        ).then(() => {
+          this.props.buildPriceHistory('ETH_USD_NOW', 'ETH', 'USD', 'Kraken', [this.props.now], this.props.now);
+          this.props.buildPriceHistory('ETH_USD_HOUR', 'ETH', 'USD', 'Kraken', this.props.timeArray, this.props.now);
+        });
   }
 
   updateGameData() {
@@ -71,13 +74,26 @@ class Landingpage extends Component {
   }
 
   render() {
+    const LinearProgressStyle = {
+      position: 'fixed',
+      backgroundColor: '#ff3823',
+      zIndex: '999999',
+      display: 'none',
+    };
     return (
-      <DocumentTitle title={contentEn.pageTitle + formatDollar(280.50)}>
+      <DocumentTitle title={formatDollar(this.props.ETH_USD_NOW[0].open) + contentEn.pageTitle}>
         <div>
+          <LinearProgress style={LinearProgressStyle} mode="indeterminate" />
           <HeaderBar />
           <TopComponent />
           <BottomComponent />
           <Footer />
+          <Snackbar
+            open={this.props.snackBar.open}
+            message={this.props.snackBar.message}
+            autoHideDuration={4000}
+            onRequestClose={this.handleRequestClose}
+          />
         </div>
       </DocumentTitle>
     );
@@ -91,6 +107,7 @@ const mapStateToProps = state => ({
   ETH_USD_NOW: state.cryptoExchange.ETH_USD_NOW,
   timeArray: state.momentTime.timeArray,
   poolSize: state.betReducer.poolSize,
+  snackBar: state.pageConfig.snackBar,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -115,10 +132,18 @@ Landingpage.propTypes = {
   buildTimeArray: PropTypes.func.isRequired,
   buildPriceHistory: PropTypes.func.isRequired,
   getGameData: PropTypes.func.isRequired,
+  ETH_USD_NOW: PropTypes.arrayOf(PropTypes.shape),
+  snackBar: PropTypes.pageConfig.shape(PropTypes.object()),
 };
 Landingpage.defaultProps = {
   now: '',
   timeArray: [],
+  snackBar: {},
+  ETH_USD_NOW: [
+    {
+      open: '',
+    },
+  ],
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landingpage);

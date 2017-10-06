@@ -44,8 +44,8 @@ InfoTag.propTypes = {
   icon: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.node
+    PropTypes.string,
+    PropTypes.node,
   ]),
 };
 InfoTag.defaultProps = {

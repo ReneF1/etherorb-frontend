@@ -23,9 +23,8 @@ export const getBuyingHistoryService = (limit = 5) =>
           address: CONTRACT_ADDRESS,
           fromBlock: blockNumber > 40 ? blockNumber - 40 : 0,
           toBlock: 'latest',
-          topics: ['0xa5a5638118b7e367fd61a47cde37cb2a2a311354958c2bb1165b181ee4b38c85']
+          topics: ['0xa5a5638118b7e367fd61a47cde37cb2a2a311354958c2bb1165b181ee4b38c85'],
         }).get((err, res) => {
-          console.log('here')
           if (err || blockErr) {
             reject(err || blockErr);
           }
@@ -60,8 +59,8 @@ export const getGameDataService = () => isInjected().then(() => new Promise((res
         ticketPrice: parseFloat(new Web3().fromWei(res[4], 'ether').toString()),
       };
       resolve(data);
-    }else{
-      reject("No data");
+    } else {
+      reject('No data');
     }
   });
 }));

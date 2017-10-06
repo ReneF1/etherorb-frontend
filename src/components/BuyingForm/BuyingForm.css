@@ -1,0 +1,9 @@
+.buyingFormField__input {
+    padding: 10px;
+    border: 0;
+    border-radius: 2px;
+}
+
+.buyingFormField__input:focus {
+    outline: none;
+}

@@ -8,17 +8,14 @@ import { ethToDollar, formatDollar } from '../../shared/formater';
 import { InfoTag, Chart, HistoryList, BottomCTA, Timer } from '../';
 import { contentEn } from '../../assets';
 
-const chartData = [
-  { Time: '13:00', ETHxUSD: 220 },
-  { Time: '13:10', ETHxUSD: 225 },
-  { Time: '13:20', ETHxUSD: 223 },
-  { Time: '13:30', ETHxUSD: 231 },
-  { Time: '13:40', ETHxUSD: 243, Prediction: 243 },
-  { Time: '13:50' },
-  { Time: '14:00', Prediction: 250 },
-];
-
-const BottomComponent = ({ contract, payoutDuration, deadlineDuration, ETH_USD_NOW, ETH_USD_HOUR, muiTheme, nextHour }) =>
+const BottomComponent = ({
+                             contract,
+                             payoutDuration,
+                             deadlineDuration,
+                             ETH_USD_NOW,
+                             ETH_USD_HOUR,
+                             muiTheme,
+                             nextHour }) =>
     (
       <div className="bottomComponent">
         <div className="bottomComponent__container">
@@ -60,7 +57,9 @@ const BottomComponent = ({ contract, payoutDuration, deadlineDuration, ETH_USD_N
                   <InfoTag
                     icon={'timer_off'}
                     text={contentEn.bottomComponent.infoTags[4]}
-                    value={<Timer timestamp={deadlineDuration} id={'deadlineTimer'} />}
+                    value={
+                      <Timer timestamp={deadlineDuration} id={'deadlineTimer'} />
+                    }
                   />
                 </div>
               </Col>
@@ -68,7 +67,11 @@ const BottomComponent = ({ contract, payoutDuration, deadlineDuration, ETH_USD_N
             <Row>
               <Col xs={12} md={12}>
                 <div className="bottomComponent__paddingWrapper">
-                  <Chart chartData={ETH_USD_HOUR} prediction={contract.prediction} nextHour={nextHour}/>
+                  <Chart
+                    chartData={ETH_USD_HOUR}
+                    prediction={contract.prediction}
+                    nextHour={nextHour}
+                  />
                 </div>
               </Col>
             </Row>
@@ -95,9 +98,10 @@ BottomComponent.propTypes = {
   contract: PropTypes.shape(PropTypes.object.isRequired).isRequired,
   muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
   ETH_USD_NOW: PropTypes.arrayOf(PropTypes.shape),
-  ETH_USD_HOUR: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  ETH_USD_HOUR: PropTypes.arrayOf(PropTypes.object),
   deadlineDuration: PropTypes.number,
   payoutDuration: PropTypes.number,
+  nextHour: PropTypes.string,
 };
 BottomComponent.defaultProps = {
   ETH_USD_NOW: [
@@ -108,6 +112,7 @@ BottomComponent.defaultProps = {
   ETH_USD_HOUR: [],
   deadlineDuration: 0,
   payoutDuration: 0,
+  nextHour: '',
 };
 
 const mapStateToProps = state => ({
