@@ -2,6 +2,8 @@ import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import PropTypes from 'prop-types';
+import Scrollchor from 'react-scrollchor';
+import focusId from '../../shared/focusHelper';
 import { contentEn } from '../../assets';
 import './BottomCTA.css';
 import etherscanLogo from '../../assets/media/etherscan.png';
@@ -31,14 +33,16 @@ const BottomCTA = props =>
           <img className="bottomCTA__Logo" alt="" src={githubLogo} />
         </div>
         <div className="bottomCTA__ButtonWrapper">
-          <RaisedButton
-            label={contentEn.bottomCTA.buttonLabelCTA}
-            secondary
-            style={customButton.style}
-            buttonStyle={customButton.buttonStyle}
-            overlayStyle={customButton.overlayStyle}
-            className="headerBar_raisedButton"
-          />
+          <Scrollchor to="#buyingForm" className="nav-link" afterAnimate={() => focusId('buyingFormField')}>
+            <RaisedButton
+              label={contentEn.bottomCTA.buttonLabelCTA}
+              secondary
+              style={customButton.style}
+              buttonStyle={customButton.buttonStyle}
+              overlayStyle={customButton.overlayStyle}
+              className="headerBar_raisedButton"
+            />
+          </Scrollchor>
           <RaisedButton
             label={contentEn.bottomCTA.buttonLabelSec}
             labelColor={'#ff3823'}

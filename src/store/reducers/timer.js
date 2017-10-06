@@ -1,12 +1,11 @@
 export default function reducer(state = {
 }, action) {
   switch (action.type) {
-    case 'BUILD_PRICE_HISTORY_FULFILLED': {
+    case 'START_TIMER':
       return {
         ...state,
-        [action.payload.id]: action.payload.data,
+        [action.payload.id]: action.payload.timestamp,
       };
-    }
     default:
       return state;
   }

@@ -1,70 +1,70 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import muiThemeable from 'material-ui/styles/muiThemeable';
-import shortid from 'shortid';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { contentEn } from '../../assets';
-import './HistoryList.css';
+import { INTERVAL_TIMER } from '../../shared/constant';
+import { formatDollar } from '../../shared/formater';
+import List from '../List/List';
+import {
+    getBuyingHistory,
+} from '../../store/actions';
 
-const HistoryList = (props =>
-    (
-      <div>
-        <Table
-          height={'auto'}
-          fixedHeader
-          selectable={false}
-          multiSelectable={false}
-        >
-          <TableHeader
-            adjustForCheckbox={false}
-            displaySelectAll={false}
-          >
-            <TableRow key={shortid.generate()}>
-              <TableHeaderColumn
-                colSpan="3"
-                tooltip={contentEn.historyList.header}
-                style={{ color: props.muiTheme.palette.accent1Color }}
-                className="historyList__headerText"
-              >
-                {contentEn.historyList.header}
-              </TableHeaderColumn>
-            </TableRow>
-            <TableRow key={shortid.generate()}>
-              <TableHeaderColumn tooltip={`The ${contentEn.historyList.columnNames[0]}`} key={shortid.generate()}>{contentEn.historyList.columnNames[0]}</TableHeaderColumn>
-              <TableHeaderColumn tooltip={`The ${contentEn.historyList.columnNames[1]}`} key={shortid.generate()}>{contentEn.historyList.columnNames[1]}</TableHeaderColumn>
-              <TableHeaderColumn tooltip={`The ${contentEn.historyList.columnNames[2]}`} key={shortid.generate()}>{contentEn.historyList.columnNames[2]}</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody
-            displayRowCheckbox={false}
-            showRowHover
-            stripedRows
-          >
-            {props.data.map(row => (
-              <TableRow key={shortid.generate()}>
-                <TableRowColumn
-                  style={{ color: props.muiTheme.palette.primary1Color }}
-                >
-                  {row.address}
-                </TableRowColumn>
-                <TableRowColumn>{moment(row.timestamp, 'x').fromNow()}</TableRowColumn>
-                <TableRowColumn
-                  className="historyList__tableRowColumn--3"
-                >
-                  {row.prediction}
-                </TableRowColumn>
-              </TableRow>
-                    ))}
-          </TableBody>
-        </Table>
-      </div>
-    )
-);
-
-HistoryList.propTypes = {
-  muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
-  data: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+const mapDataToListData = (data) => {
+  const listData = [];
+  if (data && data.length > 0) {
+    data.forEach((val) => {
+      const column = [];
+      column.push(val.address);
+      column.push(<span style={{ color: 'green' }}>{formatDollar(val.estimate)}</span>);
+      listData.push(column);
+    });
+  } else {
+    listData.push(['-', '-']);
+  }
+  return listData;
 };
 
-export default muiThemeable()(HistoryList);
+class HistoryList extends React.Component {
+
+  componentWillMount() {
+    this.props.getBuyingHistory();
+    this.interval = setInterval(() => {
+      this.props.getBuyingHistory();
+    }, INTERVAL_TIMER.HISTORY);
+  }
+
+  componentWillUnmount() {
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
+  }
+
+  render() {
+    return (
+      <List
+        data={mapDataToListData(this.props.buyingHistory)}
+        columnNames={contentEn.historyList.columnNames}
+        header={contentEn.historyList.header}
+        muiTheme={this.props.muiTheme}
+      />
+    );
+  }
+}
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  getBuyingHistory,
+}, dispatch);
+
+const mapStateToProps = state => ({
+  buyingHistory: state.betReducer.buyingHistory,
+});
+
+HistoryList.propTypes = {
+  getBuyingHistory: PropTypes.func.isRequired,
+  buyingHistory: PropTypes.array.isRequired,
+  muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(muiThemeable()(HistoryList));

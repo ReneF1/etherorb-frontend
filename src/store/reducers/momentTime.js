@@ -1,40 +1,53 @@
 export default function reducer(state = {
+  now: 0,
   lastHour: '',
   nextHour: '',
-  countdownTimer: '',
-  timeArray: '',
+  payoutDuration: '',
+  deadlineDuration: '',
+  timeArray: [],
 }, action) {
   switch (action.type) {
-    case 'GET_MOMENT_TIME_NOW': {
+    case 'SET_NOW': {
       return {
         ...state,
         now: action.payload,
       };
     }
-    case 'GET_MOMENT_TIME_LAST_HOUR': {
+    case 'SET_LAST_HOUR': {
       return {
         ...state,
         lastHour: action.payload,
       };
     }
-    case 'GET_MOMENT_TIME_NEXT_HOUR': {
+    case 'SET_NEXT_HOUR': {
       return {
         ...state,
         nextHour: action.payload,
       };
     }
-    case 'GET_MOMENT_TIME_COUNTDOWN': {
+    case 'SET_PAYOUT_DURATION': {
       return {
         ...state,
-        countdownTimer: action.payload,
+        payoutDuration: action.payload,
       };
     }
-    case 'GET_MOMENT_TIME_ARRAY': {
+    case 'SET_DEADLINE_DURATION': {
+      return {
+        ...state,
+        deadlineDuration: action.payload,
+      };
+    }
+    case 'BUILD_ARRAY': {
       return {
         ...state,
         timeArray: action.payload,
       };
     }
+    case 'START_TIMER':
+      return {
+        ...state,
+        [action.payload.id]: action.payload.timestamp,
+      };
     default:
       return state;
   }

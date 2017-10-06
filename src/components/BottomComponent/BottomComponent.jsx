@@ -2,71 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import { Col, Grid, Row } from 'react-flexbox-grid';
-import shortid from 'shortid';
+import { connect } from 'react-redux';
 import './BottomComponent.css';
-import InfoTag from '../InfoTag/InfoTag';
-import Chart from '../Chart/Chart';
-import HistoryList from '../HistoryList/HistoryList';
-import BottomCTA from '../BottomCTA/BottomCTA';
+import { ethToDollar, formatDollar } from '../../shared/formater';
+import { InfoTag, Chart, HistoryList, BottomCTA, Timer } from '../';
 import { contentEn } from '../../assets';
 
-const chartData = [
-    { Time: '13:00', ETHxUSD: 220 },
-    { Time: '13:10', ETHxUSD: 225 },
-    { Time: '13:20', ETHxUSD: 223 },
-    { Time: '13:30', ETHxUSD: 231 },
-    { Time: '13:40', ETHxUSD: 243, Prediction: 243 },
-    { Time: '13:50' },
-    { Time: '14:00', Prediction: 250 },
-];
-
-const historyListData = [
-  {
-    address: '0x22b854DBF5c9A20f5C3374E814733060C942AeDf',
-    prediction: '$ 222.10',
-    timestamp: '1504524903805',
-    id: shortid.generate(),
-  },
-  {
-    address: '0xeB3a84E326DE0cF8976fDfB0231AD31Ed8f19f28',
-    prediction: '$ 227.50',
-    timestamp: '1504524908741',
-    id: shortid.generate(),
-  },
-  {
-    address: '0x22b854DBF5c9A20f5C3374E814733060C942AeDf',
-    prediction: '$ 229.70',
-    timestamp: '1504524913061',
-    id: shortid.generate(),
-  },
-  {
-    address: '0xFa705A686fe2d02D11cFc35fB5fEE40594ABD1B1',
-    prediction: '$ 212.30',
-    timestamp: '1504524916965',
-    id: shortid.generate(),
-  },
-  {
-    address: '0x35A1eea8AE6f734EfE14fc3715Ab51785D8D1D84',
-    prediction: '$ 217.90',
-    timestamp: '1504524920701',
-    id: shortid.generate(),
-  },
-  {
-    address: '0x22b854DBF5c9A20f5C3374E814733060C942AeDf',
-    prediction: '$ 218.90',
-    timestamp: '1504524924943',
-    id: shortid.generate(),
-  },
-  {
-    address: '0xf67757E7C326b5c1Bb8C0012B2644661011580E7',
-    prediction: '$ 205.00',
-    timestamp: '1504524929105',
-    id: shortid.generate(),
-  },
-];
-
-
-const BottomComponent = ({ muiTheme }) =>
+const BottomComponent = ({
+                             contract,
+                             payoutDuration,
+                             deadlineDuration,
+                             ETH_USD_NOW,
+                             ETH_USD_HOUR,
+                             muiTheme,
+                             nextHour }) =>
     (
       <div className="bottomComponent">
         <div className="bottomComponent__container">
@@ -84,25 +33,52 @@ const BottomComponent = ({ muiTheme }) =>
             <Row>
               <Col xs={12} md={12}>
                 <div className="bottomComponent__buttonWrapper bottomComponent__paddingWrapper">
-                  <InfoTag icon={'av_timer'} text={contentEn.bottomComponent.infoTags[0]} value={contentEn.bottomComponent.values[0]} />
-                  <InfoTag icon={'shopping_cart'} text={contentEn.bottomComponent.infoTags[1]} value={contentEn.bottomComponent.values[1]} />
-                  <InfoTag icon={'timelapse'} text={contentEn.bottomComponent.infoTags[2]} value={contentEn.bottomComponent.values[2]} />
-                  <InfoTag icon={'monetization_on'} text={contentEn.bottomComponent.infoTags[3]} value={contentEn.bottomComponent.values[3]} />
-                  <InfoTag icon={'timer_off'} text={contentEn.bottomComponent.infoTags[4]} value={contentEn.bottomComponent.values[4]} />
+                  <InfoTag
+                    icon={'av_timer'}
+                    text={contentEn.bottomComponent.infoTags[0]}
+                    value={contract.prediction ?
+                        formatDollar(contract.prediction) : formatDollar(0)}
+                  />
+                  <InfoTag
+                    icon={'shopping_cart'}
+                    text={contentEn.bottomComponent.infoTags[1]}
+                    value={contract.poolSize}
+                  />
+                  <InfoTag
+                    icon={'timelapse'}
+                    text={contentEn.bottomComponent.infoTags[2]}
+                    value={<Timer timestamp={payoutDuration} id={'payoutTimer'} />}
+                  />
+                  <InfoTag
+                    icon={'monetization_on'}
+                    text={contentEn.bottomComponent.infoTags[3]}
+                    value={ethToDollar(ETH_USD_NOW[0].open, contract.potSize || 0)}
+                  />
+                  <InfoTag
+                    icon={'timer_off'}
+                    text={contentEn.bottomComponent.infoTags[4]}
+                    value={
+                      <Timer timestamp={deadlineDuration} id={'deadlineTimer'} />
+                    }
+                  />
                 </div>
               </Col>
             </Row>
             <Row>
               <Col xs={12} md={12}>
                 <div className="bottomComponent__paddingWrapper">
-                  <Chart chartData={chartData} />
+                  <Chart
+                    chartData={ETH_USD_HOUR}
+                    prediction={contract.prediction}
+                    nextHour={nextHour}
+                  />
                 </div>
               </Col>
             </Row>
             <Row>
               <Col xs={12} md={12}>
                 <div className="bottomComponent__paddingWrapper">
-                  <HistoryList data={historyListData} />
+                  <HistoryList />
                 </div>
               </Col>
             </Row>
@@ -119,7 +95,33 @@ const BottomComponent = ({ muiTheme }) =>
     );
 
 BottomComponent.propTypes = {
+  contract: PropTypes.shape(PropTypes.object.isRequired).isRequired,
   muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
+  ETH_USD_NOW: PropTypes.arrayOf(PropTypes.shape),
+  ETH_USD_HOUR: PropTypes.arrayOf(PropTypes.object),
+  deadlineDuration: PropTypes.number,
+  payoutDuration: PropTypes.number,
+  nextHour: PropTypes.string,
+};
+BottomComponent.defaultProps = {
+  ETH_USD_NOW: [
+    {
+      open: '',
+    },
+  ],
+  ETH_USD_HOUR: [],
+  deadlineDuration: 0,
+  payoutDuration: 0,
+  nextHour: '',
 };
 
-export default muiThemeable()(BottomComponent);
+const mapStateToProps = state => ({
+  contract: state.betReducer,
+  payoutDuration: state.momentTime.payoutDuration,
+  deadlineDuration: state.momentTime.deadlineDuration,
+  ETH_USD_NOW: state.cryptoExchange.ETH_USD_NOW,
+  ETH_USD_HOUR: state.cryptoExchange.ETH_USD_HOUR,
+  nextHour: state.momentTime.nextHour,
+});
+
+export default connect(mapStateToProps)(muiThemeable()(BottomComponent));

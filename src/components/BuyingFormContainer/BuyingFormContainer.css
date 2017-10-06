@@ -1,0 +1,12 @@
+.buyingForm__container {
+    border-radius: 6px;
+    color: white;
+    padding: 10px;
+}
+
+.buyingForm_raisedButton {
+    position: relative;
+    top: 10px;
+    color: #ffffff;
+    font-size: 14px;
+}

@@ -14,6 +14,7 @@ const iconStyleRight = {
   top: '15px',
 };
 
+
 const InfoTag = props =>
     (
       <div className="infoTag__shape">
@@ -27,7 +28,7 @@ const InfoTag = props =>
           <span
             className="infoTag__text"
           >
-            {`${props.text}: ${props.value}`}
+            {props.text} : {props.value}
           </span>
           <FontIcon
             className="material-icons infoTag__iconRight"
@@ -42,7 +43,13 @@ const InfoTag = props =>
 InfoTag.propTypes = {
   icon: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+  ]),
+};
+InfoTag.defaultProps = {
+  value: '',
 };
 
 export default InfoTag;
