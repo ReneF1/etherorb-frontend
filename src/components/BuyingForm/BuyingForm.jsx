@@ -1,39 +1,34 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
 import PropTypes from 'prop-types';
+import CurrencyInput from 'react-currency-input';
 import './BuyingForm.css';
 
-const buyingForm = (props) => {
-  const { handleSubmit, handleChange, pristine, submitting, value } = props;
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="betValue">What is the ETH/USD value?</label>
-        <div>
-          <Field
-            name="betValue"
-            component="input"
-            type="number"
-            placeholder="ETH/USD Value"
-            onChange={handleChange}
-            value={value}
-          />
-        </div>
-      </div>
+const MaskedCurrencyInput = field => (
+  <CurrencyInput
+    prefix="$"
+    precision="2"
+    id={'buyingFormField'}
+    className="buyingFormField__input"
+    value={field.input.value}
+    onChangeEvent={field.input.onChange}
+    type={field.input.type}
+    onFocus={field.input.onFocus}
+    onMouseUp={field.input.onMouseUp}
+  />
+);
 
-      <div>
-        <button type="submit" disabled={pristine || submitting}>Buy Ticket</button>
-      </div>
-    </form>
+const buyingForm = ({ handleSubmit }) => (
+  <form onSubmit={handleSubmit}>
+    <Field
+      name="buyingFormInput"
+      component={MaskedCurrencyInput}
+    />
+  </form>
   );
-};
 
 buyingForm.propTypes = {
   handleSubmit: PropTypes.func,
-  handleChange: PropTypes.func,
-  pristine: PropTypes.bool,
-  submitting: PropTypes.bool,
-  value: PropTypes.func,
 };
 
 export default reduxForm({

@@ -27,4 +27,6 @@ export const formatDollar = (dollar) => {
   return format(dollar);
 };
 
+export const formatDollarToFloat = dollar => parseFloat(dollar.replace(/[$,]/g, ''));
+
 export const unixTimestampToCountdown = unixTimestamp => moment(unixTimestamp, 'x').format('mm:ss');

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 import muiThemeable from 'material-ui/styles/muiThemeable';
+import Scrollchor from 'react-scrollchor';
+import focusId from '../../shared/focusHelper';
 import { contentEn, logo } from '../../assets';
 import './HeaderBar.css';
 
@@ -26,14 +28,16 @@ const HeaderBar = props => (
         style={{ color: props.muiTheme.palette.accent1Color }}
       >{contentEn.headerBar.subtitle}</span></div>
       <div className="headerBar__rightElement">
-        <RaisedButton
-          label={contentEn.headerBar.buttonLabel}
-          secondary
-          style={customButton.style}
-          buttonStyle={customButton.buttonStyle}
-          overlayStyle={customButton.overlayStyle}
-          className="headerBar_raisedButton"
-        />
+        <Scrollchor to="#buyingForm" className="nav-link" afterAnimate={() => focusId('buyingFormField')}>
+          <RaisedButton
+            label={contentEn.headerBar.buttonLabel}
+            secondary
+            style={customButton.style}
+            buttonStyle={customButton.buttonStyle}
+            overlayStyle={customButton.overlayStyle}
+            className="headerBar_raisedButton"
+          />
+        </Scrollchor>
       </div>
     </div>
   </div>

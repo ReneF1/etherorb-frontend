@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import momentTimezone from 'moment-timezone';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine } from 'recharts';
-import { mapChartData } from '../../shared/chartHelper';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import mapChartData from '../../shared/chartHelper';
 import { contentEn } from '../../assets';
 import './Chart.css';
 
@@ -47,8 +47,11 @@ const Chart = ({ chartData, prediction, nextHour }) => (
     </LineChart>
   </div>
    );
+
 Chart.propTypes = {
   chartData: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  prediction: PropTypes.string.isRequired,
+  nextHour: PropTypes.string.isRequired,
 };
 
 export default Chart;

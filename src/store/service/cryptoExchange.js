@@ -1,5 +1,5 @@
 import axios from 'axios';
-// TODO: Use other crypto api -> this one gives out different values for same ts
+
 const cryptoExchangeService = (id, cryptoSymbol, currencySymbol, market, timeArray, now) =>
     new Promise((resolve) => {
       const data = [];
@@ -7,18 +7,14 @@ const cryptoExchangeService = (id, cryptoSymbol, currencySymbol, market, timeArr
 
       timeArray.forEach((value) => {
         if (now >= value) {
-          const requestUrl = `https://min-api.cryptocompare.com/data/pricehistorical?fsym=${cryptoSymbol}&tsyms=${currencySymbol}&markets=${market}&ts=${value}`;
+          const requestUrl = `https://min-api.cryptocompare.com/data/histominute?fsym=${cryptoSymbol}&tsym=${currencySymbol}&markets=${market}&toTs=${value}&limit=1`;
           promises.push(axios.get(requestUrl));
         }
       });
 
       Promise.all(promises).then((results) => {
         results.forEach((response) => {
-          const url = new URL(response.config.url);
-          data.push({
-            val: response.data[cryptoSymbol][currencySymbol],
-            timestamp: url.searchParams.get('ts'),
-          });
+          data.push(response.data.Data[0]);
         });
         resolve({
           data,
