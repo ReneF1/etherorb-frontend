@@ -65,6 +65,9 @@
       "do that"
     ]
   },
+  "rulesDialog": {
+    "text": "The rules are simple:"
+  },
   "footer": {
     "disclaimer": "EtherOrb.com owns itself. It is an autonomous entity, executing as code on the Ethereum (ETH) P2P network. It lives in the Ether; in the realm of ideas and magic. Enjoy it.",
     "title": "EtherOrb.com"

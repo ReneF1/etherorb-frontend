@@ -4,6 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { contentEn } from '../../assets';
 import { toggleRulesDialog } from '../../store/actions';
 
 const RulesDialog = (props) => {
@@ -11,7 +12,7 @@ const RulesDialog = (props) => {
     <FlatButton
       label="Got It"
       primary
-      onClick={props.toggleRulesDialog}
+      onClick={() => props.toggleRulesDialog()}
     />,
   ];
   return (
@@ -21,9 +22,10 @@ const RulesDialog = (props) => {
         actions={actions}
         modal={false}
         open={props.open}
+        onRequestClose={() => props.toggleRulesDialog()}
         autoScrollBodyContent
       >
-        <p>Test</p>
+        <p>{contentEn.rulesDialog.text}</p>
       </Dialog>
     </div>
   );
