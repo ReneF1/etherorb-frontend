@@ -14,7 +14,7 @@ const cryptoExchangeService = (id, cryptoSymbol, currencySymbol, market, timeArr
 
       Promise.all(promises).then((results) => {
         results.forEach((response) => {
-            var url = new URL(response.config.url);
+          const url = new URL(response.config.url);
           data.push({
             val: response.data[cryptoSymbol][currencySymbol],
             timestamp: url.searchParams.get('ts'),

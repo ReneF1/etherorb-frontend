@@ -25,7 +25,7 @@ class Landingpage extends Component {
     this.interval = setInterval(() => {
       this.updateGameData();
     }, INTERVAL_TIMER.GAME_DATA);
-    this.intervalChart = setInterval(()=>{
+    this.intervalChart = setInterval(() => {
       this.updateChartData();
     }, INTERVAL_TIMER.CHART_DATA);
     Promise.all([
@@ -47,19 +47,19 @@ class Landingpage extends Component {
     if (this.interval) {
       clearInterval(this.interval);
     }
-    if(this.intervalChart){
+    if (this.intervalChart) {
       clearInterval(this.intervalChart);
     }
   }
-  updateChartData(){
+  updateChartData() {
     Promise.all([
-          this.props.setNow(),
-          this.props.setLastHour(),
-          this.props.setNextHour(),
-          this.props.setPayoutDuration(),
-          this.props.setDeadlineDuration(),
-          this.props.buildTimeArray(),
-        ],
+      this.props.setNow(),
+      this.props.setLastHour(),
+      this.props.setNextHour(),
+      this.props.setPayoutDuration(),
+      this.props.setDeadlineDuration(),
+      this.props.buildTimeArray(),
+    ],
     ).then(() => {
       this.props.buildPriceHistory('ETH_USD_NOW', 'ETH', 'USD', 'Kraken', [this.props.now], this.props.now);
       this.props.buildPriceHistory('ETH_USD_HOUR', 'ETH', 'USD', 'Kraken', this.props.timeArray, this.props.now);

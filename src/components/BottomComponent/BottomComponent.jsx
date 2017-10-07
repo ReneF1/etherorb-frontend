@@ -68,7 +68,7 @@ const BottomComponent = ({ contract, payoutDuration, deadlineDuration, ETH_USD_N
             <Row>
               <Col xs={12} md={12}>
                 <div className="bottomComponent__paddingWrapper">
-                  <Chart chartData={ETH_USD_HOUR} prediction={contract.prediction} nextHour={nextHour}/>
+                  <Chart chartData={ETH_USD_HOUR} prediction={contract.prediction} nextHour={nextHour} />
                 </div>
               </Col>
             </Row>

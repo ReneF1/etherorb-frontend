@@ -14,7 +14,7 @@ const minutes = Array.from(range.by('minute'));
 const timeArray = () => minutes.map(m => m.unix());
 const payout = () => moment(roundUp()).format('x') - moment().format('x');
 
-const deadline =  () => moment(roundUp()).format('x') - moment().format('x') - 900000;
+const deadline = () => moment(roundUp()).format('x') - moment().format('x') - 900000;
 
 function setNow() {
   return {
