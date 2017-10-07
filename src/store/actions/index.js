@@ -2,7 +2,7 @@ import buildPriceHistory from './cryptoExchange';
 import { buyTicket, getGameData, getBuyingHistory } from './contract';
 import { setPayoutDuration, setDeadlineDuration, buildTimeArray, setLastHour, setNextHour, setNow } from './momentTime';
 import startTimer from './timer';
-import { toggleSnackbar } from './pageConfig';
+import { toggleSnackbar, toggleRulesDialog } from './pageConfig';
 
 export {
     setNow,
@@ -17,5 +17,6 @@ export {
     getBuyingHistory,
     startTimer,
     toggleSnackbar,
+    toggleRulesDialog,
 };
 

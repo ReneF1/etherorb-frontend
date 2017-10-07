@@ -11,6 +11,7 @@ import BottomCTA from './BottomCTA/BottomCTA';
 import Timer from './Timer/Timer';
 import BuyingForm from './BuyingForm/BuyingForm';
 import BuyingFormContainer from './BuyingFormContainer/BuyingFormContainer';
+import RulesDialog from './RulesDialog/RulesDialog';
 
 export {
     HeaderBar,
@@ -26,5 +27,6 @@ export {
     Timer,
     BuyingForm,
     BuyingFormContainer,
+    RulesDialog,
 };
 

@@ -3,11 +3,14 @@ import RaisedButton from 'material-ui/RaisedButton';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import PropTypes from 'prop-types';
 import Scrollchor from 'react-scrollchor';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import focusId from '../../shared/focusHelper';
 import { contentEn } from '../../assets';
 import './BottomCTA.css';
 import etherscanLogo from '../../assets/media/etherscan.png';
 import githubLogo from '../../assets/media/github.png';
+import { toggleRulesDialog } from '../../store/actions';
 
 const customButton = {
   buttonStyle: { borderRadius: '100px', height: '40px', lineHeight: '35px' },
@@ -18,6 +21,10 @@ const customButtonSecondary = {
   buttonStyle: { borderRadius: '100px', height: '40px', border: '1px solid #ff3823', lineHeight: '35px' },
   overlayStyle: { borderRadius: '100px' },
   style: { borderRadius: '100px', minWidth: '200px' },
+};
+
+const handleClick = (props) => {
+  props.toggleRulesDialog('rulesDialog');
 };
 
 const BottomCTA = props =>
@@ -50,14 +57,24 @@ const BottomCTA = props =>
             style={customButtonSecondary.style}
             buttonStyle={customButtonSecondary.buttonStyle}
             overlayStyle={customButtonSecondary.overlayStyle}
+            onClick={() => handleClick(props)}
             className="headerBar_raisedButton"
           />
         </div>
       </div>
     );
 
+const mapDispatchToProps = dispatch => bindActionCreators({
+  toggleRulesDialog,
+}, dispatch);
+
 BottomCTA.propTypes = {
-  muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
+  muiTheme: PropTypes.shape(PropTypes.object).isRequired,
+  toggleRulesDialog: PropTypes.func.isRequired,
 };
 
-export default muiThemeable()(BottomCTA);
+BottomCTA.defaultProps = {
+  now: '',
+};
+export default connect(null, mapDispatchToProps)(muiThemeable()(BottomCTA));
+

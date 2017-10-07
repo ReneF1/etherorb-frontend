@@ -1,6 +1,6 @@
-export function toggleBuyingDialog() {
+export function toggleRulesDialog() {
   return {
-    type: 'TOGGLE_BUYING_DIALOG',
+    type: 'TOGGLE_RULES_DIALOG',
   };
 }
 

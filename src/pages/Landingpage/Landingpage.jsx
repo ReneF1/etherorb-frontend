@@ -8,7 +8,7 @@ import LinearProgress from 'material-ui/LinearProgress';
 import { contentEn } from '../../assets';
 import { formatDollar } from '../../shared/formater';
 import { INTERVAL_TIMER } from '../../shared/constant';
-import { BottomComponent, Footer, HeaderBar, TopComponent } from '../../components';
+import { BottomComponent, Footer, HeaderBar, TopComponent, RulesDialog } from '../../components';
 import './Landingpage.css';
 import {
     buildPriceHistory,
@@ -24,12 +24,12 @@ import {
 class Landingpage extends Component {
 
   componentWillMount() {
-    this.interval = setInterval(() => {
+    /* this.interval = setInterval(() => {
       this.updateGameData();
     }, INTERVAL_TIMER.GAME_DATA);
     this.intervalChart = setInterval(() => {
       this.updateChartData();
-    }, INTERVAL_TIMER.CHART_DATA);
+    }, INTERVAL_TIMER.CHART_DATA); */
     Promise.all([
       this.props.setNow(),
       this.props.setLastHour(),
@@ -88,6 +88,7 @@ class Landingpage extends Component {
           <TopComponent />
           <BottomComponent />
           <Footer />
+          <RulesDialog />
           <Snackbar
             open={this.props.snackBar.open}
             message={this.props.snackBar.message}
