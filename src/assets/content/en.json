@@ -1,13 +1,14 @@
 {
-  "pageTitle": " EtheOrb.com",
+  "pageTitle": " EtheOrb: World's first Ethereum Prediciton Lottery",
   "headerBar": {
     "title": "EtherOrb",
     "subtitle": ".com",
     "buttonLabel": "Buy Your Ticket"
   },
   "topComponent": {
-    "headlineTop": "The first Ethereum",
+    "headlineTop": "World's first Ethereum",
     "headlineBot": "Prediciton Lottery",
+    "subHeader": "Predict the ethereum price and win the jackpot.",
     "buttonLabel": "Buy Your Ticket"
   },
   "countdownClock": {

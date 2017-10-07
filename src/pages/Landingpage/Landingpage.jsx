@@ -70,7 +70,7 @@ class Landingpage extends Component {
       display: 'none',
     };
     return (
-      <DocumentTitle title={formatDollar(this.props.ETH_USD_NOW.open) + contentEn.pageTitle}>
+      <DocumentTitle title={contentEn.pageTitle}>
         <div>
           <LinearProgress style={LinearProgressStyle} mode="indeterminate" />
           <HeaderBar />
