@@ -57,7 +57,7 @@ const BottomCTA = props =>
             buttonStyle={customButtonSecondary.buttonStyle}
             overlayStyle={customButtonSecondary.overlayStyle}
             onClick={() => handleClick(props.toggleRulesDialog)}
-            className="headerBar_raisedButton1"
+            className="headerBar_raisedButton"
           />
         </div>
       </div>
