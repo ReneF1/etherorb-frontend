@@ -13,13 +13,13 @@ import githubLogo from '../../assets/media/github.png';
 import { toggleRulesDialog } from '../../store/actions';
 
 const customButton = {
-  buttonStyle: { borderRadius: '100px', height: '40px', lineHeight: '35px' },
-  overlayStyle: { borderRadius: '100px' },
+  buttonStyle: { borderRadius: '100px', height: '40px', lineHeight: '40px' },
+  overlayStyle: { borderRadius: '100px', height: '40px', lineHeight: '40px' },
   style: { borderRadius: '100px', minWidth: '200px' },
 };
 const customButtonSecondary = {
-  buttonStyle: { borderRadius: '100px', height: '40px', border: '1px solid #ff3823', lineHeight: '35px' },
-  overlayStyle: { borderRadius: '100px' },
+  buttonStyle: { borderRadius: '100px', height: '40px', lineHeight: '40px' },
+  overlayStyle: { borderRadius: '100px', height: '40px', lineHeight: '40px' },
   style: { borderRadius: '100px', minWidth: '200px' },
 };
 
@@ -52,7 +52,6 @@ const BottomCTA = props =>
           </Scrollchor>
           <RaisedButton
             label={contentEn.bottomCTA.buttonLabelSec}
-            labelColor={'#ff3823'}
             secondary={false}
             style={customButtonSecondary.style}
             buttonStyle={customButtonSecondary.buttonStyle}
