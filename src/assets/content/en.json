@@ -1,13 +1,14 @@
 {
-  "pageTitle": " EtheOrb.com",
+  "pageTitle": " EtheOrb: World's first Ethereum Prediciton Lottery",
   "headerBar": {
     "title": "EtherOrb",
     "subtitle": ".com",
     "buttonLabel": "Buy Your Ticket"
   },
   "topComponent": {
-    "headlineTop": "The first Ethereum",
+    "headlineTop": "World's first Ethereum",
     "headlineBot": "Prediciton Lottery",
+    "subHeader": "Predict the ethereum price and win the jackpot.",
     "buttonLabel": "Buy Your Ticket"
   },
   "countdownClock": {
@@ -64,6 +65,9 @@
       "do this",
       "do that"
     ]
+  },
+  "rulesDialog": {
+    "text": "The rules are simple:"
   },
   "footer": {
     "disclaimer": "EtherOrb.com owns itself. It is an autonomous entity, executing as code on the Ethereum (ETH) P2P network. It lives in the Ether; in the realm of ideas and magic. Enjoy it.",

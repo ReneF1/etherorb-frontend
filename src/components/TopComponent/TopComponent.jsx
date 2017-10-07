@@ -23,6 +23,7 @@ const TopComponent = props =>
               <Col xs={12} md={12}>
                 <h1 className="topComponent__headline" >{contentEn.topComponent.headlineTop}
                   <br />{contentEn.topComponent.headlineBot}</h1>
+                <h2 className="topComponent__subhead">{contentEn.topComponent.subHeader}</h2>
               </Col>
             </Row>
             <Row className="topComponent__row topComponent__paddingWrapper">

@@ -6,18 +6,20 @@ import RaisedButton from 'material-ui/RaisedButton';
 import './BuyingFormContainer.css';
 import { formatDollarToFloat } from '../../shared/formater';
 import { BuyingForm } from '../';
-import { buyTicket } from '../../store/actions';
+import { buyTicket, toggleSnackbar } from '../../store/actions';
 import { contentEn } from '../../assets';
 
 const customButton = {
-  buttonStyle: { borderRadius: '100px', height: '40px', lineHeight: '35px' },
-  overlayStyle: { borderRadius: '100px' },
+  buttonStyle: { borderRadius: '100px', height: '40px', lineHeight: '40px' },
+  overlayStyle: { borderRadius: '100px', height: '40px', lineHeight: '40px' },
   style: { borderRadius: '100px', minWidth: '200px', color: '#fffff' },
 };
 
-function handleClick(e, props) {
+const handleClick = (props) => {
   props.buyTicket(formatDollarToFloat(props.buyingForm.values.buyingFormInput));
-}
+  // TODO: Trigger this after BUY_TICKET_SUCCESS
+  props.toggleSnackbar(`${'🎉🎉 Prediction Recieved '}${props.buyingForm.values.buyingFormInput}🎉🎉`);
+};
 
 const buyingFormContainer = props => (
   <div className="buyingForm__container" id={'buyingForm'}>
@@ -29,14 +31,20 @@ const buyingFormContainer = props => (
       overlayStyle={customButton.overlayStyle}
       className="buyingForm_raisedButton"
       secondary
-      onClick={e => handleClick(e, props.buyTicket)}
+      onClick={() => handleClick(props.buyTicket, props.buyingForm)}
     />
   </div>
 );
 
 buyingFormContainer.propTypes = {
   buyTicket: PropTypes.func.isRequired,
+  buyingForm: PropTypes.object,
 };
+
+buyingFormContainer.defaultProps = {
+  buyingForm: {},
+};
+
 
 const mapStateToProps = state => ({
   buyingForm: state.form.buyingForm,
@@ -44,6 +52,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   buyTicket,
+  toggleSnackbar,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(buyingFormContainer);
