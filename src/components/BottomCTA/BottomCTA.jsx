@@ -23,8 +23,8 @@ const customButtonSecondary = {
   style: { borderRadius: '100px', minWidth: '200px' },
 };
 
-const handleClick = (props) => {
-  props.toggleRulesDialog('rulesDialog');
+const handleClick = (toggleDialog) => {
+  toggleDialog('rulesDialog');
 };
 
 const BottomCTA = props =>
@@ -57,7 +57,7 @@ const BottomCTA = props =>
             style={customButtonSecondary.style}
             buttonStyle={customButtonSecondary.buttonStyle}
             overlayStyle={customButtonSecondary.overlayStyle}
-            onClick={() => handleClick(props)}
+            onClick={() => handleClick(props.toggleRulesDialog)}
             className="headerBar_raisedButton"
           />
         </div>
@@ -69,7 +69,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 BottomCTA.propTypes = {
-  muiTheme: PropTypes.shape(PropTypes.object).isRequired,
+  muiTheme: PropTypes.shape().isRequired,
   toggleRulesDialog: PropTypes.func.isRequired,
 };
 

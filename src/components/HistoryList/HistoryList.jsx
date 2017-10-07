@@ -30,9 +30,9 @@ class HistoryList extends React.Component {
 
   componentWillMount() {
     this.props.getBuyingHistory();
-    /*this.interval = setInterval(() => {
+    this.interval = setInterval(() => {
       this.props.getBuyingHistory();
-    }, INTERVAL_TIMER.HISTORY);*/
+    }, INTERVAL_TIMER.HISTORY);
   }
 
   componentWillUnmount() {

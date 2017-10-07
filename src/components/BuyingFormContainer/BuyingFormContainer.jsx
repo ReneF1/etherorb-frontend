@@ -16,11 +16,10 @@ const customButton = {
 };
 
 const handleClick = (props) => {
-    console.log(props.toggleSnackbar)
   props.buyTicket(formatDollarToFloat(props.buyingForm.values.buyingFormInput));
-  //TODO: Trigger this after BUY_TICKET_SUCCESS
-  props.toggleSnackbar("🎉🎉" + "Prediction Recieved " + props.buyingForm.values.buyingFormInput + "🎉🎉")
-}
+  // TODO: Trigger this after BUY_TICKET_SUCCESS
+  props.toggleSnackbar(`${'🎉🎉 Prediction Recieved '}${props.buyingForm.values.buyingFormInput}🎉🎉`);
+};
 
 const buyingFormContainer = props => (
   <div className="buyingForm__container" id={'buyingForm'}>
@@ -32,14 +31,20 @@ const buyingFormContainer = props => (
       overlayStyle={customButton.overlayStyle}
       className="buyingForm_raisedButton"
       secondary
-      onClick={() => handleClick(props)}
+      onClick={() => handleClick(props.buyTicket, props.buyingForm)}
     />
   </div>
 );
 
 buyingFormContainer.propTypes = {
   buyTicket: PropTypes.func.isRequired,
+  buyingForm: PropTypes.object,
 };
+
+buyingFormContainer.defaultProps = {
+  buyingForm: {},
+};
+
 
 const mapStateToProps = state => ({
   buyingForm: state.form.buyingForm,

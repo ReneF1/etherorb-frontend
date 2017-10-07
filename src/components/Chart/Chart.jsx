@@ -50,8 +50,8 @@ const Chart = ({ chartData, prediction, nextHour }) => (
 
 Chart.propTypes = {
   chartData: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  prediction: PropTypes.string.isRequired,
-  nextHour: PropTypes.string.isRequired,
+  prediction: PropTypes.number.isRequired,
+  nextHour: PropTypes.shape().isRequired,
 };
 
 export default Chart;

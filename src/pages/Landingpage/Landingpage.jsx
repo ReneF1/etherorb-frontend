@@ -11,7 +11,8 @@ import { INTERVAL_TIMER } from '../../shared/constant';
 import { BottomComponent, Footer, HeaderBar, TopComponent, RulesDialog } from '../../components';
 import './Landingpage.css';
 import {
-    buildPriceHistory,
+    getEthUsdMinutes,
+    getEthUsdNow,
     buildTimeArray,
     getGameData,
     setDeadlineDuration,
@@ -24,25 +25,13 @@ import {
 class Landingpage extends Component {
 
   componentWillMount() {
-    /* this.interval = setInterval(() => {
+    this.interval = setInterval(() => {
       this.updateGameData();
     }, INTERVAL_TIMER.GAME_DATA);
     this.intervalChart = setInterval(() => {
       this.updateChartData();
-    }, INTERVAL_TIMER.CHART_DATA); */
-    Promise.all([
-      this.props.setNow(),
-      this.props.setLastHour(),
-      this.props.setNextHour(),
-      this.props.setPayoutDuration(),
-      this.props.setDeadlineDuration(),
-      this.props.buildTimeArray(),
-      this.props.getGameData(),
-    ],
-        ).then(() => {
-          this.props.buildPriceHistory('ETH_USD_NOW', 'ETH', 'USD', 'Kraken', [this.props.now], this.props.now);
-          this.props.buildPriceHistory('ETH_USD_HOUR', 'ETH', 'USD', 'Kraken', this.props.timeArray, this.props.now);
-        });
+    }, INTERVAL_TIMER.CHART_DATA);
+    this.updateChartData();
   }
 
   componentWillUnmount() {
@@ -64,8 +53,8 @@ class Landingpage extends Component {
       this.props.buildTimeArray(),
     ],
         ).then(() => {
-          this.props.buildPriceHistory('ETH_USD_NOW', 'ETH', 'USD', 'Kraken', [this.props.now], this.props.now);
-          this.props.buildPriceHistory('ETH_USD_HOUR', 'ETH', 'USD', 'Kraken', this.props.timeArray, this.props.now);
+          this.props.getEthUsdNow(this.props.now);
+          this.props.getEthUsdMinutes(this.props.timeArray, this.props.now);
         });
   }
 
@@ -81,7 +70,7 @@ class Landingpage extends Component {
       display: 'none',
     };
     return (
-      <DocumentTitle title={formatDollar(this.props.ETH_USD_NOW[0].open) + contentEn.pageTitle}>
+      <DocumentTitle title={formatDollar(this.props.ETH_USD_NOW.open) + contentEn.pageTitle}>
         <div>
           <LinearProgress style={LinearProgressStyle} mode="indeterminate" />
           <HeaderBar />
@@ -118,7 +107,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   setPayoutDuration,
   setDeadlineDuration,
   buildTimeArray,
-  buildPriceHistory,
+  getEthUsdMinutes,
+  getEthUsdNow,
   getGameData,
 }, dispatch);
 
@@ -131,20 +121,19 @@ Landingpage.propTypes = {
   setPayoutDuration: PropTypes.func.isRequired,
   setDeadlineDuration: PropTypes.func.isRequired,
   buildTimeArray: PropTypes.func.isRequired,
-  buildPriceHistory: PropTypes.func.isRequired,
+  getEthUsdMinutes: PropTypes.func.isRequired,
+  getEthUsdNow: PropTypes.func.isRequired,
   getGameData: PropTypes.func.isRequired,
-  ETH_USD_NOW: PropTypes.arrayOf(PropTypes.shape),
+  ETH_USD_NOW: PropTypes.shape(),
   snackBar: PropTypes.shape(),
 };
 Landingpage.defaultProps = {
   now: '',
   timeArray: [],
   snackBar: {},
-  ETH_USD_NOW: [
-    {
-      open: '',
-    },
-  ],
+  ETH_USD_NOW: {
+    open: '',
+  },
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landingpage);
