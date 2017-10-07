@@ -1,7 +1,7 @@
 import update from 'immutability-helper';
 
 export default function reducer(state = {
-  buyingDialog: {
+  rulesDialog: {
     open: false,
   },
   snackBar: {
@@ -10,16 +10,16 @@ export default function reducer(state = {
   },
 }, action) {
   switch (action.type) {
-    case 'TOGGLE_BUYING_DIALOG': {
-      if (state.buyingDialog.open === false) {
+    case 'TOGGLE_RULES_DIALOG': {
+      if (state.rulesDialog.open === false) {
         return update(state, {
-          buyingDialog: {
+          rulesDialog: {
             open: { $set: true },
           },
         });
       }
       return update(state, {
-        buyingDialog: {
+        rulesDialog: {
           open: { $set: false },
         },
       });

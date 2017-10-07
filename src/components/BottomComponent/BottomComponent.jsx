@@ -52,7 +52,7 @@ const BottomComponent = ({
                   <InfoTag
                     icon={'monetization_on'}
                     text={contentEn.bottomComponent.infoTags[3]}
-                    value={ethToDollar(ETH_USD_NOW[0].open, contract.potSize || 0)}
+                    value={ethToDollar(ETH_USD_NOW.open, contract.potSize || 0)}
                   />
                   <InfoTag
                     icon={'timer_off'}
@@ -97,22 +97,20 @@ const BottomComponent = ({
 BottomComponent.propTypes = {
   contract: PropTypes.shape(PropTypes.object.isRequired).isRequired,
   muiTheme: PropTypes.shape(PropTypes.object.isRequired).isRequired,
-  ETH_USD_NOW: PropTypes.arrayOf(PropTypes.shape),
+  ETH_USD_NOW: PropTypes.shape(),
   ETH_USD_HOUR: PropTypes.arrayOf(PropTypes.object),
   deadlineDuration: PropTypes.number,
   payoutDuration: PropTypes.number,
-  nextHour: PropTypes.string,
+  nextHour: PropTypes.shape(),
 };
 BottomComponent.defaultProps = {
-  ETH_USD_NOW: [
-    {
-      open: '',
-    },
-  ],
+  ETH_USD_NOW: {
+    open: '',
+  },
   ETH_USD_HOUR: [],
   deadlineDuration: 0,
   payoutDuration: 0,
-  nextHour: '',
+  nextHour: {},
 };
 
 const mapStateToProps = state => ({

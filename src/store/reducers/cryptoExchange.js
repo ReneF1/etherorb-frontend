@@ -1,10 +1,16 @@
 export default function reducer(state = {
 }, action) {
   switch (action.type) {
-    case 'BUILD_PRICE_HISTORY_FULFILLED': {
+    case 'GET_ETH_USD_MINUTES_FULFILLED': {
       return {
         ...state,
-        [action.payload.id]: action.payload.data,
+        ETH_USD_HOUR: action.payload,
+      };
+    }
+    case 'GET_ETH_USD_NOW_FULFILLED': {
+      return {
+        ...state,
+        ETH_USD_NOW: action.payload,
       };
     }
     default:

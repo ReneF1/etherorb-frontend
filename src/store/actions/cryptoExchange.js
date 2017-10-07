@@ -1,9 +1,12 @@
-import cryptoExchangeService from '../service/cryptoExchange';
+import { getEthUsdMinutesService, getEthUsdNowService } from '../service/cryptoExchange';
 
-const buildPriceHistory = (id, cryptoSymbol, currencySymbol, market, timeArray, now) => ({
-  type: 'BUILD_PRICE_HISTORY',
-  payload: cryptoExchangeService(id, cryptoSymbol, currencySymbol, market, timeArray, now),
-  id,
+export const getEthUsdMinutes = (timeArray, now) => ({
+  type: 'GET_ETH_USD_MINUTES',
+  payload: getEthUsdMinutesService(timeArray, now),
 });
-export default buildPriceHistory;
+
+export const getEthUsdNow = now => ({
+  type: 'GET_ETH_USD_NOW',
+  payload: getEthUsdNowService(now),
+});
 
