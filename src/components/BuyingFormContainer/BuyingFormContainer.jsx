@@ -10,8 +10,8 @@ import { buyTicket, toggleSnackbar } from '../../store/actions';
 import { contentEn } from '../../assets';
 
 const customButton = {
-  buttonStyle: { borderRadius: '100px', height: '40px', lineHeight: '35px' },
-  overlayStyle: { borderRadius: '100px' },
+  buttonStyle: { borderRadius: '100px', height: '40px', lineHeight: '40px' },
+  overlayStyle: { borderRadius: '100px', height: '40px', lineHeight: '40px' },
   style: { borderRadius: '100px', minWidth: '200px', color: '#fffff' },
 };
 
