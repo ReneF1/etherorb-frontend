@@ -6,7 +6,6 @@ import DocumentTitle from 'react-document-title';
 import Snackbar from 'material-ui/Snackbar';
 import LinearProgress from 'material-ui/LinearProgress';
 import { contentEn } from '../../assets';
-import { formatDollar } from '../../shared/formater';
 import { INTERVAL_TIMER } from '../../shared/constant';
 import { BottomComponent, Footer, HeaderBar, TopComponent, RulesDialog } from '../../components';
 import './Landingpage.css';
@@ -124,16 +123,12 @@ Landingpage.propTypes = {
   getEthUsdMinutes: PropTypes.func.isRequired,
   getEthUsdNow: PropTypes.func.isRequired,
   getGameData: PropTypes.func.isRequired,
-  ETH_USD_NOW: PropTypes.shape(),
   snackBar: PropTypes.shape(),
 };
 Landingpage.defaultProps = {
   now: '',
   timeArray: [],
   snackBar: {},
-  ETH_USD_NOW: {
-    open: '',
-  },
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landingpage);

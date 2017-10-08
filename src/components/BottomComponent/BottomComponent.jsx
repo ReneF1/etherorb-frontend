@@ -114,6 +114,7 @@ BottomComponent.defaultProps = {
 };
 
 const mapStateToProps = state => ({
+  timeArray: state.momentTime.timeArray,
   contract: state.betReducer,
   payoutDuration: state.momentTime.payoutDuration,
   deadlineDuration: state.momentTime.deadlineDuration,

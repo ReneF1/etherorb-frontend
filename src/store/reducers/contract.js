@@ -5,7 +5,7 @@ export default function reducer(state = {
   potSize: 0,
   ticketPrice: 0,
   isActive: true,
-  prediction: 1,
+  prediction: 0,
   loading: null,
   error: null,
   buyTicket: false,
