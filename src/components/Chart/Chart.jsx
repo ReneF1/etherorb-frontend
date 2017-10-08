@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import momentTimezone from 'moment-timezone';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import mapChartData from '../../shared/chartHelper';
+import { mapChartData, scaleChartAxis } from '../../shared/chartHelper';
 import { contentEn } from '../../assets';
 import './Chart.css';
 
@@ -18,7 +18,7 @@ const Chart = ({ chartData, prediction, nextHour }) => (
       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
     >
       <XAxis dataKey="Time" />
-      <YAxis domain={['dataMin - 20', 'dataMax + 20']} />
+      <YAxis domain={scaleChartAxis(chartData)} />
       <CartesianGrid strokeDasharray="3 3" />
       <Tooltip />
       <Legend />
