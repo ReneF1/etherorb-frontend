@@ -15,7 +15,7 @@ export const ethToDollar = (dollar, eth) => {
 };
 
 export const formatDollar = (dollar) => {
-  const format = function moneyFormat(val, sign = '$ ') {
+  const format = function moneyFormat(val, sign = '$') {
     const pieces = parseFloat(val).toFixed(2).split('');
     let ii = pieces.length - 3;
     while (ii > 3) {
