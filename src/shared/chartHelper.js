@@ -28,13 +28,12 @@ const mapChartData = (data, prediction, nextHour, timeZone) => {
   return chartData;
 };
 
-const scaleChartAxis = (chartData) => {
-  const dataMin = Math.min(...chartData.map(o => o.open));
-  const dataMax = Math.max(...chartData.map(o => o.open));
-  return [`dataMin - ${(dataMin * 0.0025).toFixed(2)}`, `dataMax + ${(dataMax * 0.0025).toFixed(2)}`];
+const findMaxEthValue = (data) => {
+  const dataMax = Math.max(...data.map(o => o.open));
+  return (dataMax + (dataMax * 0.001)).toFixed(2);
 };
 
 export {
   mapChartData,
-  scaleChartAxis,
+  findMaxEthValue,
 };
