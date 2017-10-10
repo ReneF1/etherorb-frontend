@@ -5410,12 +5410,6 @@ react-flexbox-grid@^1.1.5:
     flexboxgrid "^6.3.0"
     prop-types "^15.5.8"
 
-react-https-redirect@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/react-https-redirect/-/react-https-redirect-1.0.9.tgz#2a77440253e7354b65d1e284642c6fd2f3628d78"
-  dependencies:
-    prop-types "^15.5.8"
-
 react-loading-overlay@^0.2.8:
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/react-loading-overlay/-/react-loading-overlay-0.2.8.tgz#c1c5531c9cfa4be6caca6b9aa0c1eb19e22b03fe"

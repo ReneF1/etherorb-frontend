@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import HttpsRedirect from 'react-https-redirect';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import {ConnectedRouter} from 'react-router-redux';
 import {MuiThemeProvider} from 'material-ui/styles';
@@ -25,10 +24,8 @@ const orbTheme = getMuiTheme({
 ReactDOM.render(
     <Provider store={store}>
         <MuiThemeProvider muiTheme={orbTheme}>
-            <ConnectedRouter history={history}>
-                <HttpsRedirect>
+            <ConnectedRouter history={history}
                 <App/>
-                </HttpsRedirect>
             </ConnectedRouter>
         </MuiThemeProvider>
     </Provider>
