@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import DocumentTitle from 'react-document-title';
+import Loadable from 'react-loading-overlay';
 import Snackbar from 'material-ui/Snackbar';
 import LinearProgress from 'material-ui/LinearProgress';
 import { contentEn } from '../../assets';
@@ -72,6 +73,16 @@ class Landingpage extends Component {
       <DocumentTitle title={contentEn.pageTitle}>
         <div>
           <LinearProgress style={LinearProgressStyle} mode="indeterminate" />
+          <Loadable
+            active={false}
+            spinner
+            animate
+            className="landingpage__loadable"
+            background={'rgba(255, 255, 255, 0.9)'}
+            color={'#4527a0'}
+            spinnerSize={'150px'}
+            text="Placing your bet..."
+          />
           <HeaderBar />
           <TopComponent />
           <BottomComponent />
