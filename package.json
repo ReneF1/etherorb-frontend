@@ -17,6 +17,8 @@
     "react-document-title": "^2.0.3",
     "react-dom": "^15.6.1",
     "react-flexbox-grid": "^1.1.5",
+    "react-https-redirect": "^1.0.9",
+    "react-loading-overlay": "^0.2.8",
     "react-redux": "^5.0.6",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
