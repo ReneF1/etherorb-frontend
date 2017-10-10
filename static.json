@@ -1,8 +1,4 @@
 {
   "https_only": true,
-  "root": "/",
-  "routes": {
-    "/static/*": "/static/",
-    "/**": "index.html"
-  }
+  "root": "static/"
 }
