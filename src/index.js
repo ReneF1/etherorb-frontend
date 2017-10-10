@@ -24,7 +24,7 @@ const orbTheme = getMuiTheme({
 ReactDOM.render(
     <Provider store={store}>
         <MuiThemeProvider muiTheme={orbTheme}>
-            <ConnectedRouter history={history}
+            <ConnectedRouter history={history}>
                 <App/>
             </ConnectedRouter>
         </MuiThemeProvider>
