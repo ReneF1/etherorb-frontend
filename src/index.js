@@ -25,11 +25,11 @@ const orbTheme = getMuiTheme({
 ReactDOM.render(
     <Provider store={store}>
         <MuiThemeProvider muiTheme={orbTheme}>
-            <HttpsRedirect>
             <ConnectedRouter history={history}>
+                <HttpsRedirect>
                 <App/>
+                </HttpsRedirect>
             </ConnectedRouter>
-            </HttpsRedirect>
         </MuiThemeProvider>
     </Provider>
     , document.getElementById('root'));
