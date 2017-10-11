@@ -34,6 +34,7 @@
     "redux-form": "^7.0.1",
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^4.4.1",
+    "redux-saga": "^0.15.6",
     "redux-thunk": "^2.2.0",
     "web3": "0.18.2"
   },

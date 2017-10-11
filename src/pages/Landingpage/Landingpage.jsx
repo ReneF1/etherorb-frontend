@@ -74,7 +74,7 @@ class Landingpage extends Component {
         <div>
           <LinearProgress style={LinearProgressStyle} mode="indeterminate" />
           <Loadable
-            active={false}
+            active={this.props.loadingTicket}
             spinner
             animate
             className="landingpage__loadable"
@@ -82,11 +82,12 @@ class Landingpage extends Component {
             color={'#4527a0'}
             spinnerSize={'150px'}
             text="Placing your bet..."
-          />
-          <HeaderBar />
-          <TopComponent />
-          <BottomComponent />
-          <Footer />
+          >
+            <HeaderBar />
+            <TopComponent />
+            <BottomComponent />
+            <Footer />
+          </Loadable>
           <RulesDialog />
           <Snackbar
             open={this.props.snackBar.open}
@@ -108,6 +109,7 @@ const mapStateToProps = state => ({
   timeArray: state.momentTime.timeArray,
   poolSize: state.betReducer.poolSize,
   snackBar: state.pageConfig.snackBar,
+  loadingTicket: state.betReducer.loadingTicket,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -135,11 +137,13 @@ Landingpage.propTypes = {
   getEthUsdNow: PropTypes.func.isRequired,
   getGameData: PropTypes.func.isRequired,
   snackBar: PropTypes.shape(),
+  loadingTicket: PropTypes.bool,
 };
 Landingpage.defaultProps = {
   now: '',
   timeArray: [],
   snackBar: {},
+  loadingTicket: false,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landingpage);

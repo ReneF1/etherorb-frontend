@@ -17,7 +17,6 @@ const customButton = {
 
 const handleClick = (props) => {
   props.buyTicket(formatDollarToFloat(props.buyingForm.values.buyingFormInput));
-  // TODO: Trigger this after BUY_TICKET_SUCCESS
   props.toggleSnackbar(`${'🎉🎉 Prediction Recieved '}${props.buyingForm.values.buyingFormInput}🎉🎉`);
 };
 
@@ -31,7 +30,7 @@ const buyingFormContainer = props => (
       overlayStyle={customButton.overlayStyle}
       className="buyingForm_raisedButton"
       secondary
-      onClick={() => handleClick(props.buyTicket, props.buyingForm)}
+      onClick={() => handleClick(props)}
     />
   </div>
 );
