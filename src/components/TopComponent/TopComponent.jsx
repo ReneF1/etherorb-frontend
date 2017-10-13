@@ -4,8 +4,8 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './TopComponent.css';
-import { BulletPoint, CountdownClock, BuyingFormContainer } from '../../components';
-import { contentEn, background } from '../../assets';
+import { BulletPoint, BuyingFormContainer, CountdownClock } from '../../components';
+import { background, contentEn } from '../../assets';
 
 const TopComponent = props =>
     (

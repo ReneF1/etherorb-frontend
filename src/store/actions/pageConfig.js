@@ -4,9 +4,15 @@ export function toggleRulesDialog() {
   };
 }
 
-export function toggleSnackbar(message) {
+export function showSnackbar(message) {
   return {
-    type: 'TOGGLE_SNACKBAR',
+    type: 'SHOW_SNACKBAR',
     payload: message,
+  };
+}
+
+export function hideSnackbar() {
+  return {
+    type: 'HIDE_SNACKBAR',
   };
 }

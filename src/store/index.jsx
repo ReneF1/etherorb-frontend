@@ -2,11 +2,14 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import promiseMiddleware from 'redux-promise-middleware';
 import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 import createHistory from 'history/createBrowserHistory';
 import reducer from './reducers';
+import watchBuyTicket from './sagas/snackbar';
 import multiClientMiddleWare from './middleware/multiClientMiddleware';
 
 export const history = createHistory();
+const sagaMiddleware = createSagaMiddleware();
 
 const initialState = {};
 const enhancers = [];
@@ -15,6 +18,7 @@ const middleware = [
   routerMiddleware(history),
   promiseMiddleware(),
   multiClientMiddleWare,
+  sagaMiddleware,
 ];
 
 if (process.env.NODE_ENV === 'development') {
@@ -35,5 +39,7 @@ const store = createStore(
     initialState,
     composedEnhancers,
 );
+
+sagaMiddleware.run(watchBuyTicket);
 
 export default store;
