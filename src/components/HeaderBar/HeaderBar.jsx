@@ -35,7 +35,7 @@ const HeaderBar = props => (
             style={customButton.style}
             buttonStyle={customButton.buttonStyle}
             overlayStyle={customButton.overlayStyle}
-            className="headerBar_raisedButton"
+            className="headerBar_raisedButton hide-mobile"
           />
         </Scrollchor>
       </div>
