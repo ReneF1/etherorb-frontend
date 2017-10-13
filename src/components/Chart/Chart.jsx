@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import momentTimezone from 'moment-timezone';
 import moment from 'moment';
-import { Legend, Line, LineChart, ReferenceLine, Tooltip, XAxis, YAxis } from 'recharts';
+import { Legend, Line, LineChart, ReferenceLine, Tooltip, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 import { findMaxEthValue, mapChartData } from '../../shared/chartHelper';
 import { formatDollar } from '../../shared/formater';
 import { contentEn } from '../../assets';
@@ -34,36 +34,36 @@ const CustomizedAxisTick = React.createClass({
 const Chart = ({ chartData, prediction, nextHour }) => (
   <div>
     <h2 className="chart__headline">{contentEn.chart.headline}</h2>
-    <LineChart
-      width={900}
-      height={400}
-      data={mapChartData(chartData, prediction, nextHour, timeZone)}
-      margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-    >
-      <XAxis domain={['auto', 'auto']} scale="auto" allowDataOverflow={false} minTickGap={10} dataKey="Time" interval="preserveStartEnd" tick={<CustomizedAxisTick />} />
-      <YAxis domain={['auto', 'auto']} scale="auto" allowDataOverflow={false} interval="preserveStartEnd" type="number" axisLine={{ stroke: 'rgba(70, 40, 159, 0.75)' }} tick={{ fill: '#4527a0' }} />
-      <ReferenceLine
-        y={prediction || findMaxEthValue(chartData)}
-        isFront
-        label={`Prediction: ${formatDollar(prediction || findMaxEthValue(chartData))} @ ${moment(nextHour).tz(timeZone).format('HH:mm')}`}
-        stroke="rgba(255, 56, 35, 0.25)"
-        strokeDasharray="3 3"
-      />
-      <Tooltip />
-      <Legend wrapperStyle={{ bottom: '-20px' }} />
-      <Line
-        dataKey="ETHxUSD"
-        stroke="#4527a0"
-        fill="url(#colorETHxUSD)"
-      />
-      <Line
-        dataKey="Prediction"
-        connectNulls
-        stroke="#ff3823"
-        strokeDasharray="3 3"
-        fill="url(#colorPrediction)"
-      />
-    </LineChart>
+    <ResponsiveContainer width="100%" height={400}>
+      <LineChart
+        data={mapChartData(chartData, prediction, nextHour, timeZone)}
+        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+      >
+        <XAxis domain={['auto', 'auto']} scale="auto" allowDataOverflow={false} minTickGap={10} dataKey="Time" interval="preserveStartEnd" tick={<CustomizedAxisTick />} />
+        <YAxis domain={['auto', 'auto']} scale="auto" allowDataOverflow={false} interval="preserveStartEnd" type="number" axisLine={{ stroke: 'rgba(70, 40, 159, 0.75)' }} tick={{ fill: '#4527a0' }} />
+        <ReferenceLine
+          y={prediction || findMaxEthValue(chartData)}
+          isFront
+          label={`Prediction: ${formatDollar(prediction || findMaxEthValue(chartData))} @ ${moment(nextHour).tz(timeZone).format('HH:mm')}`}
+          stroke="rgba(255, 56, 35, 0.25)"
+          strokeDasharray="3 3"
+        />
+        <Tooltip />
+        <Legend wrapperStyle={{ bottom: '-20px' }} />
+        <Line
+          dataKey="ETHxUSD"
+          stroke="#4527a0"
+          fill="url(#colorETHxUSD)"
+        />
+        <Line
+          dataKey="Prediction"
+          connectNulls
+          stroke="#ff3823"
+          strokeDasharray="3 3"
+          fill="url(#colorPrediction)"
+        />
+      </LineChart>
+    </ResponsiveContainer>
   </div>
    );
 
