@@ -1,6 +1,11 @@
 export function toggleRulesDialog() {
   return {
     type: 'TOGGLE_RULES_DIALOG',
+    meta: {
+      mixpanel: {
+        event: 'Open rules Dialog',
+      },
+    },
   };
 }
 
