@@ -3,17 +3,16 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import DocumentTitle from 'react-document-title';
-import Loadable from 'react-loading-overlay';
 import Snackbar from 'material-ui/Snackbar';
 import LinearProgress from 'material-ui/LinearProgress';
 import { contentEn } from '../../assets';
 import { INTERVAL_TIMER } from '../../shared/constant';
-import { BottomComponent, Footer, HeaderBar, TopComponent, RulesDialog } from '../../components';
+import { BottomComponent, Footer, HeaderBar, RulesDialog, TopComponent } from '../../components';
 import './Landingpage.css';
 import {
+    buildTimeArray,
     getEthUsdMinutes,
     getEthUsdNow,
-    buildTimeArray,
     getGameData,
     setDeadlineDuration,
     setLastHour,
@@ -65,24 +64,14 @@ class Landingpage extends Component {
   render() {
     const LinearProgressStyle = {
       position: 'fixed',
-      backgroundColor: '#ff3823',
+      backgroundColor: '#ffffff',
       zIndex: '999999',
-      display: 'none',
+      display: this.props.loadingTicket ? 'initial' : 'none',
     };
     return (
       <DocumentTitle title={contentEn.pageTitle}>
         <div>
-          <LinearProgress style={LinearProgressStyle} mode="indeterminate" />
-          <Loadable
-            active={false}
-            spinner
-            animate
-            className="landingpage__loadable"
-            background={'rgba(255, 255, 255, 0.9)'}
-            color={'#4527a0'}
-            spinnerSize={'150px'}
-            text="Placing your bet..."
-          />
+          <LinearProgress style={LinearProgressStyle} color={'#ff3823'} mode="indeterminate" />
           <HeaderBar />
           <TopComponent />
           <BottomComponent />
@@ -91,8 +80,8 @@ class Landingpage extends Component {
           <Snackbar
             open={this.props.snackBar.open}
             message={this.props.snackBar.message}
-            autoHideDuration={4000}
             onRequestClose={this.handleRequestClose}
+            bodyStyle={{ textAlign: 'center' }}
           />
         </div>
       </DocumentTitle>
@@ -108,6 +97,7 @@ const mapStateToProps = state => ({
   timeArray: state.momentTime.timeArray,
   poolSize: state.betReducer.poolSize,
   snackBar: state.pageConfig.snackBar,
+  loadingTicket: state.betReducer.loadingTicket,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -135,11 +125,13 @@ Landingpage.propTypes = {
   getEthUsdNow: PropTypes.func.isRequired,
   getGameData: PropTypes.func.isRequired,
   snackBar: PropTypes.shape(),
+  loadingTicket: PropTypes.bool,
 };
 Landingpage.defaultProps = {
   now: '',
   timeArray: [],
   snackBar: {},
+  loadingTicket: false,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landingpage);

@@ -24,12 +24,21 @@ export default function reducer(state = {
         },
       });
     }
-    case 'TOGGLE_SNACKBAR': {
+    case 'SHOW_SNACKBAR': {
       return {
         ...state,
         snackBar: {
           message: action.payload,
           open: true,
+        },
+      };
+    }
+    case 'HIDE_SNACKBAR': {
+      return {
+        ...state,
+        snackBar: {
+          message: '',
+          open: false,
         },
       };
     }

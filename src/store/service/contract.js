@@ -1,6 +1,6 @@
 import Web3 from 'web3';
 import web3Connect, { isInjected } from '../util/web3/web3Connect';
-import { TICKET_PRICE, CONTRACT_ADDRESS } from '../../shared/constant';
+import { CONTRACT_ADDRESS, TICKET_PRICE } from '../../shared/constant';
 
 export const buyTicketService = (estimate, account) =>
     isInjected().then(() => new Promise((resolve, reject) => {

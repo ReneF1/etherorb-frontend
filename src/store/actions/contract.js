@@ -1,4 +1,4 @@
-import { buyTicketService, getGameDataService, getBuyingHistoryService } from '../service/contract';
+import { buyTicketService, getBuyingHistoryService, getGameDataService } from '../service/contract';
 
 export const buyTicket = estimate => ({
   type: 'BUY_TICKET',

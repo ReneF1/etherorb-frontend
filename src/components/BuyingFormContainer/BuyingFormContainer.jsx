@@ -6,7 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import './BuyingFormContainer.css';
 import { formatDollarToFloat } from '../../shared/formater';
 import { BuyingForm } from '../';
-import { buyTicket, toggleSnackbar } from '../../store/actions';
+import { buyTicket } from '../../store/actions';
 import { contentEn } from '../../assets';
 
 const customButton = {
@@ -15,10 +15,8 @@ const customButton = {
   style: { borderRadius: '100px', minWidth: '200px', color: '#fffff' },
 };
 
-const handleClick = (props) => {
-  props.buyTicket(formatDollarToFloat(props.buyingForm.values.buyingFormInput));
-  // TODO: Trigger this after BUY_TICKET_SUCCESS
-  props.toggleSnackbar(`${'🎉🎉 Prediction Recieved '}${props.buyingForm.values.buyingFormInput}🎉🎉`);
+const handleClick = (ticket, form) => {
+  ticket(formatDollarToFloat(form.values.buyingFormInput));
 };
 
 const buyingFormContainer = props => (
@@ -52,7 +50,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   buyTicket,
-  toggleSnackbar,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(buyingFormContainer);

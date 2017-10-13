@@ -5,7 +5,7 @@ import { Col, Grid, Row } from 'react-flexbox-grid';
 import { connect } from 'react-redux';
 import './BottomComponent.css';
 import { ethToDollar, formatDollar } from '../../shared/formater';
-import { InfoTag, Chart, HistoryList, BottomCTA, Timer } from '../';
+import { BottomCTA, Chart, HistoryList, InfoTag, Timer } from '../';
 import { contentEn } from '../../assets';
 
 const BottomComponent = ({

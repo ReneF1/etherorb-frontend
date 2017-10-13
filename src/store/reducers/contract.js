@@ -6,7 +6,8 @@ export default function reducer(state = {
   ticketPrice: 0,
   isActive: true,
   prediction: 0,
-  loading: null,
+  loading: false,
+  loadingTicket: false,
   error: null,
   buyTicket: false,
 }, action) {
@@ -51,18 +52,18 @@ export default function reducer(state = {
     case 'BUY_TICKET_PENDING':
       return {
         ...state,
-        loading: true,
+        loadingTicket: true,
       };
     case 'BUY_TICKET_FULFILLED':
       return {
         ...state,
-        loading: false,
+        loadingTicket: false,
         buyTicket: true,
       };
     case 'BUY_TICKET_REJECTED':
       return {
         ...state,
-        loading: null,
+        loadingTicket: null,
         error: true,
       };
 
