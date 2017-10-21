@@ -19,7 +19,6 @@ import {
     setNextHour,
     setNow,
     setPayoutDuration,
-    openPage,
 } from '../../store/actions';
 
 class Landingpage extends Component {
@@ -99,7 +98,6 @@ const mapStateToProps = state => ({
   poolSize: state.betReducer.poolSize,
   snackBar: state.pageConfig.snackBar,
   loadingTicket: state.betReducer.loadingTicket,
-  userWallet: state.betReducer.userWallet,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -112,7 +110,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   getEthUsdMinutes,
   getEthUsdNow,
   getGameData,
-  openPage,
 }, dispatch);
 
 Landingpage.propTypes = {
