@@ -1,11 +1,13 @@
+export function openPage(pageName) {
+  return {
+    type: 'OPEN_PAGE',
+    payload: pageName,
+  };
+}
+
 export function toggleRulesDialog() {
   return {
     type: 'TOGGLE_RULES_DIALOG',
-    meta: {
-      mixpanel: {
-        event: 'Open rules Dialog',
-      },
-    },
   };
 }
 

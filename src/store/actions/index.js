@@ -1,8 +1,8 @@
 import { getEthUsdMinutes, getEthUsdNow } from './cryptoExchange';
-import { buyTicket, getBuyingHistory, getGameData } from './contract';
+import { buyTicket, getBuyingHistory, getGameData, getUserWallet } from './contract';
 import { buildTimeArray, setDeadlineDuration, setLastHour, setNextHour, setNow, setPayoutDuration } from './momentTime';
 import startTimer from './timer';
-import { toggleRulesDialog, showSnackbar, hideSnackbar } from './pageConfig';
+import { toggleRulesDialog, showSnackbar, hideSnackbar, openPage } from './pageConfig';
 
 export {
     setNow,
@@ -16,9 +16,11 @@ export {
     buyTicket,
     getGameData,
     getBuyingHistory,
+    getUserWallet,
     startTimer,
     showSnackbar,
     hideSnackbar,
     toggleRulesDialog,
+    openPage,
 };
 

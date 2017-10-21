@@ -1,8 +1,21 @@
-import { buyTicketService, getBuyingHistoryService, getGameDataService } from '../service/contract';
+import { buyTicketService, getBuyingHistoryService, getGameDataService, getUserWalletService } from '../service/contract';
+
+export const getUserWallet = () => ({
+  type: 'GET_USER_WALLET',
+  payload: getUserWalletService(),
+});
 
 export const buyTicket = estimate => ({
   type: 'BUY_TICKET',
   payload: buyTicketService(estimate),
+  meta: {
+    mixpanel: {
+      event: 'Buy ticket success',
+      props: {
+        Predicion: estimate,
+      },
+    },
+  },
 });
 
 export const getBuyingHistory = limit => ({

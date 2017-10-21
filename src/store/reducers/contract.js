@@ -10,12 +10,19 @@ export default function reducer(state = {
   loadingTicket: false,
   error: null,
   buyTicket: false,
+  userWallet: '',
 }, action) {
   switch (action.type) {
     case 'GET_CONTRACT_DATA': {
       return {
         ...state,
         contractData: action.payload,
+      };
+    }
+    case 'GET_USER_WALLET_FULFILLED': {
+      return {
+        ...state,
+        userWallet: action.payload,
       };
     }
     case 'PLACE_BET': {
