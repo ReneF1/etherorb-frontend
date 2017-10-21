@@ -57,6 +57,7 @@ export const getGameDataService = () => isInjected().then(() => new Promise((res
         totalEstimation: parseFloat(res[2].toString()),
         isActive: res[3],
         ticketPrice: parseFloat(new Web3().fromWei(res[4], 'ether').toString()),
+        feeFactor:parseInt(res[5].toString(), 10),
       };
       resolve(data);
     } else {
