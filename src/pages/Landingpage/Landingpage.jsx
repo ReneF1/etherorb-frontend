@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import mixpanel from 'mixpanel-browser';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -26,12 +25,6 @@ import {
 class Landingpage extends Component {
 
   componentWillMount() {
-    if (window.location.hostname.toLowerCase().search('etherorb') > 0) {
-      mixpanel.init('367f7bdd4391bf1ec5c26f72d106c1d7');
-    } else {
-      mixpanel.init('beb63edb5e2a772522167f541ed09da1');
-    }
-    this.props.openPage('Landingpage');
     this.interval = setInterval(() => {
       this.updateGameData();
     }, INTERVAL_TIMER.GAME_DATA);
@@ -46,9 +39,6 @@ class Landingpage extends Component {
       clearInterval(this.interval);
     }
     if (this.intervalChart) {
-      clearInterval(this.intervalChart);
-    }
-    if (this.intervalWallet) {
       clearInterval(this.intervalChart);
     }
   }
@@ -132,7 +122,6 @@ Landingpage.propTypes = {
   now: PropTypes.number,
   timeArray: PropTypes.arrayOf(PropTypes.number),
   setPayoutDuration: PropTypes.func.isRequired,
-  openPage: PropTypes.func.isRequired,
   setDeadlineDuration: PropTypes.func.isRequired,
   buildTimeArray: PropTypes.func.isRequired,
   getEthUsdMinutes: PropTypes.func.isRequired,
