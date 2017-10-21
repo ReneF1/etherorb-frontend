@@ -64,8 +64,3 @@ export const getGameDataService = () => isInjected().then(() => new Promise((res
     }
   });
 }));
-
-export const getUserWalletService = () => isInjected().then(() => new Promise((resolve, reject) => {
-  resolve(web3Connect().account);
-  reject('No wallet');
-}));

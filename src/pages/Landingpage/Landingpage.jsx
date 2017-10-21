@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import mixpanel from 'mixpanel-browser';
-import watch from 'redux-watch';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import DocumentTitle from 'react-document-title';
 import Snackbar from 'material-ui/Snackbar';
 import LinearProgress from 'material-ui/LinearProgress';
-import store from '../../store/';
 import { contentEn } from '../../assets';
 import { INTERVAL_TIMER } from '../../shared/constant';
 import { BottomComponent, Footer, HeaderBar, RulesDialog, TopComponent } from '../../components';
@@ -16,7 +14,6 @@ import {
     buildTimeArray,
     getEthUsdMinutes,
     getEthUsdNow,
-    getUserWallet,
     getGameData,
     setDeadlineDuration,
     setLastHour,
@@ -42,9 +39,6 @@ class Landingpage extends Component {
       this.updateChartData();
     }, INTERVAL_TIMER.CHART_DATA);
     this.updateChartData();
-    this.intervalWallet = setInterval(() => {
-      this.updateWalletData();
-    }, INTERVAL_TIMER.WALLET_DATA);
   }
 
   componentWillUnmount() {
@@ -72,18 +66,6 @@ class Landingpage extends Component {
           this.props.getEthUsdNow(this.props.now);
           this.props.getEthUsdMinutes(this.props.timeArray, this.props.now);
         });
-  }
-
-  updateWalletData() {
-    this.props.getUserWallet();
-    const w = watch(store.getState, 'betReducer.userWallet');
-    store.subscribe(w((newVal, oldVal) => {
-      if (!oldVal) {
-        mixpanel.track('Wallet Registered', { Wallet: newVal });
-      } else {
-        mixpanel.track('Wallet Changed', { Wallet: newVal });
-      }
-    }));
   }
 
   updateGameData() {
@@ -140,13 +122,11 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   getEthUsdMinutes,
   getEthUsdNow,
   getGameData,
-  getUserWallet,
   openPage,
 }, dispatch);
 
 Landingpage.propTypes = {
   setLastHour: PropTypes.func.isRequired,
-  getUserWallet: PropTypes.func.isRequired,
   setNextHour: PropTypes.func.isRequired,
   setNow: PropTypes.func.isRequired,
   now: PropTypes.number,

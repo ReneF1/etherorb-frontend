@@ -1,28 +1,30 @@
 import { takeEvery } from 'redux-saga/effects';
 import mixpanel from 'mixpanel-browser';
 
-function* trackOpen(action) {
+
+function* trackOpenPage(action) {
   yield [
-    mixpanel.track(`Open ${action.payload}`),
+    mixpanel.track('view page', { name: action.name }),
   ];
 }
 
-function* trackBuyTicketFulfilled() {
+function* trackClickButton(action) {
   yield [
-    mixpanel.track('Buy Ticket Success'),
+    mixpanel.track('click button', { name: action.name, position: action.position }),
   ];
 }
 
-function* trackBuyTicketRejected() {
+function* trackBuyTicket(action) {
   yield [
-    mixpanel.track('Buy Ticket Error'),
+    mixpanel.track('buy ticket', { result: action.error ? 'error' : 'success', price: action.error ? 'error' : action.payload }),
   ];
 }
 
 function* watchEventsToTrack() {
-  yield takeEvery('OPEN_PAGE', trackOpen);
-  yield takeEvery('BUY_TICKET_FULFILLED', trackBuyTicketFulfilled);
-  yield takeEvery('BUY_TICKET_REJECTED', trackBuyTicketRejected);
+  yield takeEvery('OPEN_PAGE', trackOpenPage);
+  yield takeEvery('CLICK_BUTTON', trackClickButton);
+  yield takeEvery('BUY_TICKET_FULFILLED', trackBuyTicket);
+  yield takeEvery('BUY_TICKET_REJECTED', trackBuyTicket);
 }
 
 export default watchEventsToTrack;
