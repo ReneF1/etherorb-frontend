@@ -5718,10 +5718,6 @@ redux-logger@^3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
-redux-mixpanel-middleware@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/redux-mixpanel-middleware/-/redux-mixpanel-middleware-1.0.1.tgz#01aabca9783336330531bcd0498b6e3327db69cf"
-
 redux-promise-middleware@^4.4.1:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/redux-promise-middleware/-/redux-promise-middleware-4.4.1.tgz#da616a4387b1e21edbdd46d51b9480b19443feec"

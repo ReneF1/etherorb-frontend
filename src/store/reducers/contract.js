@@ -59,6 +59,8 @@ export default function reducer(state = {
         ...state,
         loadingTicket: false,
         buyTicket: true,
+        prediction: action.payload,
+        error: true,
       };
     case 'BUY_TICKET_REJECTED':
       return {
