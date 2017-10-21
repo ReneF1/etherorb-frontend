@@ -5,7 +5,7 @@ import { Col, Grid, Row } from 'react-flexbox-grid';
 import { connect } from 'react-redux';
 import './BottomComponent.css';
 import { ethToDollar, formatDollar } from '../../shared/formater';
-import { BottomCTA, Chart, HistoryList, InfoTag, Timer } from '../';
+import { BottomCTA, Chart, InfoTag, Timer } from '../';
 import { contentEn } from '../../assets';
 
 const BottomComponent = ({
@@ -72,13 +72,6 @@ const BottomComponent = ({
                     prediction={contract.prediction}
                     nextHour={nextHour}
                   />
-                </div>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12} md={12}>
-                <div className="bottomComponent__paddingWrapper">
-                  <HistoryList />
                 </div>
               </Col>
             </Row>
